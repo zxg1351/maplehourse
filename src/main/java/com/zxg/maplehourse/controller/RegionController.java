@@ -1,7 +1,7 @@
 package com.zxg.maplehourse.controller;
 
-import com.zxg.maplehourse.Model.MProvinceModel;
-import com.zxg.maplehourse.Repository.MProvinceRepository;
+import com.zxg.maplehourse.model.MProvinceModel;
+import com.zxg.maplehourse.repository.MProvinceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

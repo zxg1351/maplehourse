@@ -1,4 +1,4 @@
-package com.zxg.maplehourse.Model;
+package com.zxg.maplehourse.model;
 
 import lombok.Data;
 

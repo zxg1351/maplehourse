@@ -1,6 +1,6 @@
-package com.zxg.maplehourse.Repository;
+package com.zxg.maplehourse.repository;
 
-import com.zxg.maplehourse.Model.MProvinceModel;
+import com.zxg.maplehourse.model.MProvinceModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

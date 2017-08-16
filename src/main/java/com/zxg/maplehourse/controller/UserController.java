@@ -1,7 +1,7 @@
 package com.zxg.maplehourse.controller;
 
-import com.zxg.maplehourse.Model.Apple;
-import com.zxg.maplehourse.Model.User;
+import com.zxg.maplehourse.model.Apple;
+import com.zxg.maplehourse.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
