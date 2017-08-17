@@ -44,7 +44,7 @@ public class TDepartmentWorkerModel
     @Column(name = "del_flag")
     private String delFlag;
     @Column(name = "manager_Id")
-    private Integer manager_Id;
+    private Integer managerId;
 
 
     @Column(name = "t_work_address")
