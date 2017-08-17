@@ -19,12 +19,12 @@ public class MAreaModel {
     private Integer id;
 
     @Column(name = "m_area_id")
-    private String m_area_id;
+    private String mAreaId;
 
 
     @Column(name = "m_area_name")
-    private String m_area_name;
+    private String mAreaName;
 
     @Column(name = "m_city_id")
-    private String m_city_id;
+    private String mCityId;
 }

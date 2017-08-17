@@ -20,25 +20,25 @@ public class MRoleModel {
     private Integer id;
 
     @Column(name = "m_role_name")
-    private String m_role_name;
+    private String mRoleName;
 
     @Column(name = "m_role_number")
-    private String m_role_number;
-
-    @Column(name = "create_time")
-    private Date create_time;
+    private String mRoleNumber;
 
     @Column(name = "create_user")
-    private Integer create_user;
+    private Integer createUser;
 
-    @Column(name = "update_time")
-    private Date update_time;
+    @Column(name = "create_time")
+    private Date createTime;
 
     @Column(name = "update_user")
-    private Integer update_user;
+    private Integer updateUser;
+
+    @Column(name = "update_time")
+    private Date updateTime;
 
     @Column(name = "del_flag")
-    private String del_flag;
+    private String delFlag;
 
 
 //    @ManyToMany

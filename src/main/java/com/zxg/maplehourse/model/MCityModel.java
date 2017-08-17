@@ -20,11 +20,11 @@ public class MCityModel
 
 
     @Column(name = "m_city_id")
-    private String m_city_id;
+    private String mCityId;
 
     @Column(name = "m_city_name")
-    private String m_city_name;
+    private String mCityName;
 
     @Column(name = "m_province_id")
-    private Integer m_province_id;
+    private Integer mProvinceId;
 }

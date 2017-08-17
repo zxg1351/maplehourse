@@ -24,18 +24,18 @@ public class TDepartmentFinanceModel {
     private String name;
 
     @Column(name = "create_user")
-    private Integer create_user;
+    private Integer createUser;
 
     @Column(name = "create_time")
-    private Date create_time;
-
-    @Column(name = "update_time")
-    private Date update_time;
+    private Date createTime;
 
     @Column(name = "update_user")
-    private Date update_user;
+    private Integer updateUser;
+
+    @Column(name = "update_time")
+    private Date updateTime;
 
     @Column(name = "del_flag")
-    private String del_flag;
+    private String delFlag;
 
 }

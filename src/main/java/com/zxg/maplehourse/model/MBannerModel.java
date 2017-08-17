@@ -19,26 +19,26 @@ public class MBannerModel {
     private Integer id;
 
     @Column(name = "m_banner_name")
-    private String m_banner_name;
+    private String mBannerName;
 
     @Column(name = "m_banner_url")
-    private String m_banner_url;
+    private String mBannerUrl;
 
     @Column(name = "m_banner_type")
-    private String m_banner_type;
+    private String mBannerType;
 
     @Column(name = "create_time")
-    private Date create_time;
+    private Date createTime;
 
     @Column(name = "create_user")
-    private Integer create_user;
+    private Integer createUser;
 
     @Column(name = "update_time")
-    private Date update_time;
+    private Date updateTime;
 
     @Column(name = "update_user")
-    private Integer update_user;
+    private Integer updateUser;
 
     @Column(name = "del_flag")
-    private String del_flag;
+    private String delFlag;
 }
