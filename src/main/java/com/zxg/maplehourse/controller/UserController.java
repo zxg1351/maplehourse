@@ -34,7 +34,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/login")
+    @RequestMapping(value = "/login")
     public ModelAndView login(HttpServletRequest request, @Valid User user, BindingResult result, RedirectAttributes redirectAttributes) {
 
 
