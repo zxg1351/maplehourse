@@ -23,9 +23,9 @@ public class MBannerServiceImpl implements MBannerService{
     public ResultInfo selectAllBanner(String mBannerName) {
         ResultInfo resultInfo = new ResultInfo();
 
-        List<MBannerModel> mBannerModelList =  mBannerRepository.findByMBannerNameLike(mBannerName);
+        List<MBannerModel> mBannerModelList =  mBannerRepository.findAll();
 
-
+        resultInfo.setAppData(mBannerModelList);
         return resultInfo;
     }
 
