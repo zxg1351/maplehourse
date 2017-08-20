@@ -1,6 +1,7 @@
 package com.zxg.maplehourse.controller;
 
 import com.zxg.maplehourse.bean.ResultInfo;
+import com.zxg.maplehourse.model.MBannerModel;
 import com.zxg.maplehourse.service.MBannerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,5 +27,15 @@ public class MBannerController
 
         ResultInfo resultInfo = mBannerService.selectAllBanner(name);
         return  resultInfo;
+    }
+
+
+    @RequestMapping(value = "/insertBanner")
+    public ResultInfo insertBanner(){
+
+        MBannerModel mBannerModel = new MBannerModel();
+        ResultInfo resultInfo = mBannerService.insertBanner(mBannerModel);
+
+        return resultInfo;
     }
 }

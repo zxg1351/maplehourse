@@ -1,7 +1,7 @@
 package com.zxg.maplehourse.controller;
 
 import com.zxg.maplehourse.model.MProvinceModel;
-import com.zxg.maplehourse.repository.MProvinceRepository;
+import com.zxg.maplehourse.repository.MRegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +17,13 @@ import java.util.List;
 public class RegionController {
 
     @Autowired
-    private MProvinceRepository mProvinceRepository;
+    private MRegionRepository mRegionRepository;
 
     //localhost:9091/
     @RequestMapping(value = "/selectProvice")
     public ModelAndView selectProvince() {
 
-        List<MProvinceModel> mProvinceModelList = mProvinceRepository.findAllBy();
+        List<MProvinceModel> mProvinceModelList = mRegionRepository.findAllBy();
 
         ModelAndView modelAndView = new ModelAndView("/province");
         modelAndView.addObject("mProvince",mProvinceModelList);
