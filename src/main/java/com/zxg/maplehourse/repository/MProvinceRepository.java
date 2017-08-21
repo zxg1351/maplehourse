@@ -8,11 +8,14 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/8/16.
  */
-public interface MRegionRepository extends JpaRepository<MProvinceModel,Integer> {
+public interface MProvinceRepository extends JpaRepository<MProvinceModel,Integer> {
 
 
 
     List<MProvinceModel> findAllBy();
+
+    List<MProvinceModel> findAllByMProvinceName(String mProvinceName);
+
 
 
 }

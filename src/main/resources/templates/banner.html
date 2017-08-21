@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+    <div >
+        <table class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>轮播图名称</td>
+                    <td>轮播图URL</td>
+                </tr>
+
+            </thead>
+            <tr th:each="mbanner:${mbannerList}">
+                <td th:text="${mbanner.id}">id</td>
+                <td th:text="${mbanner.mBannerName}">mBannerName</td>
+                <td th:text="${mbanner.mBannerUrl}">mBannerUrl</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+
+
+</body>
+</html>

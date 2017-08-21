@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tr="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Area List</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <td>id</td>
+            <td>区域ID</td>
+            <td>区域名称</td>
+            <td>城市ID</td>
+        </tr>
+        </thead>
+
+        <tr th:each="area:${arealist}">
+
+            <td th:text="${area.id}"></td>
+            <td th:text="${area.mAreaId}"></td>
+            <td th:text="${area.mAreaName}"></td>
+            <td th:text="${area.mCityId}"></td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>
