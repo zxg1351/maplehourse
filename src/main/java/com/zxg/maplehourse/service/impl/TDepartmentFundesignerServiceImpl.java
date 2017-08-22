@@ -1,13 +1,36 @@
 package com.zxg.maplehourse.service.impl;
 
 import com.zxg.maplehourse.bean.ResultInfo;
+import com.zxg.maplehourse.model.TDepartmentFundesignerModel;
+import com.zxg.maplehourse.repository.TDepartmentFundesignerRepository;
 import com.zxg.maplehourse.service.TDepartmentFundesignerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 @Service
 public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesignerService {
+
+
+    @Autowired
+    private TDepartmentFundesignerRepository fundesignerRepository;
+
     @Override
     public ResultInfo selectAllTDepartmentFundesigner() {
-        return null;
+
+        ResultInfo resultInfo = new ResultInfo();
+
+        List<TDepartmentFundesignerModel> fundesignerModelList = fundesignerRepository.findAll();
+
+        if (!CollectionUtils.isEmpty(fundesignerModelList)){
+
+
+            resultInfo.setAppData(fundesignerModelList);
+        }else {
+            resultInfo.setAppData("");
+        }
+        return resultInfo;
     }
 }

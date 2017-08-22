@@ -4,8 +4,10 @@ import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.MUserModel;
 import com.zxg.maplehourse.repository.MUserRepository;
 import com.zxg.maplehourse.service.MUserService;
+import org.hibernate.action.internal.CollectionRecreateAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -21,10 +23,15 @@ public class MUserServiceImpl implements MUserService {
 
         ResultInfo resultInfo = new ResultInfo();
 
-        List<MUserModel> mUserModelList =mUserRepository.findAll();
+        List<MUserModel> mUserModelList = mUserRepository.findAll();
 
-        resultInfo.setAppData(mUserModelList);
 
+        if (!CollectionUtils.isEmpty(mUserModelList)) {
+
+            resultInfo.setAppData(mUserModelList);
+        } else {
+            resultInfo.setAppData("");
+        }
         return resultInfo;
     }
 }

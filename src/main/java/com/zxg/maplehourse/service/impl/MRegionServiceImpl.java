@@ -33,7 +33,13 @@ public class MRegionServiceImpl implements MRegionService {
 
         List<MAreaModel> mAreaModelList = mAreaRepository.findAll();
 
-        resultInfo.setAppData(mAreaModelList);
+
+        if (!CollectionUtils.isEmpty(mAreaModelList)){
+            resultInfo.setAppData(mAreaModelList);
+
+        }else {
+            resultInfo.setAppData("");
+        }
 
 
         return resultInfo;

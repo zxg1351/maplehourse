@@ -6,6 +6,7 @@ import com.zxg.maplehourse.repository.MRoleRepository;
 import com.zxg.maplehourse.service.MRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -25,7 +26,14 @@ public class MRoleServiceImpl implements MRoleService {
         ResultInfo resultInfo = new ResultInfo();
 
         List<MRoleModel> mRoleModelList = mRoleRepository.findAll();
-        resultInfo.setAppData(mRoleModelList);
+
+        if (!CollectionUtils.isEmpty(mRoleModelList)){
+
+            resultInfo.setAppData(mRoleModelList);
+        }else {
+
+            resultInfo.setAppData("");
+        }
         return resultInfo;
     }
 }

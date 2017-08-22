@@ -7,6 +7,7 @@ import com.zxg.maplehourse.service.MMenuService;
 import com.zxg.maplehourse.service.MUserMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -21,8 +22,16 @@ public class MMenuServiceImpl implements MMenuService {
         ResultInfo resultInfo = new ResultInfo();
 
         List<MMenuModel> mMenuModelList = mMenuRepository.findAll();
+        if (!CollectionUtils.isEmpty(mMenuModelList)){
 
-        resultInfo.setAppData(mMenuModelList);
+
+            resultInfo.setAppData(mMenuModelList);
+
+        }else {
+            resultInfo.setAppData("");
+        }
+
+
         return resultInfo;
     }
 }
