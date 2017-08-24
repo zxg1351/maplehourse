@@ -26,7 +26,7 @@ public class TDepartmentDesignerController {
         ResultInfo resultInfo = departmentDesignerService.selectAllTDepartmentDesigner();
 
 
-        ModelAndView modelAndView = new ModelAndView("/designer");
+        ModelAndView modelAndView = new ModelAndView("/  ");
 
         modelAndView.addObject("designerList", resultInfo.getAppData());
 
