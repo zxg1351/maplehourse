@@ -6,11 +6,13 @@ import com.zxg.maplehourse.repository.TDepartmentSalesRepository;
 import com.zxg.maplehourse.service.TDepartmentSalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
 @Service
-public class TDepartmentSalesServiceImpl implements TDepartmentSalesService{
+public class TDepartmentSalesServiceImpl implements TDepartmentSalesService {
+
 
     @Autowired
     private TDepartmentSalesRepository salesRepository;
@@ -18,13 +20,17 @@ public class TDepartmentSalesServiceImpl implements TDepartmentSalesService{
     @Override
     public ResultInfo selectAllTDepartmentSales() {
 
+
         ResultInfo resultInfo = new ResultInfo();
+        List<TDepartmentSalesModel> salesModelList = salesRepository.findAll();
 
-        List<TDepartmentSalesModel> salesModelList  = salesRepository.findAll();
+        if (!CollectionUtils.isEmpty(salesModelList)) {
 
+            resultInfo.setAppData(salesModelList);
+        } else {
 
-        resultInfo.setAppData(salesModelList);
-
+            resultInfo.setAppData("");
+        }
         return resultInfo;
     }
 }

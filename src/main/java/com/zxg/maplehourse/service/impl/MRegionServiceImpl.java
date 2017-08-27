@@ -33,7 +33,13 @@ public class MRegionServiceImpl implements MRegionService {
 
         List<MAreaModel> mAreaModelList = mAreaRepository.findAll();
 
-        resultInfo.setAppData(mAreaModelList);
+
+        if (!CollectionUtils.isEmpty(mAreaModelList)) {
+            resultInfo.setAppData(mAreaModelList);
+
+        } else {
+            resultInfo.setAppData("");
+        }
 
 
         return resultInfo;
@@ -47,6 +53,8 @@ public class MRegionServiceImpl implements MRegionService {
         List<MCityModel> mCityModelList = mCityRepository.findAll();
         if (!CollectionUtils.isEmpty(mCityModelList)) {
             resultInfo.setAppData(mCityModelList);
+        } else {
+            resultInfo.setAppData("");
         }
         return resultInfo;
     }
@@ -59,6 +67,9 @@ public class MRegionServiceImpl implements MRegionService {
         if (!CollectionUtils.isEmpty(mProvinceModelList)) {
 
             resultInfo.setAppData(mProvinceModelList);
+        } else {
+
+            resultInfo.setAppData("");
         }
         return resultInfo;
     }

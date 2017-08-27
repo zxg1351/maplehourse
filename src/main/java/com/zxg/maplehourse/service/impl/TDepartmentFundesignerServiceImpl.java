@@ -6,23 +6,31 @@ import com.zxg.maplehourse.repository.TDepartmentFundesignerRepository;
 import com.zxg.maplehourse.service.TDepartmentFundesignerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
 @Service
 public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesignerService {
 
+
     @Autowired
     private TDepartmentFundesignerRepository fundesignerRepository;
 
     @Override
     public ResultInfo selectAllTDepartmentFundesigner() {
-        ResultInfo resultInfo = new ResultInfo();
 
+        ResultInfo resultInfo = new ResultInfo();
 
         List<TDepartmentFundesignerModel> fundesignerModelList = fundesignerRepository.findAll();
 
-        resultInfo.setAppData(fundesignerModelList);
+        if (!CollectionUtils.isEmpty(fundesignerModelList)){
+
+
+            resultInfo.setAppData(fundesignerModelList);
+        }else {
+            resultInfo.setAppData("");
+        }
         return resultInfo;
     }
 }

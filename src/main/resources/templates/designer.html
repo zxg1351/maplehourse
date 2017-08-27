@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>菜单列表 Title</title>
+    <title>设计师列表管理 Title</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
@@ -11,15 +11,15 @@
         <thead>
         <tr>
             <td>id</td>
-            <td>菜单单号</td>
-            <td>菜单名称</td>
+            <td>设计师编号</td>
+            <td>设计师名称</td>
         </tr>
 
         </thead>
-        <tr th:each="menu:${menuList}">
-            <td th:text="${menu.id}">id</td>
-            <td th:text="${menu.mMenuNumber}">mMenuNumber</td>
-            <td th:text="${menu.mMenuName}">mMenuName</td>
+        <tr th:each="designer:${designerList}">
+            <td th:text="${designer.id}">id</td>
+            <td th:text="${designer.type}">mRoleName</td>
+            <td th:text="${designer.name}">name</td>
 
         </tr>
 

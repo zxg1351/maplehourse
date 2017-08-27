@@ -6,6 +6,7 @@ import com.zxg.maplehourse.repository.MBannerRepository;
 import com.zxg.maplehourse.service.MBannerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -25,8 +26,11 @@ public class MBannerServiceImpl implements MBannerService{
         ResultInfo resultInfo = new ResultInfo();
 
         List<MBannerModel> mBannerModelList =  mBannerRepository.findAll();
-
-        resultInfo.setAppData(mBannerModelList);
+        if (!CollectionUtils.isEmpty(mBannerModelList)){
+            resultInfo.setAppData(mBannerModelList);
+        }else {
+            resultInfo.setAppData("");
+        }
         return resultInfo;
     }
 
@@ -39,9 +43,8 @@ public class MBannerServiceImpl implements MBannerService{
         mBannerModel1.setMBannerType("0");
         mBannerModel1.setCreateTime(new Date());
         mBannerModel1.setCreateUser(1);
-
         MBannerModel mBannerModel2 = mBannerRepository.save(mBannerModel1);
         resultInfo.setAppData(mBannerModel2);
-        return null;
+        return resultInfo;
     }
 }
