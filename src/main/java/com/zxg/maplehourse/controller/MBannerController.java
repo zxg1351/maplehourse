@@ -3,6 +3,8 @@ package com.zxg.maplehourse.controller;
 import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.MBannerModel;
 import com.zxg.maplehourse.service.MBannerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping(value = "/mBanner")
 public class MBannerController
 {
+
 
     @Autowired
     private MBannerService mBannerService;

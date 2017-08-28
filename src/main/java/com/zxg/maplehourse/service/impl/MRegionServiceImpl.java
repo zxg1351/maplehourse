@@ -8,6 +8,8 @@ import com.zxg.maplehourse.repository.MAreaRepository;
 import com.zxg.maplehourse.repository.MCityRepository;
 import com.zxg.maplehourse.repository.MProvinceRepository;
 import com.zxg.maplehourse.service.MRegionService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -17,6 +19,8 @@ import java.util.List;
 
 @Service
 public class MRegionServiceImpl implements MRegionService {
+
+    private static final Logger logger = LoggerFactory.getLogger(MRegionServiceImpl.class);
     @Autowired
     private MAreaRepository mAreaRepository;
 
@@ -36,9 +40,10 @@ public class MRegionServiceImpl implements MRegionService {
 
         if (!CollectionUtils.isEmpty(mAreaModelList)) {
             resultInfo.setAppData(mAreaModelList);
-
+            logger.debug("菜单信息所示");
         } else {
             resultInfo.setAppData("");
+            logger.debug("菜单信息所示");
         }
 
 
@@ -53,8 +58,10 @@ public class MRegionServiceImpl implements MRegionService {
         List<MCityModel> mCityModelList = mCityRepository.findAll();
         if (!CollectionUtils.isEmpty(mCityModelList)) {
             resultInfo.setAppData(mCityModelList);
+            logger.debug("菜单信息所示");
         } else {
             resultInfo.setAppData("");
+            logger.debug("菜单信息所示");
         }
         return resultInfo;
     }
@@ -67,9 +74,11 @@ public class MRegionServiceImpl implements MRegionService {
         if (!CollectionUtils.isEmpty(mProvinceModelList)) {
 
             resultInfo.setAppData(mProvinceModelList);
+            logger.debug("菜单信息所示");
         } else {
 
             resultInfo.setAppData("");
+            logger.debug("菜单信息所示");
         }
         return resultInfo;
     }

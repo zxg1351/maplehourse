@@ -5,6 +5,8 @@ import com.zxg.maplehourse.model.MMenuModel;
 import com.zxg.maplehourse.repository.MMenuRepository;
 import com.zxg.maplehourse.service.MMenuService;
 import com.zxg.maplehourse.service.MUserMenuService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -13,7 +15,7 @@ import java.util.List;
 
 @Service
 public class MMenuServiceImpl implements MMenuService {
-
+    private static final Logger logger = LoggerFactory.getLogger(MMenuServiceImpl.class);
     @Autowired
     private MMenuRepository mMenuRepository;
 
@@ -26,9 +28,11 @@ public class MMenuServiceImpl implements MMenuService {
 
 
             resultInfo.setAppData(mMenuModelList);
+            logger.debug("菜单信息所示");
 
         }else {
             resultInfo.setAppData("");
+            logger.debug("无菜单信息");
         }
 
 
