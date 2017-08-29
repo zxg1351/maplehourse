@@ -31,10 +31,10 @@ public class TDepartmentWorkerServiceImpl implements TDepartmentWorkerService {
         if (!CollectionUtils.isEmpty(tDepartmentWorkerModels)) {
 
             resultInfo.setAppData(tDepartmentWorkerModels);
-            logger.debug("菜单信息所示");
+            logger.debug("工人列表信息所示");
         } else {
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无工人列表信息");
         }
         return resultInfo;
     }

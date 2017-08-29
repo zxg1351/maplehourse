@@ -32,11 +32,11 @@ public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerServic
         if (!CollectionUtils.isEmpty(departmentDesignerModelList)) {
 
             resultInfo.setAppData(departmentDesignerModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("设计师列表信息显示");
         } else {
 
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无设计师列表显示");
         }
         return resultInfo;
     }

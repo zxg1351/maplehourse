@@ -27,12 +27,12 @@ public class TLargeAreaServiceImpl implements TLargeAreaService {
         if (!CollectionUtils.isEmpty(areaModelList)) {
 
             resultInfo.setAppData(areaModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("大区域列表所示：");
 
         } else {
 
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无大区域信息数据");
         }
         return resultInfo;
     }

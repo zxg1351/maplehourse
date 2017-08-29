@@ -29,11 +29,11 @@ public class TDepartmentSalesServiceImpl implements TDepartmentSalesService {
         if (!CollectionUtils.isEmpty(salesModelList)) {
 
             resultInfo.setAppData(salesModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("销售列表信息显示");
         } else {
 
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无销售列表信息");
         }
         return resultInfo;
     }

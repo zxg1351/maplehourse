@@ -31,11 +31,11 @@ public class TDepartmentManagerServiceImpl implements TDepartmentManagerService 
 
 
             resultInfo.setAppData(managerModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("项目经理列表信息显示");
         } else {
 
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无项目经理列表信息");
         }
 
         return resultInfo;

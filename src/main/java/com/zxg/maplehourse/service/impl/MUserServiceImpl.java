@@ -31,10 +31,10 @@ public class MUserServiceImpl implements MUserService {
         if (!CollectionUtils.isEmpty(mUserModelList)) {
 
             resultInfo.setAppData(mUserModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("用户列表信息显示");
         } else {
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无用户列表信息显示");
         }
         return resultInfo;
     }

@@ -28,11 +28,11 @@ public class MMenuServiceImpl implements MMenuService {
 
 
             resultInfo.setAppData(mMenuModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("菜单列表信息显示");
 
         }else {
             resultInfo.setAppData("");
-            logger.debug("无菜单信息");
+            logger.debug("暂无菜单列表信息显示");
         }
 
 

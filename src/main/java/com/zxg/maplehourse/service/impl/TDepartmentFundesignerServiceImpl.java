@@ -30,10 +30,10 @@ public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesigner
 
 
             resultInfo.setAppData(fundesignerModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("家具设计师列表信息显示");
         }else {
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无家具设计师列表显示");
         }
         return resultInfo;
     }

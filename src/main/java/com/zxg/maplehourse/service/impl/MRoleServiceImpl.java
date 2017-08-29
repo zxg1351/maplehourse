@@ -33,11 +33,11 @@ public class MRoleServiceImpl implements MRoleService {
         if (!CollectionUtils.isEmpty(mRoleModelList)){
 
             resultInfo.setAppData(mRoleModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("角色列表信息显示");
         }else {
 
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无角色列表信息显示");
         }
         return resultInfo;
     }

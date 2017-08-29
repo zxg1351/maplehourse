@@ -40,10 +40,10 @@ public class MRegionServiceImpl implements MRegionService {
 
         if (!CollectionUtils.isEmpty(mAreaModelList)) {
             resultInfo.setAppData(mAreaModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("区域信息列表显示");
         } else {
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无区域信息列表显示");
         }
 
 
@@ -58,10 +58,10 @@ public class MRegionServiceImpl implements MRegionService {
         List<MCityModel> mCityModelList = mCityRepository.findAll();
         if (!CollectionUtils.isEmpty(mCityModelList)) {
             resultInfo.setAppData(mCityModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("城市列表显示");
         } else {
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无城市列表信息显示");
         }
         return resultInfo;
     }
@@ -74,11 +74,11 @@ public class MRegionServiceImpl implements MRegionService {
         if (!CollectionUtils.isEmpty(mProvinceModelList)) {
 
             resultInfo.setAppData(mProvinceModelList);
-            logger.debug("菜单信息所示");
+            logger.debug("省列表信息显示");
         } else {
 
             resultInfo.setAppData("");
-            logger.debug("菜单信息所示");
+            logger.debug("暂无省列表信息显示");
         }
         return resultInfo;
     }
