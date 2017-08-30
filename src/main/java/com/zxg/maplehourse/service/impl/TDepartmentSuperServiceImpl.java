@@ -32,7 +32,6 @@ public class TDepartmentSuperServiceImpl implements TDepartmentSuperService {
             logger.debug("项目监理列表信息显示");
 
         } else {
-            resultInfo.setAppData("");
             logger.debug("暂无监理列表信息显示");
         }
 

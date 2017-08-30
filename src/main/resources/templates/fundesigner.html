@@ -11,15 +11,15 @@
         <thead>
         <tr>
             <td>id</td>
-            <td>角色编号</td>
-            <td>角色名称</td>
+            <td>家具设计师编号</td>
+            <td>家具设计师名称</td>
         </tr>
 
         </thead>
-        <tr th:each="role:${roleList}">
-            <td th:text="${role.id}">id</td>
-            <td th:text="${role.mRoleNumber}">mRoleNumber</td>
-            <td th:text="${role.mRoleName}">mRoleName</td>
+        <tr th:each="fundesigner:${fundesignerList}">
+            <td th:text="${fundesigner.id}">id</td>
+            <td th:text="${fundesigner.name}">fundesignerName</td>
+            <td th:text="${fundesigner.type}">fundesignerType</td>
 
         </tr>
 

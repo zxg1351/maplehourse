@@ -34,7 +34,6 @@ public class TDepartmentManagerServiceImpl implements TDepartmentManagerService 
             logger.debug("项目经理列表信息显示");
         } else {
 
-            resultInfo.setAppData("");
             logger.debug("暂无项目经理列表信息");
         }
 

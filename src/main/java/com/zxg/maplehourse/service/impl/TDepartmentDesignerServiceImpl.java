@@ -35,7 +35,6 @@ public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerServic
             logger.debug("设计师列表信息显示");
         } else {
 
-            resultInfo.setAppData("");
             logger.debug("暂无设计师列表显示");
         }
         return resultInfo;

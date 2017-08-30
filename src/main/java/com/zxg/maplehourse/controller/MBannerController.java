@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Administrator on 2017/8/18.
+ * 轮播图列表
  */
 @Controller
 @RequestMapping(value = "/mBanner")

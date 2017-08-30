@@ -33,7 +33,6 @@ public class MUserServiceImpl implements MUserService {
             resultInfo.setAppData(mUserModelList);
             logger.debug("用户列表信息显示");
         } else {
-            resultInfo.setAppData("");
             logger.debug("暂无用户列表信息显示");
         }
         return resultInfo;

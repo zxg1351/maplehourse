@@ -32,7 +32,6 @@ public class TDepartmentSalesServiceImpl implements TDepartmentSalesService {
             logger.debug("销售列表信息显示");
         } else {
 
-            resultInfo.setAppData("");
             logger.debug("暂无销售列表信息");
         }
         return resultInfo;

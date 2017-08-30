@@ -33,7 +33,6 @@ public class TDepartmentWorkerServiceImpl implements TDepartmentWorkerService {
             resultInfo.setAppData(tDepartmentWorkerModels);
             logger.debug("工人列表信息所示");
         } else {
-            resultInfo.setAppData("");
             logger.debug("暂无工人列表信息");
         }
         return resultInfo;

@@ -32,7 +32,6 @@ public class MBannerServiceImpl implements MBannerService{
             resultInfo.setAppData(mBannerModelList);
             logger.debug("查询轮播图成功");
         }else {
-            resultInfo.setAppData("");
              logger.debug("无轮播图信息");
         }
         return resultInfo;

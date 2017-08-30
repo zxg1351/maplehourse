@@ -26,12 +26,10 @@ public class MMenuServiceImpl implements MMenuService {
         List<MMenuModel> mMenuModelList = mMenuRepository.findAll();
         if (!CollectionUtils.isEmpty(mMenuModelList)){
 
-
             resultInfo.setAppData(mMenuModelList);
             logger.debug("菜单列表信息显示");
 
         }else {
-            resultInfo.setAppData("");
             logger.debug("暂无菜单列表信息显示");
         }
 

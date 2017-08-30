@@ -1,7 +1,11 @@
 package com.zxg.maplehourse.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.Apple;
 import com.zxg.maplehourse.model.User;
+import com.zxg.maplehourse.service.MUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +25,9 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
+
+    @Autowired
+    private MUserService mUserService;
 
 
     @GetMapping
@@ -82,8 +89,15 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "/selectUserList")
+    public ModelAndView selectUserList(){
 
+        ResultInfo resultInfo = mUserService.selectAllUser();
+        ModelAndView modelAndView = new ModelAndView("/user");
+        modelAndView.addObject("userList",resultInfo.getAppData());
+        return modelAndView;
 
+    }
 
 
 

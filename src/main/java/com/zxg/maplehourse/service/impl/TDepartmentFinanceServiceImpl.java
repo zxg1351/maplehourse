@@ -34,7 +34,6 @@ public class TDepartmentFinanceServiceImpl implements TDepartmentFinanceService 
             logger.debug("财务列表信息显示");
         } else {
 
-            resultInfo.setAppData("");
             logger.debug("暂无财务列表信息显示");
         }
         return resultInfo;

@@ -25,7 +25,7 @@ public class TLargeAreaController {
         ResultInfo resultInfo = tLargeAreaService.selectAllTLargeArea();
 
         ModelAndView modelAndView = new ModelAndView("/largeArea");
-        modelAndView.addObject("areaList", resultInfo.getAppData());
+        modelAndView.addObject("largeAreaList", resultInfo.getAppData());
 
         return modelAndView;
 

@@ -31,7 +31,6 @@ public class TLargeAreaServiceImpl implements TLargeAreaService {
 
         } else {
 
-            resultInfo.setAppData("");
             logger.debug("暂无大区域信息数据");
         }
         return resultInfo;

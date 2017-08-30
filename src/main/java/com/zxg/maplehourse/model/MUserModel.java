@@ -48,7 +48,8 @@ public class MUserModel {
 
     @Column(name = "del_flag")
     private String delFlag;
-    @Column(name = "m_user_imageUrl")
+
+    @Column(name = "m_user_imageurl")
     private String mUserImageUrl;
 
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<table class="table table-bordered table-striped">
+
+    <thead>
+    <tr>
+
+        <td>id</td>
+        <td>用户姓名</td>
+        <td>用户电话</td>
+        <td>用户账号</td>
+        <td>创建时间</td>
+        <td>个人头像</td>
+    </tr>
+    </thead>
+    <tr th:each="user:${userList}">
+
+        <td th:text="${user.id}">id</td>
+        <td th:text="${user.mUserName}">mUserName</td>
+        <td th:text="${user.mUserTel}">mUserTel</td>
+        <td th:text="${user.mUserAccount}">mUserAccount</td>
+        <td th:text="${user.createTime}">createTime</td>
+        <td th:text="${user.mUserImageUrl}">mUserImageUrl</td>
+    </tr>
+
+
+</table>
+</body>
+</html>

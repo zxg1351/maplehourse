@@ -36,7 +36,6 @@ public class MRoleServiceImpl implements MRoleService {
             logger.debug("角色列表信息显示");
         }else {
 
-            resultInfo.setAppData("");
             logger.debug("暂无角色列表信息显示");
         }
         return resultInfo;

@@ -18,7 +18,7 @@ public class TDepartmentSuperController {
     private TDepartmentSuperService tDepartmentSuperService;
 
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "/selectSuper")
     public ModelAndView selectSuper() {
 
         ResultInfo resultInfo = tDepartmentSuperService.selectAllTDepartmentSuper();

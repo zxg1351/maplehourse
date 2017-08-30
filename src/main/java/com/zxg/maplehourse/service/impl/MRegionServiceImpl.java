@@ -42,7 +42,6 @@ public class MRegionServiceImpl implements MRegionService {
             resultInfo.setAppData(mAreaModelList);
             logger.debug("区域信息列表显示");
         } else {
-            resultInfo.setAppData("");
             logger.debug("暂无区域信息列表显示");
         }
 
@@ -60,7 +59,6 @@ public class MRegionServiceImpl implements MRegionService {
             resultInfo.setAppData(mCityModelList);
             logger.debug("城市列表显示");
         } else {
-            resultInfo.setAppData("");
             logger.debug("暂无城市列表信息显示");
         }
         return resultInfo;
@@ -77,7 +75,6 @@ public class MRegionServiceImpl implements MRegionService {
             logger.debug("省列表信息显示");
         } else {
 
-            resultInfo.setAppData("");
             logger.debug("暂无省列表信息显示");
         }
         return resultInfo;
