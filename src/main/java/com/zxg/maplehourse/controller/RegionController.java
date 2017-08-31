@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2017/8/16.
+ * 省、市、区列表查询
  */
 @Controller
 @RequestMapping(value = "/region")
@@ -23,6 +24,12 @@ public class RegionController {
     private MRegionService mRegionService;
 
     //localhost:9091/
+
+    /**
+     * 查询省列表
+     *
+     * @return
+     */
     @RequestMapping(value = "/selectProvice")
     public ModelAndView selectProvince() {
 
@@ -30,11 +37,15 @@ public class RegionController {
         ResultInfo resultInfo = mRegionService.selectProvice();
 
         ModelAndView modelAndView = new ModelAndView("/province");
-        modelAndView.addObject("mProvince",resultInfo.getAppData());
+        modelAndView.addObject("mProvince", resultInfo.getAppData());
         return modelAndView;
     }
 
-
+    /**
+     * 查询区列表
+     *
+     * @return
+     */
     @RequestMapping(value = "/selectArea")
     public ModelAndView selectMarea() {
 
@@ -47,7 +58,11 @@ public class RegionController {
 
     }
 
-
+    /**
+     * 查询市列表
+     *
+     * @return
+     */
     @RequestMapping(value = "/selectCity")
     public ModelAndView selectCity() {
 
@@ -59,7 +74,6 @@ public class RegionController {
         return modelAndView;
 
     }
-
 
 
 }

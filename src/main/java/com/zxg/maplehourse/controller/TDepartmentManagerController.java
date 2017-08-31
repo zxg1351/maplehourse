@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by Administrator on 2017/8/18.
+ * 项目经理
  */
 @Controller
 @RequestMapping(value = "/tDepartmentManager")
@@ -17,7 +18,10 @@ public class TDepartmentManagerController {
     @Autowired
     private TDepartmentManagerService managerService;
 
-
+    /**
+     * 查询项目经理列表
+     * @return
+     */
     @RequestMapping(value = "/selectManager")
     public ModelAndView selectManager() {
 

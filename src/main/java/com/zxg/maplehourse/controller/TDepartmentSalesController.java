@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by Administrator on 2017/8/18.
+ * 销售
  */
 @Controller
 @RequestMapping(value = "/tDepartmentSales")
@@ -18,7 +19,10 @@ public class TDepartmentSalesController {
     @Autowired
     private TDepartmentSalesService tDepartmentSalesService;
 
-
+    /**
+     * 查询销售列表
+     * @return
+     */
     @RequestMapping(value = "/selecttDepartmentSales")
     public ModelAndView selecttDepartmentSales() {
 

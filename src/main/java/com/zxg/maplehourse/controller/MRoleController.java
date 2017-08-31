@@ -19,7 +19,10 @@ public class MRoleController {
     @Autowired
     private MRoleService mRoleService;
 
-
+    /**
+     * 查询角色列表
+     * @return
+     */
     @RequestMapping(value = "/selectRole")
     public ModelAndView selectRole() {
 

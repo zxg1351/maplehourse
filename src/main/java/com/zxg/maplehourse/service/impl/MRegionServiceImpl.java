@@ -11,6 +11,8 @@ import com.zxg.maplehourse.service.MRegionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -54,13 +56,14 @@ public class MRegionServiceImpl implements MRegionService {
 
         ResultInfo resultInfo = new ResultInfo();
 
-        List<MCityModel> mCityModelList = mCityRepository.findAll();
-        if (!CollectionUtils.isEmpty(mCityModelList)) {
+//        List<MCityModel> mCityModelList = mCityRepository.findAll();
+        Page<MCityModel> mCityModelList = mCityRepository.findAll(new PageRequest(1, 20));
+//        if (!CollectionUtils.isEmpty(mCityModelList)) {
             resultInfo.setAppData(mCityModelList);
             logger.debug("城市列表显示");
-        } else {
+//        } else {
             logger.debug("暂无城市列表信息显示");
-        }
+//        }
         return resultInfo;
     }
 
@@ -69,12 +72,14 @@ public class MRegionServiceImpl implements MRegionService {
 
         ResultInfo resultInfo = new ResultInfo();
         List<MProvinceModel> mProvinceModelList = mProvinceRepository.findAllBy();
+
+//        Page<MProvinceModel> mProvinceModelList = mProvinceRepository.findAll(new PageRequest(1,20));
         if (!CollectionUtils.isEmpty(mProvinceModelList)) {
 
             resultInfo.setAppData(mProvinceModelList);
             logger.debug("省列表信息显示");
         } else {
-
+//
             logger.debug("暂无省列表信息显示");
         }
         return resultInfo;

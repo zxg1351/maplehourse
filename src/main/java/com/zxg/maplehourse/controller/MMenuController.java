@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by Administrator on 2017/8/18.
+ * 查询菜单
  */
 @Controller
 @RequestMapping(value = "/mMenu")
@@ -17,7 +18,10 @@ public class MMenuController {
     @Autowired
     private MMenuService mMenuService;
 
-
+    /**
+     * 查询菜单列表
+     * @return
+     */
     @RequestMapping(value = "/selectMenu")
     public ModelAndView selectMenu() {
 

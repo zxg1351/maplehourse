@@ -26,6 +26,11 @@ public class MBannerController
     @Autowired
     private MBannerService mBannerService;
 
+    /**
+     * 查询轮播图
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/selectBanner")
     public ModelAndView selectBanner(HttpServletRequest request){
         String  name = "";
@@ -37,7 +42,10 @@ public class MBannerController
         return  modelAndView;
     }
 
-
+    /**
+     * 新建轮播图
+     * @return
+     */
     @RequestMapping(value = "/insertBanner")
     public ResultInfo insertBanner(){
 

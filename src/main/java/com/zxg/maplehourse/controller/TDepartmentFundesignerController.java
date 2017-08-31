@@ -12,6 +12,7 @@ import javax.xml.transform.Result;
 
 /**
  * Created by Administrator on 2017/8/18.
+ * 家具设计师
  */
 @Controller
 @RequestMapping(value = "/tDepartmentFundesigner")
@@ -19,7 +20,11 @@ public class TDepartmentFundesignerController {
     @Autowired
     private TDepartmentFundesignerService fundesignerService;
 
-
+    /**
+     * 查询家具设计师列表
+     *
+     * @return
+     */
     @RequestMapping(value = "/selectfundesigner")
     public ModelAndView selectfundesigner() {
 

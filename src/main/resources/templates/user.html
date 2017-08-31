@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Title</title>
+    <title>用户列表 Title</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+<div>
+
+    <tr>
+        <td>
+
+            <label>用户名：</label>
+            <!--<input type="text" name="mUserName" th:text=""></input>-->
+        </td>
+
+
+    </tr>
+    <a type="button" th:href="@{/user/newUser}">新建用户</a>
+
+</div>
+
+
 <table class="table table-bordered table-striped">
 
     <thead>
