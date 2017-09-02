@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by Administrator on 2017/8/18.
+ * 工人列表
  */
 @Controller
 @RequestMapping(value = "/tDepartmentWorker")
@@ -18,7 +19,11 @@ public class TDepartmentWorkerController {
     @Autowired
     private TDepartmentWorkerService departmentWorkerService;
 
-
+    /**
+     * 查询工人列表
+     *
+     * @return
+     */
     @RequestMapping(value = "/selectWorker")
     public ModelAndView selectWorker() {
 

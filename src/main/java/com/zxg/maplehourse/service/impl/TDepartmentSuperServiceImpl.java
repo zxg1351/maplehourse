@@ -4,6 +4,8 @@ import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.TDepartmentSuperModel;
 import com.zxg.maplehourse.repository.TDepartmentSuperRepository;
 import com.zxg.maplehourse.service.TDepartmentSuperService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @Service
 public class TDepartmentSuperServiceImpl implements TDepartmentSuperService {
-
+    private static final Logger logger = LoggerFactory.getLogger(TDepartmentSuperServiceImpl.class);
     @Autowired
     private TDepartmentSuperRepository superRepository;
 
@@ -27,9 +29,10 @@ public class TDepartmentSuperServiceImpl implements TDepartmentSuperService {
         if (!CollectionUtils.isEmpty(superModelList)) {
 
             resultInfo.setAppData(superModelList);
+            logger.debug("项目监理列表信息显示");
 
         } else {
-            resultInfo.setAppData("");
+            logger.debug("暂无监理列表信息显示");
         }
 
         return resultInfo;

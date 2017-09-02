@@ -8,6 +8,15 @@
 
 <div>
 
+    <div>
+
+
+        <tr>
+
+            <td th:text="${totalPageNumber}">总数量</td>
+            <td th:text="${pageSize}">页面大小</td>
+        </tr>
+    </div>
 
     <table class="table table-bordered table-striped">
         <thead>
@@ -28,8 +37,25 @@
         </tr>
     </table>
 
-</div>
+    <tr>
 
+        <td colspan="8">
+
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">总数量</td>
+        <td th:text="'当前第' + ${number+1} + '页'">总数量</td>
+        <!--<td th:text="共${totalPageNumber}条记录">总数量</td>-->
+        <!--<td th:text="共${pageSize}页">总数量</td>-->
+        <!--<td th:text="当前${number+1}页">总数量</td>-->
+        <!--<a href="'?pageNo='+${number+1-1}>上一页</a>-->
+        <!--<a href="?pageNo=${number+1+1}">下一页</a>-->
+        <a th:href="@{/test/select(page=${number-1})}">上一页</a>
+        <a th:href="@{/test/select(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
+
+    <!--<div th:include="fragments/page :: pager" style="width:100%; padding-top:20px; float:right;"></div>-->
+</div>
 
 </body>
 </html>

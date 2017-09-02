@@ -11,6 +11,7 @@ import javax.xml.transform.Result;
 
 /**
  * Created by Administrator on 2017/8/18.
+ * 财务
  */
 @Controller
 @RequestMapping(value = "/tDepartmentFinance")
@@ -20,8 +21,11 @@ public class TDepartmentFinanceController {
     @Autowired
     private TDepartmentFinanceService departmentFinanceService;
 
-
-    @RequestMapping(value = "selectFinance")
+    /**
+     * 查询财务人员列表
+     * @return
+     */
+    @RequestMapping(value = "/selectFinance")
     public ModelAndView selectFinance() {
 
         ResultInfo resultInfo = departmentFinanceService.selectAllTDepartmentFinance();

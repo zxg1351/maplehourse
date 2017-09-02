@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by Administrator on 2017/8/18.
+ * 项目监理
  */
 @Controller
 @RequestMapping(value = "/tDepartmentSuper")
@@ -17,8 +18,12 @@ public class TDepartmentSuperController {
     @Autowired
     private TDepartmentSuperService tDepartmentSuperService;
 
-
-    @RequestMapping(value = "")
+    /**
+     * 查询项目监理列表
+     *
+     * @return
+     */
+    @RequestMapping(value = "/selectSuper")
     public ModelAndView selectSuper() {
 
         ResultInfo resultInfo = tDepartmentSuperService.selectAllTDepartmentSuper();

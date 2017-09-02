@@ -4,6 +4,8 @@ import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.TDepartmentDesignerModel;
 import com.zxg.maplehourse.repository.TDepartmentDesignerRepository;
 import com.zxg.maplehourse.service.TDepartmentDesignerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Service
 public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerService {
+
+    private static final Logger logger = LoggerFactory.getLogger(TDepartmentDesignerServiceImpl.class);
 
     @Autowired
     private TDepartmentDesignerRepository tDepartmentDesignerRepository;
@@ -28,10 +32,10 @@ public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerServic
         if (!CollectionUtils.isEmpty(departmentDesignerModelList)) {
 
             resultInfo.setAppData(departmentDesignerModelList);
-
+            logger.debug("设计师列表信息显示");
         } else {
 
-            resultInfo.setAppData("");
+            logger.debug("暂无设计师列表显示");
         }
         return resultInfo;
     }

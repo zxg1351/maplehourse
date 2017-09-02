@@ -38,4 +38,7 @@ public class MMenuModel {
 
     @Column(name = "del_flag")
     private String delFlag;
+
+    @Column(name = "m_menu_url")
+    private String mMenuUrl;
 }

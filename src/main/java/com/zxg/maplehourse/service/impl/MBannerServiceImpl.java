@@ -4,6 +4,8 @@ import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.MBannerModel;
 import com.zxg.maplehourse.repository.MBannerRepository;
 import com.zxg.maplehourse.service.MBannerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -16,7 +18,7 @@ import java.util.List;
  */
 @Service
 public class MBannerServiceImpl implements MBannerService{
-
+    private static final Logger logger = LoggerFactory.getLogger(MBannerServiceImpl.class);
     @Autowired
     private MBannerRepository mBannerRepository;
 
@@ -28,8 +30,9 @@ public class MBannerServiceImpl implements MBannerService{
         List<MBannerModel> mBannerModelList =  mBannerRepository.findAll();
         if (!CollectionUtils.isEmpty(mBannerModelList)){
             resultInfo.setAppData(mBannerModelList);
+            logger.debug("查询轮播图成功");
         }else {
-            resultInfo.setAppData("");
+             logger.debug("无轮播图信息");
         }
         return resultInfo;
     }
@@ -45,6 +48,7 @@ public class MBannerServiceImpl implements MBannerService{
         mBannerModel1.setCreateUser(1);
         MBannerModel mBannerModel2 = mBannerRepository.save(mBannerModel1);
         resultInfo.setAppData(mBannerModel2);
+        logger.debug("新建轮播图成功");
         return resultInfo;
     }
 }

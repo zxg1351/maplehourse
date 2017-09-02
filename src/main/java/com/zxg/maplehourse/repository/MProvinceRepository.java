@@ -1,6 +1,8 @@
 package com.zxg.maplehourse.repository;
 
 import com.zxg.maplehourse.model.MProvinceModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -17,5 +19,6 @@ public interface MProvinceRepository extends JpaRepository<MProvinceModel,Intege
     List<MProvinceModel> findAllByMProvinceName(String mProvinceName);
 
 
-
+    @Override
+    Page<MProvinceModel> findAll(Pageable pageable);
 }

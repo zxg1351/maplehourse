@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>角色管理 Title</title>
+    <title>项目监理列表 Title</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
@@ -11,15 +11,15 @@
         <thead>
         <tr>
             <td>id</td>
-            <td>角色编号</td>
-            <td>角色名称</td>
+            <td>项目监理类型ID</td>
+            <td>项目监理姓名</td>
         </tr>
 
         </thead>
-        <tr th:each="role:${roleList}">
-            <td th:text="${role.id}">id</td>
-            <td th:text="${role.mRoleNumber}">mRoleNumber</td>
-            <td th:text="${role.mRoleName}">mRoleName</td>
+        <tr th:each="super:${superList}">
+            <td th:text="${super.id}">id</td>
+            <td th:text="${super.type}">superType</td>
+            <td th:text="${super.name}">superName</td>
 
         </tr>
 

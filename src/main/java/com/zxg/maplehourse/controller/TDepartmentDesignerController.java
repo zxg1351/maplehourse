@@ -12,6 +12,7 @@ import javax.xml.transform.Result;
 
 /**
  * Created by Administrator on 2017/8/18.
+ * 设计师
  */
 @Controller
 @RequestMapping(value = "/tDepartmentDesigner")
@@ -20,13 +21,16 @@ public class TDepartmentDesignerController {
     @Autowired
     private TDepartmentDesignerService departmentDesignerService;
 
+    /**
+     * 查询设计师列表
+     * @return
+     */
     @RequestMapping(value = "/selectDesigner")
     public ModelAndView selectdesigner() {
 
         ResultInfo resultInfo = departmentDesignerService.selectAllTDepartmentDesigner();
 
-
-        ModelAndView modelAndView = new ModelAndView("/  ");
+        ModelAndView modelAndView = new ModelAndView("/designer");
 
         modelAndView.addObject("designerList", resultInfo.getAppData());
 

@@ -11,7 +11,7 @@
 <div>
     <div>
         <tr>
-            <form th:action="@{/province.html?search}"  method="post" th:object="${mProvinceModel}">
+            <form th:action="@{/province.html?search}" method="post" th:object="${mProvinceModel}">
 
                 <td>省份名稱:</td>
                 <td><input type="text" name="mProvinceName" placeholder="请输入省份名稱" class="form-control"/></td>
@@ -20,7 +20,16 @@
                 <!--<input type="text" name="username" placeholder="用户名" class="form-control"/>-->
             </form>
 
-            </tr>
+        </tr>
+
+        <form th:action="@{/region/selectArea}" method="post" th:object="${mAreaModel}">
+
+            <td>
+                <input type="submit" value="查询区域列表按钮"/>
+            </td>
+        </form>
+        <a href="area.html" th:href="@{/region/selectArea}">查询区域列表</a>
+
 
     </div>
 </div>
@@ -48,9 +57,6 @@
 </body>
 </html>
 <script>
-
-
-
 
 
 </script>

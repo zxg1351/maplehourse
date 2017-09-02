@@ -16,10 +16,10 @@
         </tr>
 
         </thead>
-        <tr th:each="role:${roleList}">
-            <td th:text="${role.id}">id</td>
-            <td th:text="${role.mRoleNumber}">mRoleNumber</td>
-            <td th:text="${role.mRoleName}">mRoleName</td>
+        <tr th:each="sales:${salesList}">
+            <td th:text="${sales.id}">id</td>
+            <td th:text="${sales.saleType}">saleType</td>
+            <td th:text="${sales.saleName}">saleName</td>
 
         </tr>
 
