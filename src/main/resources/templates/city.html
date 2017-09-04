@@ -44,13 +44,8 @@
         <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
         <td th:text="'共' + ${pageSize} + '页'">总数量</td>
         <td th:text="'当前第' + ${number+1} + '页'">总数量</td>
-        <!--<td th:text="共${totalPageNumber}条记录">总数量</td>-->
-        <!--<td th:text="共${pageSize}页">总数量</td>-->
-        <!--<td th:text="当前${number+1}页">总数量</td>-->
-        <!--<a href="'?pageNo='+${number+1-1}>上一页</a>-->
-        <!--<a href="?pageNo=${number+1+1}">下一页</a>-->
-        <a th:href="@{/test/select(page=${number-1})}">上一页</a>
-        <a th:href="@{/test/select(page=${number+1})}">下一页</a>
+        <a th:href="@{/region/selectCity(page=${number-1})}">上一页</a>
+        <a th:href="@{/region/selectCity(page=${number+1})}">下一页</a>
         </td>
     </tr>
 

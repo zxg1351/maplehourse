@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -59,10 +60,10 @@ public class MRegionServiceImpl implements MRegionService {
 //        List<MCityModel> mCityModelList = mCityRepository.findAll();
         Page<MCityModel> mCityModelList = mCityRepository.findAll(new PageRequest(1, 20));
 //        if (!CollectionUtils.isEmpty(mCityModelList)) {
-            resultInfo.setAppData(mCityModelList);
-            logger.debug("城市列表显示");
+        resultInfo.setAppData(mCityModelList);
+        logger.debug("城市列表显示");
 //        } else {
-            logger.debug("暂无城市列表信息显示");
+        logger.debug("暂无城市列表信息显示");
 //        }
         return resultInfo;
     }
@@ -83,5 +84,24 @@ public class MRegionServiceImpl implements MRegionService {
             logger.debug("暂无省列表信息显示");
         }
         return resultInfo;
+    }
+
+    @Override
+    public Page<MCityModel> selectPageCity(Pageable pageable) {
+
+        Page<MCityModel> modelPage = mCityRepository.findAll(pageable);
+        return modelPage;
+    }
+
+    @Override
+    public Page<MProvinceModel> selectPageProvince(Pageable pageable) {
+        Page<MProvinceModel> modelPage = mProvinceRepository.findAll(pageable);
+        return modelPage;
+    }
+
+    @Override
+    public Page<MAreaModel> selectPageArea(Pageable pageable) {
+        Page<MAreaModel> modelPage = mAreaRepository.findAll(pageable);
+        return modelPage;
     }
 }

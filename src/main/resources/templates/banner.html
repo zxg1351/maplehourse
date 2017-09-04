@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>轮播图 Title</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 
-    <div >
-        <table class="table table-bordered table-striped">
+<div>
+    <table class="table table-bordered table-striped">
 
-            <thead>
-                <tr>
-                    <td>id</td>
-                    <td>轮播图名称</td>
-                    <td>轮播图URL</td>
-                </tr>
+        <thead>
+        <tr>
+            <td>id</td>
+            <td>轮播图名称</td>
+            <td>轮播图URL</td>
+        </tr>
 
-            </thead>
-            <tr th:each="mbanner:${mbannerList}">
-                <td th:text="${mbanner.id}">id</td>
-                <td th:text="${mbanner.mBannerName}">mBannerName</td>
-                <td th:text="${mbanner.mBannerUrl}">mBannerUrl</td>
+        </thead>
+        <tr th:each="mbanner:${mbannerList}">
+            <td th:text="${mbanner.id}">id</td>
+            <td th:text="${mbanner.mBannerName}">mBannerName</td>
+            <td th:text="${mbanner.mBannerUrl}">mBannerUrl</td>
 
-            </tr>
+        </tr>
 
-        </table>
+    </table>
+    <tr>
 
-    </div>
+        <td colspan="8">
 
-
-
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">共多少页</td>
+        <td th:text="'当前第' + ${number+1} + '页'">当前第多少页</td>
+        <a th:href="@{/mBanner/selectBanner(page=${number-1})}">上一页</a>
+        <a th:href="@{/mBanner/selectBanner(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
+</div>
 </body>
 </html>

@@ -7,6 +7,8 @@ import com.zxg.maplehourse.service.MBannerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -17,7 +19,7 @@ import java.util.List;
  * Created by Administrator on 2017/8/18.
  */
 @Service
-public class MBannerServiceImpl implements MBannerService{
+public class MBannerServiceImpl implements MBannerService {
     private static final Logger logger = LoggerFactory.getLogger(MBannerServiceImpl.class);
     @Autowired
     private MBannerRepository mBannerRepository;
@@ -27,12 +29,12 @@ public class MBannerServiceImpl implements MBannerService{
     public ResultInfo selectAllBanner(String mBannerName) {
         ResultInfo resultInfo = new ResultInfo();
 
-        List<MBannerModel> mBannerModelList =  mBannerRepository.findAll();
-        if (!CollectionUtils.isEmpty(mBannerModelList)){
+        List<MBannerModel> mBannerModelList = mBannerRepository.findAll();
+        if (!CollectionUtils.isEmpty(mBannerModelList)) {
             resultInfo.setAppData(mBannerModelList);
             logger.debug("查询轮播图成功");
-        }else {
-             logger.debug("无轮播图信息");
+        } else {
+            logger.debug("无轮播图信息");
         }
         return resultInfo;
     }
@@ -50,5 +52,12 @@ public class MBannerServiceImpl implements MBannerService{
         resultInfo.setAppData(mBannerModel2);
         logger.debug("新建轮播图成功");
         return resultInfo;
+    }
+
+    @Override
+    public Page<MBannerModel> selectPageBanner(Pageable pageable) {
+
+        Page<MBannerModel> modelPage = mBannerRepository.findAll(pageable);
+        return modelPage;
     }
 }

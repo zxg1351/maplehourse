@@ -7,6 +7,8 @@ import com.zxg.maplehourse.service.TLargeAreaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -35,4 +37,20 @@ public class TLargeAreaServiceImpl implements TLargeAreaService {
         }
         return resultInfo;
     }
+
+    @Override
+    public Page<TLargeAreaModel> selectAllpageLargeArea(Pageable page) {
+        Page<TLargeAreaModel> areaModelList = tLargeAreaRepository.findAll(page);
+        if (!CollectionUtils.isEmpty(areaModelList.getContent())) {
+
+            logger.debug("大区域列表所示：");
+
+        } else {
+
+            logger.debug("暂无大区域信息数据");
+        }
+        return areaModelList;
+    }
+
+
 }

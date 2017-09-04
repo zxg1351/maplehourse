@@ -2,6 +2,8 @@ package com.zxg.maplehourse.service;
 
 import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.MBannerModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,4 +22,6 @@ public interface MBannerService {
 
      ResultInfo insertBanner(MBannerModel mBannerModel);
 
+
+     Page<MBannerModel> selectPageBanner(Pageable pageable);
 }

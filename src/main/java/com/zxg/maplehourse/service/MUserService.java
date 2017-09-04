@@ -1,7 +1,10 @@
 package com.zxg.maplehourse.service;
 
 import com.zxg.maplehourse.bean.ResultInfo;
+import com.zxg.maplehourse.model.MMenuModel;
 import com.zxg.maplehourse.model.MUserModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -19,4 +22,6 @@ public interface MUserService {
 
 
     ResultInfo checkUser(MUserModel mUserModel);
+
+    Page<MUserModel> selectPageUser(Pageable pageable);
 }
