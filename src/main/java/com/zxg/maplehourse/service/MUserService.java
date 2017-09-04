@@ -20,8 +20,11 @@ public interface MUserService {
 
     ResultInfo saveUser(MUserModel mUserModel);
 
-
     ResultInfo checkUser(MUserModel mUserModel);
 
     Page<MUserModel> selectPageUser(Pageable pageable);
+
+    ResultInfo findById(Integer id);
+
+    ResultInfo updateUser(MUserModel mUserModel);
 }

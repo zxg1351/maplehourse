@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>编辑用户Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div>
+
+    <form action="/user/updateUser" method="post" th:object="${mUserModel}">
+        <td>
+            <input type="hidden" th:field="${mUserModel.id}" name="mUserName" placeholder="请输入用户名"
+                   class="form-control"/>
+        </td>
+
+        <td>
+            <label>用户名:</label>
+            <input type="text" th:field="${mUserModel.mUserName}" name="mUserName" placeholder="请输入用户名"
+                   class="form-control"/>
+        </td>
+        <td>
+            <label>账号:</label>
+            <input type="text" th:field="${mUserModel.mUserAccount}" name="mUserAccount" placeholder="请输入账号"
+                   class="form-control" readonly="true"/>
+        </td>
+
+
+        <td>
+            <label>手机号:</label>
+            <input type="text" th:field="${mUserModel.mUserTel}" name="mUserTel" placeholder="请输入用户手机号"
+                   class="form-control"/>
+        </td>
+        <td>
+            <input type="submit" value="保存"/>
+        </td>
+    </form>
+
+    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <!--提示框-->
+            <div class="alertBox" >
+                <!--<i class='fa fa-check' style="padding-left: 78px;color: white;"></i>-->
+                <p id="alertMsg" >
+                    删除成功
+                </p>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <!--提示框-->
+            <!--<div style="margin: 0 auto; width: 250px; height:50px ; background: rgb(250,27,92); border-radius: 10px; ">-->
+            <div class="confirmBox" >
+                <p id="confirmTitle" >提示</p>
+                <p id="confirmMsg" >
+                    确定删除这条记录吗？
+                </p>
+                <span id="confirmBtn" style="margin-left:82px" >确定</span>
+                <span style="margin-left:8px;" data-dismiss="modal" >取消</span>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+</body>
+</html>

@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -101,6 +102,30 @@ public class MUserController {
     public ModelAndView newUser() {
         //返回templates/login.html 页面, html 可以省略
         return new ModelAndView("/newUser");
+    }
+
+
+    @RequestMapping(value = "/editUser")
+    public ModelAndView editUser(@RequestParam Integer userId){
+
+        ResultInfo mUserModel = mUserService.findById(userId);
+
+        ModelAndView modelAndView =  new ModelAndView("/editUser");
+
+        modelAndView.addObject("mUserModel",mUserModel.getAppData());
+        return modelAndView;
+
+    }
+
+    @RequestMapping(value = "/updateUser")
+    public ModelAndView updateUser(HttpServletRequest request, @Valid MUserModel mUserModel) {
+
+        ResultInfo resultInfo = mUserService.updateUser(mUserModel);
+        ModelAndView modelAndView = new ModelAndView("redirect:/user/selectUserList");
+        modelAndView.addObject(resultInfo.getAppData());
+        return modelAndView;
+
+
     }
 }
 

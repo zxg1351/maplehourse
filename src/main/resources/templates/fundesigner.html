@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>角色管理 Title</title>
+    <title>家具设计师信息列表 Title</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
@@ -13,6 +13,7 @@
             <td>id</td>
             <td>家具设计师编号</td>
             <td>家具设计师名称</td>
+            <td colspan="8" align="center">操作权限</td>
         </tr>
 
         </thead>
@@ -20,7 +21,8 @@
             <td th:text="${fundesigner.id}">id</td>
             <td th:text="${fundesigner.name}">fundesignerName</td>
             <td th:text="${fundesigner.type}">fundesignerType</td>
-
+            <td th:text="编辑" colspan="4" align="center"></td>
+            <td th:text="删除" colspan="4" align="center"></td>
         </tr>
 
     </table>

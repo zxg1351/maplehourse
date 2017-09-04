@@ -118,6 +118,31 @@ public class MUserServiceImpl implements MUserService {
         return modelPage;
     }
 
+    @Override
+    public ResultInfo findById(Integer id) {
+
+        ResultInfo resultInfo = new ResultInfo();
+        MUserModel mUserModel = mUserRepository.findOne(id);
+        resultInfo.setAppData(mUserModel);
+        resultInfo.setResultMessage("查询成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
+    }
+
+
+    @Override
+    public ResultInfo updateUser(MUserModel mUserModel) {
+
+        ResultInfo resultInfo = new ResultInfo();
+        mUserModel.setUpdateTime(new Date());
+        mUserModel.setCreateUser(1);
+        int userModel = mUserRepository.setmUesrName(mUserModel.getMUserName(),mUserModel.getMUserTel(),mUserModel.getId());
+        resultInfo.setAppData(userModel);
+        resultInfo.setResultCode("success");
+        resultInfo.setResultMessage("");
+        return resultInfo;
+    }
+
     /**
      * 校验用户名和手机号码
      *
@@ -129,7 +154,6 @@ public class MUserServiceImpl implements MUserService {
 
 
         List<MUserModel> mUserModelList = mUserRepository.findByMUserAccountOrMUserTel(mUserAccount, mUserTel);
-
         return mUserModelList;
     }
 }

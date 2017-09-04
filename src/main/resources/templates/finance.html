@@ -12,13 +12,15 @@
         <tr>
             <td>id</td>
             <td>财务姓名</td>
+            <td colspan="8" align="center">操作权限</td>
         </tr>
 
         </thead>
         <tr th:each="finance:${financeList}">
             <td th:text="${finance.id}">id</td>
             <td th:text="${finance.name}">financeName</td>
-
+            <td th:text="编辑" colspan="4" align="center"></td>
+            <td th:text="删除" colspan="4" align="center"></td>
         </tr>
 
     </table>

@@ -16,7 +16,7 @@
             <td>菜单名称</td>
             <td>菜单路径</td>
             <td>创建时间</td>
-            <td>操作权限</td>
+            <td colspan="8" align="center">操作权限</td>
         </tr>
 
         </thead>
@@ -28,8 +28,8 @@
                 <a th:href="@{${menu.mMenuUrl}}" th:text="${menu.mMenuName}">Product List</a>
             </td>
             <td th:text="${menu.createTime}">createTime</td>
-            <td th:text="编辑"></td>
-            <td th:text="删除"></td>
+            <td th:text="编辑" colspan="4" align="center"></td>
+            <td th:text="删除" colspan="4" align="center"></td>
 
 
         </tr>

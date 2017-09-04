@@ -15,6 +15,7 @@
             <td>工人手机号</td>
             <td>工人类型</td>
             <td>加入时间</td>
+            <td colspan="8" align="center">操作权限</td>
         </tr>
 
         </thead>
@@ -24,6 +25,8 @@
             <td th:text="${work.tWorkTel}">tWorkTel</td>
             <td th:text="${work.tWorkType}">tWorkType</td>
             <td th:text="${work.createTime}">mRoleName</td>
+            <td th:text="编辑" colspan="4" align="center"></td>
+            <td th:text="删除" colspan="4" align="center"></td>
         </tr>
 
     </table>

@@ -32,6 +32,7 @@
         <td>用户账号</td>
         <td>创建时间</td>
         <td>个人头像</td>
+        <td colspan="8" align="center">操作权限</td>
     </tr>
     </thead>
     <tr th:each="user:${userList}">
@@ -42,6 +43,12 @@
         <td th:text="${user.mUserAccount}">mUserAccount</td>
         <td th:text="${user.createTime}">createTime</td>
         <td th:text="${user.mUserImageUrl}">mUserImageUrl</td>
+        <td>
+            <a href="editUser.html" th:href="@{/user/editUser(userId = ${user.id})}" th:text="编辑" colspan="4" align="center"></a>
+        </td>
+        <td>
+            <a th:text="删除" colspan="4" align="center"></a>
+        </td>
     </tr>
 
 
