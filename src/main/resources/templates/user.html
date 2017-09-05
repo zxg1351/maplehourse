@@ -7,15 +7,27 @@
 <body>
 <div>
 
-    <tr>
-        <td>
+    <form th:action="@{/user/searchList}" method="post" th:object="${userModel}">
 
-            <label>用户名：</label>
-            <!--<input type="text" name="mUserName" th:text=""></input>-->
-        </td>
+        <label class="col-md-1 control-label">用户名：</label>
+        <div class="col-md-2">
+            <input type="text" name="mUserName" placeholder="请输入用户名" class="form-control"/>
+        </div>
+        <label class="col-md-1 control-label">用户电话：</label>
+        <div class="col-md-2">
+            <input type="text" name="mUserTel" placeholder="请输入用户电话" class="form-control"/>
+        </div>
+        <label class="col-md-1 control-label">用户账号：</label>
+        <div class="col-md-2">
+            <input type="text" name="mUserAccount" placeholder="请输入用户账号" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+
+        </div>
+    </form>
 
 
-    </tr>
     <a type="button" th:href="@{/user/newUser}">新建用户</a>
 
 </div>
@@ -44,10 +56,15 @@
         <td th:text="${user.createTime}">createTime</td>
         <td th:text="${user.mUserImageUrl}">mUserImageUrl</td>
         <td>
-            <a href="editUser.html" th:href="@{/user/editUser(userId = ${user.id})}" th:text="编辑" colspan="4" align="center"></a>
+            <a href="editUser.html" th:href="@{/user/editUser(userId = ${user.id})}" th:text="编辑"
+               align="center"></a>
         </td>
         <td>
-            <a th:text="删除" colspan="4" align="center"></a>
+            <a th:text="删除" align="center"></a>
+        </td>
+        <td>
+
+            <a th:text="重置密码"></a>
         </td>
     </tr>
 
@@ -65,5 +82,7 @@
     <a th:href="@{/user/selectUserList(page=${number+1})}">下一页</a>
     </td>
 </tr>
+
+
 </body>
 </html>

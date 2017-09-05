@@ -5,15 +5,19 @@ import com.zxg.maplehourse.common.utils.SecurityUtil;
 import com.zxg.maplehourse.model.MUserModel;
 import com.zxg.maplehourse.repository.MUserRepository;
 import com.zxg.maplehourse.service.MUserService;
+import javassist.runtime.Desc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -136,11 +140,46 @@ public class MUserServiceImpl implements MUserService {
         ResultInfo resultInfo = new ResultInfo();
         mUserModel.setUpdateTime(new Date());
         mUserModel.setCreateUser(1);
-        int userModel = mUserRepository.setmUesrName(mUserModel.getMUserName(),mUserModel.getMUserTel(),mUserModel.getId());
+        int userModel = mUserRepository.setmUesrName(mUserModel.getMUserName(), mUserModel.getMUserTel(), mUserModel.getId());
         resultInfo.setAppData(userModel);
         resultInfo.setResultCode("success");
         resultInfo.setResultMessage("");
         return resultInfo;
+    }
+
+    @Override
+    public Page<MUserModel> selectUser(MUserModel mUserModel) {
+
+        ResultInfo resultInfo = new ResultInfo();
+        Page<MUserModel> modelPage = mUserRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> mUserName = root.get("mUserName").as(String.class);
+                Expression<String> mUserTel = root.get("mUserTel").as(String.class);
+                Expression<String> mUserAccount = root.get("mUserAccount").as(String.class);
+
+//                Predicate predicate = criteriaBuilder.or(
+//                        criteriaBuilder.like(mUserName, "%" + mUserModel.getMUserName() + "%"),
+//                        criteriaBuilder.like(mUserTel, "%" + mUserModel.getMUserTel() + "%"),
+//                        criteriaBuilder.like(mUserAccount, "%" + mUserModel.getMUserAccount() + "%")
+//                );
+                Predicate predicate = criteriaBuilder.like(mUserName, "%" + mUserModel.getMUserName() + "%");
+
+                criteriaQuery.where(predicate);
+//                Predicate predicate = ;
+//                Predicate predicate = ;
+//                criteriaQuery.where(criteriaBuilder.like(mUserName, "%" + mUserModel.getMUserName() + "%"),
+//                        criteriaBuilder.like(mUserAccount, "%" + mUserModel.getMUserAccount() + "%"),
+//                        criteriaBuilder.like(mUserTel, "%" + mUserModel.getMUserTel() + "%")
+//                );
+
+                return null;
+            }
+        }, new PageRequest(0, 10));
+
+
+//        resultInfo.setAppData(modelPage);
+        return modelPage;
     }
 
     /**
@@ -156,4 +195,6 @@ public class MUserServiceImpl implements MUserService {
         List<MUserModel> mUserModelList = mUserRepository.findByMUserAccountOrMUserTel(mUserAccount, mUserTel);
         return mUserModelList;
     }
+
+
 }

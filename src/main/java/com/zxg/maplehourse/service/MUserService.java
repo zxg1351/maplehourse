@@ -27,4 +27,6 @@ public interface MUserService {
     ResultInfo findById(Integer id);
 
     ResultInfo updateUser(MUserModel mUserModel);
+
+    Page<MUserModel> selectUser(MUserModel mUserModel);
 }

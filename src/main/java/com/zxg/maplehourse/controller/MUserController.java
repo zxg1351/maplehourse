@@ -39,6 +39,7 @@ public class MUserController {
 
 
     }
+
     @RequestMapping(value = "/login")
     public ModelAndView login(HttpServletRequest request, @Valid MUserModel mUserModel, BindingResult result, RedirectAttributes redirectAttributes) {
 
@@ -106,13 +107,13 @@ public class MUserController {
 
 
     @RequestMapping(value = "/editUser")
-    public ModelAndView editUser(@RequestParam Integer userId){
+    public ModelAndView editUser(@RequestParam Integer userId) {
 
         ResultInfo mUserModel = mUserService.findById(userId);
 
-        ModelAndView modelAndView =  new ModelAndView("/editUser");
+        ModelAndView modelAndView = new ModelAndView("/editUser");
 
-        modelAndView.addObject("mUserModel",mUserModel.getAppData());
+        modelAndView.addObject("mUserModel", mUserModel.getAppData());
         return modelAndView;
 
     }
@@ -125,7 +126,18 @@ public class MUserController {
         modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
 
+    }
 
+    @RequestMapping(value = "/searchList")
+    public ModelAndView searchList(@Valid MUserModel mUserModel) {
+
+        Page<MUserModel> pageable  = mUserService.selectUser(mUserModel);
+        ModelAndView modelAndView = new ModelAndView("/user");/**/
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("userList", pageable.getContent());
+        return modelAndView;
     }
 }
 

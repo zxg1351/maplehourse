@@ -8,7 +8,20 @@
 
 <div>
 
+    <form th:action="@{/region/searchList}" method="post" th:object="${areaModel}">
 
+        <label class="col-md-1 control-label">用户名：</label>
+        <div class="col-md-2">
+            <input type="text" name="mUserName" placeholder="请输入区域名称" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+
+        </div>
+    </form>
+
+</div>
+<div>
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -26,8 +39,8 @@
             <td th:text="${area.mAreaId}"></td>
             <td th:text="${area.mAreaName}"></td>
             <td th:text="${area.mCityId}"></td>
-            <td th:text="编辑" colspan="4" align="center"></td>
-            <td th:text="删除" colspan="4" align="center"></td>
+            <td th:text="编辑" align="center"></td>
+            <td th:text="删除" align="center"></td>
         </tr>
     </table>
     <tr>
