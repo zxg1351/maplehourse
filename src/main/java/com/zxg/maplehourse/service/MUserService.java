@@ -29,4 +29,6 @@ public interface MUserService {
     ResultInfo updateUser(MUserModel mUserModel);
 
     Page<MUserModel> selectUser(MUserModel mUserModel);
+
+    ResultInfo delUserById(Integer id);
 }

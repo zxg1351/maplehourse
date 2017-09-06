@@ -5,9 +5,27 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+
+<div>
+    <form th:action="@{/tDepartmentWorker/searchList}" method="post" th:object="${tDepartmentWorkerModel}">
+
+        <label class="col-md-1 control-label">工人姓名：</label>
+        <div class="col-md-2">
+            <input type="text" name="name" placeholder="请输入项目监理姓名" class="form-control"/>
+        </div>
+
+        <label class="col-md-1 control-label">工人手机号：</label>
+        <div class="col-md-2">
+            <input type="text" name="name" placeholder="请输入工人手机号" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+        </div>
+    </form>
+
+</div>
 <div>
     <table class="table table-bordered table-striped">
-
         <thead>
         <tr>
             <td>id</td>
@@ -17,7 +35,6 @@
             <td>加入时间</td>
             <td colspan="8" align="center">操作权限</td>
         </tr>
-
         </thead>
         <tr th:each="work:${workList}">
             <td th:text="${work.id}">id</td>

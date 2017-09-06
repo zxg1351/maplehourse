@@ -5,6 +5,22 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+
+
+<div>
+
+    <form th:action="@{/tDepartmentSuper/searchList}" method="post" th:object="${tDepartmentSuperModel}">
+
+        <label class="col-md-1 control-label">项目监理名称：</label>
+        <div class="col-md-2">
+            <input type="text" name="name" placeholder="请输入项目监理姓名" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+
+        </div>
+    </form>
+</div>
 <div>
     <table class="table table-bordered table-striped">
 

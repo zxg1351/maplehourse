@@ -6,6 +6,21 @@
 </head>
 <body>
 <div>
+
+    <form th:action="@{/tLargeArea/searchList}" method="post" th:object="${tLargeAreaModel}">
+
+        <label class="col-md-1 control-label">区域名称：</label>
+        <div class="col-md-2">
+            <input type="text" name="largeAreaName" placeholder="请输入大区域名称" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+
+        </div>
+    </form>
+
+</div>
+<div>
     <table class="table table-bordered table-striped">
 
         <thead>

@@ -3,10 +3,13 @@
 <head>
     <title>用户列表 Title</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div>
-
     <form th:action="@{/user/searchList}" method="post" th:object="${userModel}">
 
         <label class="col-md-1 control-label">用户名：</label>
@@ -26,7 +29,6 @@
 
         </div>
     </form>
-
 
     <a type="button" th:href="@{/user/newUser}">新建用户</a>
 
@@ -60,14 +62,19 @@
                align="center"></a>
         </td>
         <td>
-            <a th:text="删除" align="center"></a>
+
+            <form th:action="@{/user/delUserById(userId=${user.id})}" th:object="${userModel}" method="post">
+                <button type="submit">Delete删除</button>
+            </form>
+            <!--<button th:text="删除" th:align="center" data-toggle="modal" data-target="#delModal"-->
+            <!--th:value="${userList.user.id}"-->
+
+            <!--&gt;</button>-->
         </td>
         <td>
-
-            <a th:text="重置密码"></a>
+            <button th:text="重置密码" th:align="center" data-toggle="modal" data-target="#resetPsdModal"></button>
         </td>
     </tr>
-
 
 </table>
 
@@ -82,7 +89,64 @@
     <a th:href="@{/user/selectUserList(page=${number+1})}">下一页</a>
     </td>
 </tr>
+<div>
 
 
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+
+                <h4 class="modal-title" id="myModalLabel">
+                    删除用户
+                </h4>
+            </div>
+            <div class="modal-body">
+                您确定要删除该用户？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">
+                    确认删除
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="resetPsdModal" tabindex="-1" role="dialog" aria-labelledby="resetPsdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="resetPsdModalLabel">
+                    重置密码
+                </h4>
+            </div>
+            <div class="modal-body">
+                <label>旧密码</label>
+                <input type="text" name="password" placeholder="请输入旧密码" class="form-control"/>
+                <label>新密码</label>
+                <input type="text" name="newPassword" placeholder="请输入新密码" class="form-control"/>
+                <label>确认新密码</label>
+                <input type="text" name="confirmNewPassword" placeholder="请再次输入新密码" class="form-control"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">确认重置</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 </body>
 </html>

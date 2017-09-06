@@ -131,12 +131,23 @@ public class MUserController {
     @RequestMapping(value = "/searchList")
     public ModelAndView searchList(@Valid MUserModel mUserModel) {
 
-        Page<MUserModel> pageable  = mUserService.selectUser(mUserModel);
+        Page<MUserModel> pageable = mUserService.selectUser(mUserModel);
         ModelAndView modelAndView = new ModelAndView("/user");/**/
         modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
         modelAndView.addObject("pageSize", pageable.getTotalPages());
         modelAndView.addObject("number", pageable.getNumber());
         modelAndView.addObject("userList", pageable.getContent());
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/delUserById")
+    public ModelAndView delUserById(@RequestParam Integer userId) {
+
+        ResultInfo resultInfo = mUserService.delUserById(userId);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/user/selectUserList");
+
         return modelAndView;
     }
 }

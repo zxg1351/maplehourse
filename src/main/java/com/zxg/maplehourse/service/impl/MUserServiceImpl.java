@@ -5,7 +5,6 @@ import com.zxg.maplehourse.common.utils.SecurityUtil;
 import com.zxg.maplehourse.model.MUserModel;
 import com.zxg.maplehourse.repository.MUserRepository;
 import com.zxg.maplehourse.service.MUserService;
-import javassist.runtime.Desc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,7 +115,10 @@ public class MUserServiceImpl implements MUserService {
 
     @Override
     public Page<MUserModel> selectPageUser(Pageable pageable) {
-        Page<MUserModel> modelPage = mUserRepository.findAll(pageable);
+
+        MUserModel mUserModel = new MUserModel();
+
+        Page<MUserModel> modelPage = mUserRepository.findByDelFlag("0", pageable);
 
 
         return modelPage;
@@ -156,6 +158,7 @@ public class MUserServiceImpl implements MUserService {
             public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 Expression<String> mUserName = root.get("mUserName").as(String.class);
                 Expression<String> mUserTel = root.get("mUserTel").as(String.class);
+                Expression<String> delFlag = root.get("delFlag").as(String.class);
                 Expression<String> mUserAccount = root.get("mUserAccount").as(String.class);
 
 //                Predicate predicate = criteriaBuilder.or(
@@ -163,16 +166,16 @@ public class MUserServiceImpl implements MUserService {
 //                        criteriaBuilder.like(mUserTel, "%" + mUserModel.getMUserTel() + "%"),
 //                        criteriaBuilder.like(mUserAccount, "%" + mUserModel.getMUserAccount() + "%")
 //                );
-                Predicate predicate = criteriaBuilder.like(mUserName, "%" + mUserModel.getMUserName() + "%");
-
-                criteriaQuery.where(predicate);
+//                Predicate predicate = criteriaBuilder.like(mUserName, "%" + mUserModel.getMUserName() + "%");
+//
+//                criteriaQuery.where(predicate);
 //                Predicate predicate = ;
 //                Predicate predicate = ;
-//                criteriaQuery.where(criteriaBuilder.like(mUserName, "%" + mUserModel.getMUserName() + "%"),
-//                        criteriaBuilder.like(mUserAccount, "%" + mUserModel.getMUserAccount() + "%"),
+                criteriaQuery.where(criteriaBuilder.like(mUserName, "%" + mUserModel.getMUserName() + "%"),
+                        criteriaBuilder.equal(delFlag, "0")
 //                        criteriaBuilder.like(mUserTel, "%" + mUserModel.getMUserTel() + "%")
-//                );
-
+                );
+//                criteriaQuery.where(predicate);
                 return null;
             }
         }, new PageRequest(0, 10));
@@ -180,6 +183,17 @@ public class MUserServiceImpl implements MUserService {
 
 //        resultInfo.setAppData(modelPage);
         return modelPage;
+    }
+
+    @Override
+    public ResultInfo delUserById(Integer id) {
+        MUserModel mUserModel = new MUserModel();
+
+        mUserModel.setDelFlag("1");
+        mUserModel.setId(id);
+        ResultInfo resultInfo = new ResultInfo();
+        int a = mUserRepository.updateStatus("1", 1, new Date(), id);
+        return resultInfo;
     }
 
     /**
