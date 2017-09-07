@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>编辑用户Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div>
+
+    <form action="/mRole/editRole" method="post" th:object="${mRoleModel}">
+        <td>
+            <input type="hidden" th:field="${mRoleModel.id}" name="mUserName"
+                   class="form-control"/>
+        </td>
+
+        <td>
+            <label>角色名称:</label>
+            <input type="text" th:field="${mRoleModel.mRoleName}" name="mUserName" placeholder="请输入角色名称"
+                   class="form-control"/>
+        </td>
+        <td>
+            <label>角色类别:</label>
+            <input type="text" th:field="${mRoleModel.mRoleNumber}" name="mUserAccount" placeholder="请输入角色类别"
+                   class="form-control"/>
+        </td>
+
+        <td>
+            <input type="submit" value="保存"/>
+
+        </td>
+    </form>
+
+
+</div>
+</body>
+</html>

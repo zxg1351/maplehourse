@@ -1,8 +1,10 @@
 package com.zxg.maplehourse.controller;
 
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.common.utils.SecurityUtil;
+import com.zxg.maplehourse.model.MResetPsdModel;
 import com.zxg.maplehourse.model.MUserModel;
 import com.zxg.maplehourse.model.User;
 import com.zxg.maplehourse.service.MUserService;
@@ -33,10 +35,8 @@ public class MUserController {
     @GetMapping
     public ModelAndView toLoginForm(@ModelAttribute("errorMsg") String errorMsg, @ModelAttribute("user") MUserModel mUserModel) {
 
-
         //返回templates/login.html 页面, html 可以省略
         return new ModelAndView("/login");
-
 
     }
 
@@ -57,21 +57,16 @@ public class MUserController {
 //            redirectAttributes.addFlashAttribute("errorMsg", "登录失败，,用户名或密码错误");
 //            return new ModelAndView("redirect:/user");
 //        }
-
         ResultInfo resultInfo = mUserService.checkUser(mUserModel);
         if ("success".equals(resultInfo.getResultCode())) {
-
             //将用户登录信息添加到session中
             request.getSession().setAttribute("userLogin", true);
-
         } else {
-
             return new ModelAndView("redirect:/user");
         }
         return new ModelAndView("redirect:/mMenu/selectMenu");
 
     }
-
 
     @RequestMapping(value = "/selectUserList")
     public ModelAndView selectUserList(@PageableDefault Pageable pageNo) {
@@ -95,16 +90,13 @@ public class MUserController {
         modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
 
-
     }
-
 
     @RequestMapping(value = "/newUser")
     public ModelAndView newUser() {
         //返回templates/login.html 页面, html 可以省略
         return new ModelAndView("/newUser");
     }
-
 
     @RequestMapping(value = "/editUser")
     public ModelAndView editUser(@RequestParam Integer userId) {
@@ -115,7 +107,6 @@ public class MUserController {
 
         modelAndView.addObject("mUserModel", mUserModel.getAppData());
         return modelAndView;
-
     }
 
     @RequestMapping(value = "/updateUser")
@@ -150,6 +141,25 @@ public class MUserController {
 
         return modelAndView;
     }
+
+    @RequestMapping(value = "/resetPsdModal")
+    public ModelAndView resetPsdModal(Integer userId) {
+
+        MResetPsdModel mResetPsdModel = new MResetPsdModel();
+        mResetPsdModel.setId(userId);
+        ModelAndView modelAndView = new ModelAndView("/resetPsdModal");
+        modelAndView.addObject("mResetPsdModel", mResetPsdModel);
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/saveResetPsd")
+    public ModelAndView saveResetPsdModal(@Valid MResetPsdModel mResetPsdModel) {
+        ResultInfo resultInfo = mUserService.resetPsdModal(mResetPsdModel);
+        ModelAndView modelAndView = new ModelAndView("redirect:/user/selectUserList");
+        return modelAndView;
+    }
+
 }
 
 

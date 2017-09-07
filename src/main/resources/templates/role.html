@@ -18,6 +18,12 @@
 
         </div>
     </form>
+
+
+    <form th:action="@{/mRole/addRole}" method="post">
+
+        <input type="submit" value="新建"></input>
+    </form>
 </div>
 
 <div>
@@ -37,8 +43,18 @@
             <td th:text="${role.id}">id</td>
             <td th:text="${role.mRoleNumber}">mRoleNumber</td>
             <td th:text="${role.mRoleName}">mRoleName</td>
-            <td th:text="编辑" colspan="4" align="center"></td>
-            <td th:text="删除" colspan="4" align="center"></td>
+            <td>
+
+                <form th:action="@{/mRole/editView(roleId=${role.id})}" th:object="${mRoleModel}" method="post">
+                    <button type="submit">编辑</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/mRole/deleteRoleById(roleId=${role.id})}" th:object="${mRoleModel}" method="post">
+                    <button type="submit">删除</button>
+                </form>
+            </td>
+
         </tr>
 
 

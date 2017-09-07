@@ -14,4 +14,14 @@ public interface MRoleService {
     ResultInfo selectAllRole();
 
     Page<MRoleModel> selectPageRole(Pageable pageable);
+
+
+    ResultInfo saveRole(MRoleModel mRoleModel);
+
+
+    ResultInfo findById(Integer id);
+
+    ResultInfo editRole(MRoleModel mRoleModel);
+
+    ResultInfo deleteRoleById(Integer id);
 }

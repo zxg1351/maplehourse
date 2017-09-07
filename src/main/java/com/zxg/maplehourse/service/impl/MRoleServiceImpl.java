@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -48,5 +49,55 @@ public class MRoleServiceImpl implements MRoleService {
         Page<MRoleModel> modelPage = mRoleRepository.findAll(pageable);
 
         return modelPage;
+    }
+
+    @Override
+    public ResultInfo saveRole(MRoleModel mRoleModel) {
+
+        ResultInfo resultInfo = new ResultInfo();
+
+        mRoleModel.setCreateTime(new Date());
+        mRoleModel.setCreateUser(1);
+        mRoleModel.setDelFlag("0");
+
+
+        MRoleModel model = mRoleRepository.save(mRoleModel);
+        resultInfo.setAppData(model);
+        resultInfo.setResultMessage("成功新建角色");
+        return resultInfo;
+    }
+
+    @Override
+    public ResultInfo findById(Integer id) {
+
+        ResultInfo resultInfo = new ResultInfo();
+        MRoleModel model = mRoleRepository.findOne(id);
+        resultInfo.setAppData(model);
+        resultInfo.setResultMessage("查询成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
+    }
+
+    @Override
+    public ResultInfo editRole(MRoleModel mRoleModel) {
+
+        ResultInfo resultInfo = new ResultInfo();
+
+        int result = mRoleRepository.editRole(1, new Date(), mRoleModel.getMRoleName(), mRoleModel.getMRoleNumber(), mRoleModel.getId());
+
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("修改成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
+    }
+
+    @Override
+    public ResultInfo deleteRoleById(Integer id) {
+
+        ResultInfo resultInfo = new ResultInfo();
+
+        int result = mRoleRepository.deleteRoleById(1, new Date(), "1",id);
+        resultInfo.setAppData(result);
+        return resultInfo;
     }
 }

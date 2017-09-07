@@ -2,6 +2,7 @@ package com.zxg.maplehourse.service.impl;
 
 import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.common.utils.SecurityUtil;
+import com.zxg.maplehourse.model.MResetPsdModel;
 import com.zxg.maplehourse.model.MUserModel;
 import com.zxg.maplehourse.repository.MUserRepository;
 import com.zxg.maplehourse.service.MUserService;
@@ -187,12 +188,34 @@ public class MUserServiceImpl implements MUserService {
 
     @Override
     public ResultInfo delUserById(Integer id) {
-        MUserModel mUserModel = new MUserModel();
-
-        mUserModel.setDelFlag("1");
-        mUserModel.setId(id);
         ResultInfo resultInfo = new ResultInfo();
         int a = mUserRepository.updateStatus("1", 1, new Date(), id);
+        resultInfo.setAppData(a);
+        return resultInfo;
+    }
+
+    @Override
+    public ResultInfo resetPsdModal(MResetPsdModel mResetPsdModel) {
+
+        ResultInfo resultInfo = new ResultInfo();
+
+
+        if (mResetPsdModel.getOldPassword().equals(mResetPsdModel.getNewPassword())){
+
+            resultInfo.setResultMessage("新旧密码不能一致！！！");
+            return resultInfo;
+        }else if (mResetPsdModel.getNewPassword().equals(mResetPsdModel.getOldPassword())){
+            resultInfo.setResultMessage("两次输入密码不一致！！！");
+            return resultInfo;
+        }
+        try {
+            String passWord = SecurityUtil.createSHA1(cryptKey.concat(SecurityUtil.decodeBase64(mResetPsdModel.getNewPassword())));
+            int a = mUserRepository.updatePassword(passWord,mResetPsdModel.getId());
+            resultInfo.setAppData(a);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return resultInfo;
     }
 
