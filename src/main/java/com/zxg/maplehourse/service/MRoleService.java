@@ -24,4 +24,7 @@ public interface MRoleService {
     ResultInfo editRole(MRoleModel mRoleModel);
 
     ResultInfo deleteRoleById(Integer id);
+
+
+    Page<MRoleModel> selectRole(MRoleModel mRoleModel);
 }

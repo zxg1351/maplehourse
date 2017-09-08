@@ -4,6 +4,7 @@ import com.sun.org.apache.regexp.internal.RE;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.MRoleModel;
+import com.zxg.maplehourse.model.MUserModel;
 import com.zxg.maplehourse.service.MRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -92,6 +93,17 @@ public class MRoleController {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/mRole/selectRole");
 
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/searchList")
+    public ModelAndView searchList(@Valid MRoleModel mRoleModel) {
+        Page<MRoleModel> pageable = mRoleService.selectRole(mRoleModel);
+        ModelAndView modelAndView = new ModelAndView("/role");/**/
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("roleList", pageable.getContent());
         return modelAndView;
     }
 

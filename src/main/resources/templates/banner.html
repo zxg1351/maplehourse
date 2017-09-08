@@ -21,6 +21,11 @@
         </div>
     </form>
 
+
+    <form th:action="@{/mBanner/addBanner}" method="post">
+
+        <input type="submit" value="新建"></input>
+    </form>
 </div>
 <div>
     <table class="table table-bordered table-striped">
@@ -38,8 +43,23 @@
             <td th:text="${mbanner.id}">id</td>
             <td th:text="${mbanner.mBannerName}">mBannerName</td>
             <td th:text="${mbanner.mBannerUrl}">mBannerUrl</td>
-            <td th:text="编辑" colspan="4" align="center"></td>
-            <td th:text="删除" colspan="4" align="center"></td>
+            <td>
+
+                <form th:action="@{/mBanner/editView(mbannerId =${mbanner.id})}" th:object="${mbannerModel} "
+                      method="post">
+
+                    <input type="submit" value="编辑"></input>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/mBanner/deleteById(mbannerId =${mbanner.id})}" th:object="${mbannerModel}"
+                      method="post">
+
+                    <input type="submit" value="删除"></input>
+                </form>
+
+
+            </td>
         </tr>
 
     </table>

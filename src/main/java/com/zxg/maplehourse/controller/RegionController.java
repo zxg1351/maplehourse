@@ -4,6 +4,7 @@ import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.MAreaModel;
 import com.zxg.maplehourse.model.MCityModel;
 import com.zxg.maplehourse.model.MProvinceModel;
+import com.zxg.maplehourse.model.MRoleModel;
 import com.zxg.maplehourse.repository.MProvinceRepository;
 import com.zxg.maplehourse.service.MRegionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -49,6 +52,21 @@ public class RegionController {
         modelAndView.addObject("mProvince", pageable.getContent());
         return modelAndView;
     }
+
+
+    @RequestMapping(value = "/selectProviceBy")
+    public ModelAndView selectProviceBy(@Valid MProvinceModel mProvinceModel) {
+
+
+        Page<MProvinceModel> pageable = mRegionService.selectPageProvince(mProvinceModel.getMProvinceName());
+        ModelAndView modelAndView = new ModelAndView("/province");/**/
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("mProvince", pageable.getContent());
+        return modelAndView;
+    }
+
 
     /**
      * 查询区列表

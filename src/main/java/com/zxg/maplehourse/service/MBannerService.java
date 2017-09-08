@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 /**
  * Created by Administrator on 2017/8/18.
  */
@@ -24,4 +26,15 @@ public interface MBannerService {
 
 
      Page<MBannerModel> selectPageBanner(Pageable pageable);
+
+
+     ResultInfo findById(Integer mbannerId);
+
+
+     ResultInfo editBanner(MBannerModel mBannerModel);
+
+
+     ResultInfo deleteById(Integer mbannerId);
+
+     Page<MBannerModel> selectBanner(MBannerModel mRoleModel);
 }

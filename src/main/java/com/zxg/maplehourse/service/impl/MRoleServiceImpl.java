@@ -8,10 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.*;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +49,7 @@ public class MRoleServiceImpl implements MRoleService {
     @Override
     public Page<MRoleModel> selectPageRole(Pageable pageable) {
 
-        Page<MRoleModel> modelPage = mRoleRepository.findAll(pageable);
+        Page<MRoleModel> modelPage = mRoleRepository.findByDelFlag("0", pageable);
 
         return modelPage;
     }
@@ -96,8 +99,27 @@ public class MRoleServiceImpl implements MRoleService {
 
         ResultInfo resultInfo = new ResultInfo();
 
-        int result = mRoleRepository.deleteRoleById(1, new Date(), "1",id);
+        int result = mRoleRepository.deleteRoleById(1, new Date(), "1", id);
         resultInfo.setAppData(result);
         return resultInfo;
+    }
+
+    @Override
+    public Page<MRoleModel> selectRole(MRoleModel mRoleModel) {
+
+        Page<MRoleModel> models = mRoleRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+
+                Expression<String> name = root.get("mRoleName").as(String.class);
+                Expression<String> delFlag = root.get("delFlag").as(String.class);
+
+                criteriaQuery.where(criteriaBuilder.like(name, "%" + mRoleModel.getMRoleName() + "%"), criteriaBuilder.equal(delFlag, "0"));
+
+
+                return null;
+            }
+        }, new PageRequest(0, 10));
+        return models;
     }
 }

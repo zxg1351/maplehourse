@@ -10,9 +10,9 @@
 
 <div>
 
-    <form th:action="@{/region/searchList}" method="post" th:object="${mProvinceModel}">
+    <form th:action="@{/region/selectProviceBy}" method="post" th:object="${mProvinceModel}">
 
-        <label class="col-md-1 control-label">用户名：</label>
+        <label class="col-md-1 control-label">省份名称：</label>
         <div class="col-md-2">
             <input type="text" name="mProvinceName" placeholder="请输入省份名称" class="form-control"/>
         </div>
@@ -34,15 +34,15 @@
             <td>id</td>
             <td>省份ID</td>
             <td>省份名称</td>
-            <td colspan="8" align="center">操作权限</td>
+            <!--<td colspan="8" align="center">操作权限</td>-->
         </tr>
         </thead>
         <tr th:each="provice : ${mProvince}">
             <td th:text="${provice.id}">id</td>
             <td th:text="${provice.provinceId}">provinceId</td>
             <td th:text="${provice.mProvinceName}">mProvinceName</td>
-            <td th:text="编辑" colspan="4" align="center"></td>
-            <td th:text="删除" colspan="4" align="center"></td>
+            <!--<td th:text="编辑" colspan="4" align="center"></td>-->
+            <!--<td th:text="删除" colspan="4" align="center"></td>-->
         </tr>
     </table>
 </div>

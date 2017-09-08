@@ -14,9 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.*;
 import java.util.List;
 
 
@@ -93,9 +95,27 @@ public class MRegionServiceImpl implements MRegionService {
         return modelPage;
     }
 
+
     @Override
     public Page<MProvinceModel> selectPageProvince(Pageable pageable) {
         Page<MProvinceModel> modelPage = mProvinceRepository.findAll(pageable);
+        return modelPage;
+    }
+
+    @Override
+    public Page<MProvinceModel> selectPageProvince(String mProvinceName) {
+
+        Page<MProvinceModel> modelPage = mProvinceRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> mProvinceName = root.get("mProvinceName").as(String.class);
+
+//                Predicate predicate =
+                criteriaQuery.where(criteriaBuilder.like(mProvinceName, "%" + mProvinceName + "%"));
+                ;
+                return null;
+            }
+        }, new PageRequest(0, 10));
         return modelPage;
     }
 
