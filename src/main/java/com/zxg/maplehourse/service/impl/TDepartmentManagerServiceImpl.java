@@ -49,4 +49,24 @@ public class TDepartmentManagerServiceImpl implements TDepartmentManagerService 
         Page<TDepartmentManagerModel> tDepartmentManagerModelPage = managerRepository.findAll(pageable);
         return tDepartmentManagerModelPage;
     }
+
+    @Override
+    public ResultInfo saveManager(TDepartmentManagerModel managerModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo findById(Integer managerId) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo editManager(TDepartmentManagerModel managerModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo deleteManagerById(Integer managerId) {
+        return null;
+    }
 }

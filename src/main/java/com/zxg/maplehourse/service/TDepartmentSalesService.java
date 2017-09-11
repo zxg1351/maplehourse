@@ -15,4 +15,12 @@ public interface TDepartmentSalesService {
     ResultInfo selectAllTDepartmentSales();
 
     Page<TDepartmentSalesModel> selectPageSales(Pageable pageable);
+
+    ResultInfo saveSales(TDepartmentSalesModel salesModel);
+
+    ResultInfo findById(Integer salesId);
+
+    ResultInfo editSales(TDepartmentSalesModel salesModel);
+
+    ResultInfo deleteSalesById(Integer salesId);
 }

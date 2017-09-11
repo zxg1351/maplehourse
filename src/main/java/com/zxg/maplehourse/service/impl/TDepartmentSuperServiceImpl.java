@@ -21,6 +21,26 @@ public class TDepartmentSuperServiceImpl implements TDepartmentSuperService {
     private TDepartmentSuperRepository superRepository;
 
     @Override
+    public ResultInfo saveSuper(TDepartmentSuperModel superModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo findById(Integer superId) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo editSuper(TDepartmentSuperModel superModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo deleteSuperById(Integer superId) {
+        return null;
+    }
+
+    @Override
     public ResultInfo selectAllTDepartmentSuper() {
 
         ResultInfo resultInfo = new ResultInfo();

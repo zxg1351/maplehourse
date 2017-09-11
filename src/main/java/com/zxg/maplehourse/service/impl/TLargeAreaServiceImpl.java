@@ -21,6 +21,26 @@ public class TLargeAreaServiceImpl implements TLargeAreaService {
     private TLargeAreaRepository tLargeAreaRepository;
 
     @Override
+    public ResultInfo saveLargeArea(TLargeAreaModel tLargeAreaModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo findById(Integer largeAreaId) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo editLargeArea(TLargeAreaModel tLargeAreaModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo deleteLargeAreaById(Integer largeAreaId) {
+        return null;
+    }
+
+    @Override
     public ResultInfo selectAllTLargeArea() {
 
         ResultInfo resultInfo = new ResultInfo();

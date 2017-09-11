@@ -45,4 +45,24 @@ public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesigner
         Page<TDepartmentFundesignerModel> modelPage = fundesignerRepository.findAll(pageable);
         return modelPage;
     }
+
+    @Override
+    public ResultInfo saveFundesigner(TDepartmentFundesignerModel fundesignerModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo findById(Integer fundesignerId) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo editFundesigner(TDepartmentFundesignerModel fundesignerModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo deleteFundesignerById(Integer fundesignerId) {
+        return null;
+    }
 }

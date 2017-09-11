@@ -13,4 +13,13 @@ public interface TLargeAreaService {
 
 
     Page<TLargeAreaModel> selectAllpageLargeArea(Pageable page);
+
+
+    ResultInfo saveLargeArea(TLargeAreaModel tLargeAreaModel);
+
+    ResultInfo findById(Integer largeAreaId);
+
+    ResultInfo editLargeArea(TLargeAreaModel tLargeAreaModel);
+
+    ResultInfo deleteLargeAreaById(Integer largeAreaId);
 }

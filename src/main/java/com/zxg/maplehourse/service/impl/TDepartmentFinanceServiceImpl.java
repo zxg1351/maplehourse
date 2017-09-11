@@ -48,4 +48,24 @@ public class TDepartmentFinanceServiceImpl implements TDepartmentFinanceService 
 
         return modelPage;
     }
+
+    @Override
+    public ResultInfo saveDesigner(TDepartmentFinanceModel tDepartmentFinanceModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo findById(Integer financeId) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo editRole(TDepartmentFinanceModel tDepartmentDesignerModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo deleteRoleById(Integer financeId) {
+        return null;
+    }
 }

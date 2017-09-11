@@ -65,4 +65,19 @@ public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerServic
 
         return resultInfo;
     }
+
+    @Override
+    public ResultInfo findById(Integer designerId) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo editDesigner(TDepartmentDesignerModel tDepartmentDesignerModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo deleteDesignerById(Integer designerId) {
+        return null;
+    }
 }

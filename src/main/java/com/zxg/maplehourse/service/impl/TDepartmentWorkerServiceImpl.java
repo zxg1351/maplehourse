@@ -23,6 +23,26 @@ public class TDepartmentWorkerServiceImpl implements TDepartmentWorkerService {
 
 
     @Override
+    public ResultInfo saveWork(TDepartmentWorkerModel workerModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo findById(Integer workId) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo editWork(TDepartmentWorkerModel workerModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo deleteWorkById(Integer workId) {
+        return null;
+    }
+
+    @Override
     public ResultInfo selectAllTDepartmentWorker() {
 
         ResultInfo resultInfo = new ResultInfo();

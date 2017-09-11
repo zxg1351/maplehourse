@@ -19,12 +19,11 @@ public interface TDepartmentDesignerService {
 
     ResultInfo saveDesigner(TDepartmentDesignerModel tDepartmentDesignerModel);
 
-
     ResultInfo findById(Integer designerId);
 
-    ResultInfo editRole(TDepartmentDesignerModel tDepartmentDesignerModel);
+    ResultInfo editDesigner(TDepartmentDesignerModel tDepartmentDesignerModel);
 
-    ResultInfo deleteRoleById(Integer designerId);
+    ResultInfo deleteDesignerById(Integer designerId);
 }
 
 

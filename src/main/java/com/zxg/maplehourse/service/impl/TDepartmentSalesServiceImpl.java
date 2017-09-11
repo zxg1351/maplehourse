@@ -22,6 +22,26 @@ public class TDepartmentSalesServiceImpl implements TDepartmentSalesService {
     private TDepartmentSalesRepository salesRepository;
 
     @Override
+    public ResultInfo saveSales(TDepartmentSalesModel salesModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo findById(Integer salesId) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo editSales(TDepartmentSalesModel salesModel) {
+        return null;
+    }
+
+    @Override
+    public ResultInfo deleteSalesById(Integer salesId) {
+        return null;
+    }
+
+    @Override
     public ResultInfo selectAllTDepartmentSales() {
 
 

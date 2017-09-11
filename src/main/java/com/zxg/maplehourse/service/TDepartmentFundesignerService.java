@@ -14,4 +14,13 @@ public interface TDepartmentFundesignerService {
 
     ResultInfo selectAllTDepartmentFundesigner();
     Page<TDepartmentFundesignerModel> selectPageFundesigner(Pageable pageable);
+
+
+    ResultInfo saveFundesigner(TDepartmentFundesignerModel fundesignerModel);
+
+    ResultInfo findById(Integer fundesignerId);
+
+    ResultInfo editFundesigner(TDepartmentFundesignerModel fundesignerModel);
+
+    ResultInfo deleteFundesignerById(Integer fundesignerId);
 }

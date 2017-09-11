@@ -16,4 +16,12 @@ public interface TDepartmentManagerService {
 
 
     Page<TDepartmentManagerModel> selectPageManager(Pageable pageable);
+
+    ResultInfo saveManager(TDepartmentManagerModel managerModel);
+
+    ResultInfo findById(Integer managerId);
+
+    ResultInfo editManager(TDepartmentManagerModel managerModel);
+
+    ResultInfo deleteManagerById(Integer managerId);
 }

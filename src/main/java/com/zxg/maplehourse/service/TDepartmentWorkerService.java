@@ -14,4 +14,12 @@ public interface TDepartmentWorkerService {
     ResultInfo selectAllTDepartmentWorker();
 
     Page<TDepartmentWorkerModel> selectPageWorker(Pageable pageable);
+
+    ResultInfo saveWork(TDepartmentWorkerModel workerModel);
+
+    ResultInfo findById(Integer workId);
+
+    ResultInfo editWork(TDepartmentWorkerModel workerModel);
+
+    ResultInfo deleteWorkById(Integer workId);
 }

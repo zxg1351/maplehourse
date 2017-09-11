@@ -14,4 +14,13 @@ public interface TDepartmentSuperService {
     ResultInfo selectAllTDepartmentSuper();
 
     Page<TDepartmentSuperModel> selectPageSuper(Pageable pageable);
+
+
+    ResultInfo saveSuper(TDepartmentSuperModel superModel);
+
+    ResultInfo findById(Integer superId);
+
+    ResultInfo editSuper(TDepartmentSuperModel superModel);
+
+    ResultInfo deleteSuperById(Integer superId);
 }

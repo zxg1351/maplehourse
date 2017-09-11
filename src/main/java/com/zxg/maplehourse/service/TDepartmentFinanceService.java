@@ -13,5 +13,15 @@ public interface TDepartmentFinanceService {
 
 
     ResultInfo selectAllTDepartmentFinance();
+
     Page<TDepartmentFinanceModel> selectPageFinance(Pageable pageable);
+
+
+    ResultInfo saveDesigner(TDepartmentFinanceModel tDepartmentFinanceModel);
+
+    ResultInfo findById(Integer financeId);
+
+    ResultInfo editRole(TDepartmentFinanceModel tDepartmentDesignerModel);
+
+    ResultInfo deleteRoleById(Integer financeId);
 }
