@@ -8,7 +8,7 @@
 
 <div>
 
-    <form th:action="@{/region/searchList}" method="post" th:object="${areaModel}">
+    <form th:action="@{/region/searchListArea}" method="post" th:object="${areaModel}">
 
         <label class="col-md-1 control-label">区域名称：</label>
         <div class="col-md-2">
@@ -29,7 +29,6 @@
             <td>区域ID</td>
             <td>区域名称</td>
             <td>城市ID</td>
-            <td colspan="8" align="center">操作权限</td>
         </tr>
         </thead>
 
@@ -39,8 +38,6 @@
             <td th:text="${area.mAreaId}"></td>
             <td th:text="${area.mAreaName}"></td>
             <td th:text="${area.mCityId}"></td>
-            <td th:text="编辑" align="center"></td>
-            <td th:text="删除" align="center"></td>
         </tr>
     </table>
     <tr>

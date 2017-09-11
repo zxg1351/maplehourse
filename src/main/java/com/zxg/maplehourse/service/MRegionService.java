@@ -26,6 +26,12 @@ public interface MRegionService {
 
     Page<MProvinceModel> selectPageProvince(Pageable pageable);
 
-     Page<MProvinceModel> selectPageProvince(String mProvinceName);
+    Page<MProvinceModel> selectPageProvince(MProvinceModel mProvinceModel);
+
     Page<MAreaModel> selectPageArea(Pageable pageable);
+
+
+    Page<MAreaModel> selectArea(MAreaModel mAreaModel);
+
+    Page<MCityModel> selectCity(MCityModel mCityModel);
 }

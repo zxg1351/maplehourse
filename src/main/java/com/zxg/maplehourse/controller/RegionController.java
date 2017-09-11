@@ -1,10 +1,7 @@
 package com.zxg.maplehourse.controller;
 
 import com.zxg.maplehourse.bean.ResultInfo;
-import com.zxg.maplehourse.model.MAreaModel;
-import com.zxg.maplehourse.model.MCityModel;
-import com.zxg.maplehourse.model.MProvinceModel;
-import com.zxg.maplehourse.model.MRoleModel;
+import com.zxg.maplehourse.model.*;
 import com.zxg.maplehourse.repository.MProvinceRepository;
 import com.zxg.maplehourse.service.MRegionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +55,7 @@ public class RegionController {
     public ModelAndView selectProviceBy(@Valid MProvinceModel mProvinceModel) {
 
 
-        Page<MProvinceModel> pageable = mRegionService.selectPageProvince(mProvinceModel.getMProvinceName());
+        Page<MProvinceModel> pageable = mRegionService.selectPageProvince(mProvinceModel);
         ModelAndView modelAndView = new ModelAndView("/province");/**/
         modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
         modelAndView.addObject("pageSize", pageable.getTotalPages());
@@ -89,6 +86,24 @@ public class RegionController {
     }
 
     /**
+     * 查询区域列表
+     *
+     * @param mAreaModel
+     * @return
+     */
+    @RequestMapping(value = "/searchListArea")
+    public ModelAndView searchListArea(@Valid MAreaModel mAreaModel) {
+        Page<MAreaModel> pageable = mRegionService.selectArea(mAreaModel);
+        ModelAndView modelAndView = new ModelAndView("/area");/**/
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("arealist", pageable.getContent());
+        return modelAndView;
+    }
+
+
+    /**
      * 查询市列表
      *
      * @return
@@ -103,7 +118,21 @@ public class RegionController {
         modelAndView.addObject("pageSize", pageable.getTotalPages());
         modelAndView.addObject("number", pageable.getNumber());
         modelAndView.addObject("citylist", pageable.getContent());
+        return modelAndView;
 
+    }
+
+
+    @RequestMapping(value = "/searchListCity")
+    public ModelAndView searchListCity(@PageableDefault MCityModel mCityModel) {
+
+//        ResultInfo resultInfo = mRegionService.selectCity();
+        Page<MCityModel> pageable = mRegionService.selectCity(mCityModel);
+        ModelAndView modelAndView = new ModelAndView("/city");
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("citylist", pageable.getContent());
         return modelAndView;
 
     }

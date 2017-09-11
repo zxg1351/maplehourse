@@ -2,6 +2,7 @@ package com.zxg.maplehourse.service.impl;
 
 import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.MAreaModel;
+import com.zxg.maplehourse.model.MBannerModel;
 import com.zxg.maplehourse.model.MCityModel;
 import com.zxg.maplehourse.model.MProvinceModel;
 import com.zxg.maplehourse.repository.MAreaRepository;
@@ -103,7 +104,7 @@ public class MRegionServiceImpl implements MRegionService {
     }
 
     @Override
-    public Page<MProvinceModel> selectPageProvince(String mProvinceName) {
+    public Page<MProvinceModel> selectPageProvince(MProvinceModel mProvinceModel) {
 
         Page<MProvinceModel> modelPage = mProvinceRepository.findAll(new Specification() {
             @Override
@@ -111,7 +112,7 @@ public class MRegionServiceImpl implements MRegionService {
                 Expression<String> mProvinceName = root.get("mProvinceName").as(String.class);
 
 //                Predicate predicate =
-                criteriaQuery.where(criteriaBuilder.like(mProvinceName, "%" + mProvinceName + "%"));
+                criteriaQuery.where(criteriaBuilder.like(mProvinceName, "%" + mProvinceModel.getMProvinceName() + "%"));
                 ;
                 return null;
             }
@@ -123,5 +124,42 @@ public class MRegionServiceImpl implements MRegionService {
     public Page<MAreaModel> selectPageArea(Pageable pageable) {
         Page<MAreaModel> modelPage = mAreaRepository.findAll(pageable);
         return modelPage;
+    }
+
+    @Override
+    public Page<MAreaModel> selectArea(MAreaModel mAreaModel) {
+        Page<MAreaModel> mAreaModels = mAreaRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> mAreaName = root.get("mAreaName").as(String.class);
+
+
+                Predicate predicate = criteriaBuilder.like(mAreaName, "%" + mAreaModel.getMAreaName() + "%");
+
+                criteriaQuery.where(predicate);
+                return null;
+            }
+        }, new PageRequest(0, 10));
+
+        return mAreaModels;
+    }
+
+
+    @Override
+    public Page<MCityModel> selectCity(MCityModel mCityModel) {
+        Page<MCityModel> mCityModels = mCityRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> mCityName = root.get("mCityName").as(String.class);
+
+
+                Predicate predicate = criteriaBuilder.like(mCityName, "%" + mCityModel.getMCityName() + "%");
+
+                criteriaQuery.where(predicate);
+                return null;
+            }
+        }, new PageRequest(0, 10));
+
+        return mCityModels;
     }
 }
