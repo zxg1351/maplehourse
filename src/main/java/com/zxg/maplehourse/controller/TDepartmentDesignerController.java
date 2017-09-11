@@ -9,9 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.annotation.ModelAndViewResolver;
 
+import javax.validation.Valid;
 import javax.xml.transform.Result;
 
 /**
@@ -45,5 +47,51 @@ public class TDepartmentDesignerController {
 
     }
 
+    @RequestMapping(value = "/addView")
+    public ModelAndView addView() {
+
+        ModelAndView modelAndView = new ModelAndView("/newDesigner");
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/newDesigner")
+    public ModelAndView newDesigner(@Valid TDepartmentDesignerModel designerModel) {
+
+        ResultInfo resultInfo = departmentDesignerService.saveDesigner(designerModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+        modelAndView.addObject(resultInfo.getAppData());
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/editView")
+    public ModelAndView editView(@RequestParam Integer designerId) {
+
+        ResultInfo resultInfo = departmentDesignerService.findById(designerId);
+
+        ModelAndView modelAndView = new ModelAndView("/editDesigner");
+        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        return modelAndView;
+
+    }
+
+
+    @RequestMapping(value = "/editDesigner")
+    public ModelAndView editDesigner(@Valid TDepartmentDesignerModel designerModel) {
+        ResultInfo resultInfo = departmentDesignerService.editRole(designerModel);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+        modelAndView.addObject(resultInfo.getAppData());
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/deleteDesignerById")
+    public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
+        ResultInfo resultInfo = departmentDesignerService.deleteRoleById(designerId);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+        return modelAndView;
+    }
 
 }

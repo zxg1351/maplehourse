@@ -50,4 +50,19 @@ public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerServic
 
         return modelPage;
     }
+
+    @Override
+    public ResultInfo saveDesigner(TDepartmentDesignerModel tDepartmentDesignerModel) {
+
+        ResultInfo resultInfo = new ResultInfo();
+
+        TDepartmentDesignerModel designerModel = tDepartmentDesignerRepository.save(tDepartmentDesignerModel);
+
+        resultInfo.setAppData(designerModel);
+        resultInfo.setResultCode("0");
+        resultInfo.setResultMessage("新建成功");
+
+
+        return resultInfo;
+    }
 }

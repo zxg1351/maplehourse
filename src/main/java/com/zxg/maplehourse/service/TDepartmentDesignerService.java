@@ -16,6 +16,15 @@ public interface TDepartmentDesignerService {
     ResultInfo selectAllTDepartmentDesigner();
 
     Page<TDepartmentDesignerModel> selectPageDesigner(Pageable pageable);
+
+    ResultInfo saveDesigner(TDepartmentDesignerModel tDepartmentDesignerModel);
+
+
+    ResultInfo findById(Integer designerId);
+
+    ResultInfo editRole(TDepartmentDesignerModel tDepartmentDesignerModel);
+
+    ResultInfo deleteRoleById(Integer designerId);
 }
 
 
