@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>新建角色</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<form action="/mRole/newRoles" method="post" th:object="${mRoleModel}">
+
+    <td>
+        <label>角色名称:</label>
+        <input type="text" name="mRoleName" placeholder="请输入角色名称" class="form-control"/>
+    </td>
+    <td>
+        <label>角色类别:</label>
+        <input type="text" name="mRoleNumber" placeholder="请输入角色类别" class="form-control"/>
+    </td>
+
+    <input type="submit" th:value="保存"/>
+</form>
+
+</body>
+</html>

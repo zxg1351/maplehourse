@@ -7,6 +7,8 @@ import com.zxg.maplehourse.service.TDepartmentFinanceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -37,5 +39,13 @@ public class TDepartmentFinanceServiceImpl implements TDepartmentFinanceService 
             logger.debug("暂无财务列表信息显示");
         }
         return resultInfo;
+    }
+
+    @Override
+    public Page<TDepartmentFinanceModel> selectPageFinance(Pageable pageable) {
+
+        Page<TDepartmentFinanceModel> modelPage = departmentFinanceRepository.findAll(pageable);
+
+        return modelPage;
     }
 }

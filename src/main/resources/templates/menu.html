@@ -5,6 +5,8 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+
+
 <div>
     <table class="table table-bordered table-striped">
 
@@ -16,7 +18,7 @@
             <td>菜单名称</td>
             <td>菜单路径</td>
             <td>创建时间</td>
-            <td>操作权限</td>
+            <td colspan="8" align="center">操作权限</td>
         </tr>
 
         </thead>
@@ -28,14 +30,24 @@
                 <a th:href="@{${menu.mMenuUrl}}" th:text="${menu.mMenuName}">Product List</a>
             </td>
             <td th:text="${menu.createTime}">createTime</td>
-            <td th:text="编辑"></td>
-            <td th:text="删除"></td>
+            <td th:text="编辑" colspan="4" align="center"></td>
+            <td th:text="删除" colspan="4" align="center"></td>
 
 
         </tr>
 
     </table>
+    <tr>
 
+        <td colspan="8">
+
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">共多少页</td>
+        <td th:text="'当前第' + ${number+1} + '页'">当前第多少页</td>
+        <a th:href="@{/mMenu/selectMenu(page=${number-1})}">上一页</a>
+        <a th:href="@{/mMenu/selectMenu(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
 </div>
 </body>
 </html>

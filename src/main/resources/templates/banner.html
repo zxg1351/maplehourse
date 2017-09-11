@@ -1,34 +1,79 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>轮播图 Title</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 
-    <div >
-        <table class="table table-bordered table-striped">
 
-            <thead>
-                <tr>
-                    <td>id</td>
-                    <td>轮播图名称</td>
-                    <td>轮播图URL</td>
-                </tr>
+<div>
 
-            </thead>
-            <tr th:each="mbanner:${mbannerList}">
-                <td th:text="${mbanner.id}">id</td>
-                <td th:text="${mbanner.mBannerName}">mBannerName</td>
-                <td th:text="${mbanner.mBannerUrl}">mBannerUrl</td>
+    <form th:action="@{/mBanner/searchList}" method="post" th:object="${bannerModel}">
 
-            </tr>
+        <label class="col-md-1 control-label">轮播图名称：</label>
+        <div class="col-md-2">
+            <input type="text" name="mBannerName" placeholder="请输入轮播图名称" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
 
-        </table>
-
-    </div>
+        </div>
+    </form>
 
 
+    <form th:action="@{/mBanner/addBanner}" method="post">
 
+        <input type="submit" value="新建"></input>
+    </form>
+</div>
+<div>
+    <table class="table table-bordered table-striped">
+
+        <thead>
+        <tr>
+            <td>id</td>
+            <td>轮播图名称</td>
+            <td>轮播图URL</td>
+            <td colspan="8" align="center">操作权限</td>
+        </tr>
+
+        </thead>
+        <tr th:each="mbanner:${mbannerList}">
+            <td th:text="${mbanner.id}">id</td>
+            <td th:text="${mbanner.mBannerName}">mBannerName</td>
+            <td th:text="${mbanner.mBannerUrl}">mBannerUrl</td>
+            <td>
+
+                <form th:action="@{/mBanner/editView(mbannerId =${mbanner.id})}" th:object="${mbannerModel} "
+                      method="post">
+
+                    <input type="submit" value="编辑"></input>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/mBanner/deleteById(mbannerId =${mbanner.id})}" th:object="${mbannerModel}"
+                      method="post">
+
+                    <input type="submit" value="删除"></input>
+                </form>
+
+
+            </td>
+        </tr>
+
+    </table>
+    <tr>
+
+        <td colspan="8">
+
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">共多少页</td>
+        <td th:text="'当前第' + ${number+1} + '页'">当前第多少页</td>
+        <a th:href="@{/mBanner/selectBanner(page=${number-1})}">上一页</a>
+        <a th:href="@{/mBanner/selectBanner(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
+</div>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.zxg.maplehourse.service.impl;
 
 import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.MAreaModel;
+import com.zxg.maplehourse.model.MBannerModel;
 import com.zxg.maplehourse.model.MCityModel;
 import com.zxg.maplehourse.model.MProvinceModel;
 import com.zxg.maplehourse.repository.MAreaRepository;
@@ -13,9 +14,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.*;
 import java.util.List;
 
 
@@ -59,10 +63,10 @@ public class MRegionServiceImpl implements MRegionService {
 //        List<MCityModel> mCityModelList = mCityRepository.findAll();
         Page<MCityModel> mCityModelList = mCityRepository.findAll(new PageRequest(1, 20));
 //        if (!CollectionUtils.isEmpty(mCityModelList)) {
-            resultInfo.setAppData(mCityModelList);
-            logger.debug("城市列表显示");
+        resultInfo.setAppData(mCityModelList);
+        logger.debug("城市列表显示");
 //        } else {
-            logger.debug("暂无城市列表信息显示");
+        logger.debug("暂无城市列表信息显示");
 //        }
         return resultInfo;
     }
@@ -83,5 +87,79 @@ public class MRegionServiceImpl implements MRegionService {
             logger.debug("暂无省列表信息显示");
         }
         return resultInfo;
+    }
+
+    @Override
+    public Page<MCityModel> selectPageCity(Pageable pageable) {
+
+        Page<MCityModel> modelPage = mCityRepository.findAll(pageable);
+        return modelPage;
+    }
+
+
+    @Override
+    public Page<MProvinceModel> selectPageProvince(Pageable pageable) {
+        Page<MProvinceModel> modelPage = mProvinceRepository.findAll(pageable);
+        return modelPage;
+    }
+
+    @Override
+    public Page<MProvinceModel> selectPageProvince(MProvinceModel mProvinceModel) {
+
+        Page<MProvinceModel> modelPage = mProvinceRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> mProvinceName = root.get("mProvinceName").as(String.class);
+
+//                Predicate predicate =
+                criteriaQuery.where(criteriaBuilder.like(mProvinceName, "%" + mProvinceModel.getMProvinceName() + "%"));
+                ;
+                return null;
+            }
+        }, new PageRequest(0, 10));
+        return modelPage;
+    }
+
+    @Override
+    public Page<MAreaModel> selectPageArea(Pageable pageable) {
+        Page<MAreaModel> modelPage = mAreaRepository.findAll(pageable);
+        return modelPage;
+    }
+
+    @Override
+    public Page<MAreaModel> selectArea(MAreaModel mAreaModel) {
+        Page<MAreaModel> mAreaModels = mAreaRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> mAreaName = root.get("mAreaName").as(String.class);
+
+
+                Predicate predicate = criteriaBuilder.like(mAreaName, "%" + mAreaModel.getMAreaName() + "%");
+
+                criteriaQuery.where(predicate);
+                return null;
+            }
+        }, new PageRequest(0, 10));
+
+        return mAreaModels;
+    }
+
+
+    @Override
+    public Page<MCityModel> selectCity(MCityModel mCityModel) {
+        Page<MCityModel> mCityModels = mCityRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> mCityName = root.get("mCityName").as(String.class);
+
+
+                Predicate predicate = criteriaBuilder.like(mCityName, "%" + mCityModel.getMCityName() + "%");
+
+                criteriaQuery.where(predicate);
+                return null;
+            }
+        }, new PageRequest(0, 10));
+
+        return mCityModels;
     }
 }

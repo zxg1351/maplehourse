@@ -7,6 +7,8 @@ import com.zxg.maplehourse.service.TDepartmentWorkerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -36,5 +38,12 @@ public class TDepartmentWorkerServiceImpl implements TDepartmentWorkerService {
             logger.debug("暂无工人列表信息");
         }
         return resultInfo;
+    }
+
+    @Override
+    public Page<TDepartmentWorkerModel> selectPageWorker(Pageable pageNo) {
+
+        Page<TDepartmentWorkerModel> pageable = workerRepository.findAll(pageNo);
+        return pageable;
     }
 }

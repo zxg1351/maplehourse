@@ -1,8 +1,12 @@
 package com.zxg.maplehourse.controller;
 
 import com.zxg.maplehourse.bean.ResultInfo;
+import com.zxg.maplehourse.model.TDepartmentSalesModel;
 import com.zxg.maplehourse.service.TDepartmentSalesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,12 +28,15 @@ public class TDepartmentSalesController {
      * @return
      */
     @RequestMapping(value = "/selecttDepartmentSales")
-    public ModelAndView selecttDepartmentSales() {
+    public ModelAndView selecttDepartmentSales(@PageableDefault Pageable pageNo) {
 
-        ResultInfo resultInfo = tDepartmentSalesService.selectAllTDepartmentSales();
-
+//        ResultInfo resultInfo = tDepartmentSalesService.selectAllTDepartmentSales();
+        Page<TDepartmentSalesModel> pageable = tDepartmentSalesService.selectPageSales(pageNo);
         ModelAndView modelAndView = new ModelAndView("/sales");
-        modelAndView.addObject("salesList", resultInfo.getAppData());
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("salesList", pageable.getContent());
         return modelAndView;
     }
 

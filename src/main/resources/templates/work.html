@@ -5,9 +5,27 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+
+<div>
+    <form th:action="@{/tDepartmentWorker/searchList}" method="post" th:object="${tDepartmentWorkerModel}">
+
+        <label class="col-md-1 control-label">工人姓名：</label>
+        <div class="col-md-2">
+            <input type="text" name="name" placeholder="请输入项目监理姓名" class="form-control"/>
+        </div>
+
+        <label class="col-md-1 control-label">工人手机号：</label>
+        <div class="col-md-2">
+            <input type="text" name="name" placeholder="请输入工人手机号" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+        </div>
+    </form>
+
+</div>
 <div>
     <table class="table table-bordered table-striped">
-
         <thead>
         <tr>
             <td>id</td>
@@ -15,8 +33,8 @@
             <td>工人手机号</td>
             <td>工人类型</td>
             <td>加入时间</td>
+            <td colspan="8" align="center">操作权限</td>
         </tr>
-
         </thead>
         <tr th:each="work:${workList}">
             <td th:text="${work.id}">id</td>
@@ -24,10 +42,22 @@
             <td th:text="${work.tWorkTel}">tWorkTel</td>
             <td th:text="${work.tWorkType}">tWorkType</td>
             <td th:text="${work.createTime}">mRoleName</td>
+            <td th:text="编辑" colspan="4" align="center"></td>
+            <td th:text="删除" colspan="4" align="center"></td>
         </tr>
 
     </table>
+    <tr>
 
+        <td colspan="8">
+
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">共多少页</td>
+        <td th:text="'当前第' + ${number+1} + '页'">当前第多少页</td>
+        <a th:href="@{/tDepartmentWorker/selectWorker(page=${number-1})}">上一页</a>
+        <a th:href="@{/tDepartmentWorker/selectWorker(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
 </div>
 </body>
 </html>

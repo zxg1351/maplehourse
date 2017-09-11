@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>重置密码</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div>
+
+    <form th:action="@{/user/saveResetPsd}" method="post" th:object="${mResetPsdModel}">
+        <td>
+            <input type="hidden" name="id" th:field="${mResetPsdModel.id}"
+                   class="form-control"/>
+        </td>
+
+        <td>
+            <label>旧密码:</label>
+            <input type="text" name="oldPassword" placeholder="请输入旧密码"
+                   class="form-control"/>
+        </td>
+        <td>
+            <label>新密码:</label>
+            <input type="text" name="newPassword" placeholder="请输入新密码"
+                   class="form-control"/>
+        </td>
+
+        <td>
+            <label>确认密码:</label>
+            <input type="text" name="confirmPassword" placeholder="请输入确认密码"
+                   class="form-control"/>
+        </td>
+        <td>
+            <input type="submit" value="保存"/>
+        </td>
+    </form>
+
+</div>
+</body>
+</html>

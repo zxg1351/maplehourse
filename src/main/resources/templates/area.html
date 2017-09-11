@@ -8,7 +8,20 @@
 
 <div>
 
+    <form th:action="@{/region/searchListArea}" method="post" th:object="${areaModel}">
 
+        <label class="col-md-1 control-label">区域名称：</label>
+        <div class="col-md-2">
+            <input type="text" name="mAreaName" placeholder="请输入区域名称" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+
+        </div>
+    </form>
+
+</div>
+<div>
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -25,9 +38,19 @@
             <td th:text="${area.mAreaId}"></td>
             <td th:text="${area.mAreaName}"></td>
             <td th:text="${area.mCityId}"></td>
-
         </tr>
     </table>
+    <tr>
+
+        <td colspan="8">
+
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">共多少页</td>
+        <td th:text="'当前第' + ${number+1} + '页'">当前第多少页</td>
+        <a th:href="@{/region/selectArea(page=${number-1})}">上一页</a>
+        <a th:href="@{/region/selectArea(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
 </div>
 </body>
 </html>

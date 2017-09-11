@@ -7,6 +7,8 @@ import com.zxg.maplehourse.service.TDepartmentSalesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -35,5 +37,13 @@ public class TDepartmentSalesServiceImpl implements TDepartmentSalesService {
             logger.debug("暂无销售列表信息");
         }
         return resultInfo;
+    }
+
+    @Override
+    public Page<TDepartmentSalesModel> selectPageSales(Pageable pageable) {
+
+        Page<TDepartmentSalesModel> page  = salesRepository.findAll(pageable);
+
+        return page;
     }
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<form action="/mBanner/insertBanner" method="post" th:object="${mBannerModel}">
+
+    <td>
+        <label>轮播图名称:</label>
+        <input type="text" name="mBannerName" placeholder="请输入轮播图名称" class="form-control"/>
+    </td>
+    <td>
+        <label>轮播图URL:</label>
+        <input type="text" name="mBannerUrl" placeholder="请输入轮播图URL" class="form-control"/>
+    </td>
+    <td>
+        <label>轮播图类型:</label>
+        <input type="text" name="mBannerType" placeholder="请输入轮播图类型" class="form-control"/>
+    </td>
+    <input type="submit" th:value="保存"/>
+</form>
+</body>
+</html>

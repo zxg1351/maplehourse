@@ -10,12 +10,17 @@
 
     <div>
 
+        <form th:action="@{/region/searchListCity}" method="post" th:object="${mCityModel}">
 
-        <tr>
+            <label class="col-md-1 control-label">城市名称：</label>
+            <div class="col-md-2">
+                <input type="text" name="mCityName" placeholder="请输入城市名称" class="form-control"/>
+            </div>
+            <div class="form-actions">
+                <input type="submit" value="查询"/>
 
-            <td th:text="${totalPageNumber}">总数量</td>
-            <td th:text="${pageSize}">页面大小</td>
-        </tr>
+            </div>
+        </form>
     </div>
 
     <table class="table table-bordered table-striped">
@@ -44,13 +49,8 @@
         <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
         <td th:text="'共' + ${pageSize} + '页'">总数量</td>
         <td th:text="'当前第' + ${number+1} + '页'">总数量</td>
-        <!--<td th:text="共${totalPageNumber}条记录">总数量</td>-->
-        <!--<td th:text="共${pageSize}页">总数量</td>-->
-        <!--<td th:text="当前${number+1}页">总数量</td>-->
-        <!--<a href="'?pageNo='+${number+1-1}>上一页</a>-->
-        <!--<a href="?pageNo=${number+1+1}">下一页</a>-->
-        <a th:href="@{/test/select(page=${number-1})}">上一页</a>
-        <a th:href="@{/test/select(page=${number+1})}">下一页</a>
+        <a th:href="@{/region/selectCity(page=${number-1})}">上一页</a>
+        <a th:href="@{/region/selectCity(page=${number+1})}">下一页</a>
         </td>
     </tr>
 

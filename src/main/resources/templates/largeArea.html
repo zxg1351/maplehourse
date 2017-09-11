@@ -6,6 +6,21 @@
 </head>
 <body>
 <div>
+
+    <form th:action="@{/tLargeArea/searchList}" method="post" th:object="${tLargeAreaModel}">
+
+        <label class="col-md-1 control-label">区域名称：</label>
+        <div class="col-md-2">
+            <input type="text" name="largeAreaName" placeholder="请输入大区域名称" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+
+        </div>
+    </form>
+
+</div>
+<div>
     <table class="table table-bordered table-striped">
 
         <thead>
@@ -13,6 +28,7 @@
             <td>id</td>
             <td>大区域名称</td>
             <td>大区域ID</td>
+            <td colspan="8" align="center">操作权限</td>
         </tr>
 
         </thead>
@@ -20,10 +36,22 @@
             <td th:text="${largeArea.id}">id</td>
             <td th:text="${largeArea.largeAreaName}">mRoleNumber</td>
             <td th:text="${largeArea.largeAreaId}">mRoleName</td>
+            <td th:text="编辑" colspan="4" align="center"></td>
+            <td th:text="删除" colspan="4" align="center"></td>
         </tr>
 
     </table>
+    <tr>
 
+        <td colspan="8">
+
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">共多少页</td>
+        <td th:text="'当前第' + ${number+1} + '页'">当前第多少页</td>
+        <a th:href="@{/tLargeArea/selectLargeArea(page=${number-1})}">上一页</a>
+        <a th:href="@{/tLargeArea/selectLargeArea(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
 </div>
 </body>
 </html>

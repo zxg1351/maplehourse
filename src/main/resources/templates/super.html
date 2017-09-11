@@ -5,6 +5,22 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+
+
+<div>
+
+    <form th:action="@{/tDepartmentSuper/searchList}" method="post" th:object="${tDepartmentSuperModel}">
+
+        <label class="col-md-1 control-label">项目监理名称：</label>
+        <div class="col-md-2">
+            <input type="text" name="name" placeholder="请输入项目监理姓名" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+
+        </div>
+    </form>
+</div>
 <div>
     <table class="table table-bordered table-striped">
 
@@ -13,6 +29,7 @@
             <td>id</td>
             <td>项目监理类型ID</td>
             <td>项目监理姓名</td>
+            <td colspan="8" align="center">操作权限</td>
         </tr>
 
         </thead>
@@ -20,11 +37,22 @@
             <td th:text="${super.id}">id</td>
             <td th:text="${super.type}">superType</td>
             <td th:text="${super.name}">superName</td>
-
+            <td th:text="编辑" colspan="4" align="center"></td>
+            <td th:text="删除" colspan="4" align="center"></td>
         </tr>
 
     </table>
+    <tr>
 
+        <td colspan="8">
+
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">共多少页</td>
+        <td th:text="'当前第' + ${number+1} + '页'">当前第多少页</td>
+        <a th:href="@{/tDepartmentSuper/selectSuper(page=${number-1})}">上一页</a>
+        <a th:href="@{/tDepartmentSuper/selectSuper(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
 </div>
 </body>
 </html>

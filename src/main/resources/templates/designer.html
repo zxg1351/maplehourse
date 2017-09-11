@@ -5,6 +5,30 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+
+<div>
+
+    <form th:action="@{/tDepartmentDesigner/searchList}" method="post" th:object="${tDepartmentDesignerModel}">
+
+        <label class="col-md-1 control-label">设计师名称：</label>
+        <div class="col-md-2">
+            <input type="text" name="name" placeholder="请输入设计师名称" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+
+        </div>
+    </form>
+
+
+    <form th:action="@{/tDepartmentDesigner/addView}" method="post">
+
+        <input type="submit">新建</input>
+
+    </form>
+</div>
+
+
 <div>
     <table class="table table-bordered table-striped">
 
@@ -13,6 +37,7 @@
             <td>id</td>
             <td>设计师编号</td>
             <td>设计师名称</td>
+            <td colspan="8" align="center">操作权限</td>
         </tr>
 
         </thead>
@@ -20,11 +45,34 @@
             <td th:text="${designer.id}">id</td>
             <td th:text="${designer.type}">mRoleName</td>
             <td th:text="${designer.name}">name</td>
+            <td th:text="编辑" colspan="4" align="center"></td>
+            <td th:text="删除" colspan="4" align="center"></td>
 
+            <td>
+
+                <form th:action="@{/tDepartmentDesigner/editView(designerId=${designer.id})}" th:object="${designerModel}" method="post">
+                    <button type="submit">编辑</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/tDepartmentDesigner/deleteDesignerById(designerId=${designer.id})}" th:object="${designerModel}" method="post">
+                    <button type="submit">删除</button>
+                </form>
+            </td>
         </tr>
 
     </table>
+    <tr>
 
+        <td colspan="8">
+
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">共多少页</td>
+        <td th:text="'当前第' + ${number+1} + '页'">当前第多少页</td>
+        <a th:href="@{/tDepartmentDesigner/selectDesigner(page=${number-1})}">上一页</a>
+        <a th:href="@{/tDepartmentDesigner/selectDesigner(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
 </div>
 </body>
 </html>

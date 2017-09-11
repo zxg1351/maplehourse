@@ -4,10 +4,11 @@ import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.MMenuModel;
 import com.zxg.maplehourse.repository.MMenuRepository;
 import com.zxg.maplehourse.service.MMenuService;
-import com.zxg.maplehourse.service.MUserMenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -35,5 +36,13 @@ public class MMenuServiceImpl implements MMenuService {
 
 
         return resultInfo;
+    }
+
+    @Override
+    public Page<MMenuModel> selectPageMenu(Pageable pageable) {
+
+        Page<MMenuModel> modelPage = mMenuRepository.findAll(pageable);
+
+        return modelPage;
     }
 }

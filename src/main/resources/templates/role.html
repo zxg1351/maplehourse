@@ -6,6 +6,27 @@
 </head>
 <body>
 <div>
+
+    <form th:action="@{/mRole/searchList}" method="post" th:object="${mRoleModel}">
+
+        <label class="col-md-1 control-label">角色名称：</label>
+        <div class="col-md-2">
+            <input type="text" name="mRoleName" placeholder="请输入角色名称" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
+
+        </div>
+    </form>
+
+
+    <form th:action="@{/mRole/addRole}" method="post">
+
+        <input type="submit" value="新建"></input>
+    </form>
+</div>
+
+<div>
     <table class="table table-bordered table-striped">
 
         <thead>
@@ -13,6 +34,7 @@
             <td>id</td>
             <td>角色编号</td>
             <td>角色名称</td>
+            <td colspan="8" align="center">操作权限</td>
         </tr>
 
         </thead>
@@ -21,12 +43,33 @@
             <td th:text="${role.id}">id</td>
             <td th:text="${role.mRoleNumber}">mRoleNumber</td>
             <td th:text="${role.mRoleName}">mRoleName</td>
+            <td>
+
+                <form th:action="@{/mRole/editView(roleId=${role.id})}" th:object="${mRoleModel}" method="post">
+                    <button type="submit">编辑</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/mRole/deleteRoleById(roleId=${role.id})}" th:object="${mRoleModel}" method="post">
+                    <button type="submit">删除</button>
+                </form>
+            </td>
 
         </tr>
 
 
     </table>
+    <tr>
 
+        <td colspan="8">
+
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">共多少页</td>
+        <td th:text="'当前第' + ${number+1} + '页'">当前第多少页</td>
+        <a th:href="@{/mRole/selectRole(page=${number-1})}">上一页</a>
+        <a th:href="@{/mRole/selectRole(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
 </div>
 </body>
 </html>

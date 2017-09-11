@@ -7,6 +7,8 @@ import com.zxg.maplehourse.service.TDepartmentFundesignerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -35,5 +37,12 @@ public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesigner
             logger.debug("暂无家具设计师列表显示");
         }
         return resultInfo;
+    }
+
+    @Override
+    public Page<TDepartmentFundesignerModel> selectPageFundesigner(Pageable pageable) {
+
+        Page<TDepartmentFundesignerModel> modelPage = fundesignerRepository.findAll(pageable);
+        return modelPage;
     }
 }

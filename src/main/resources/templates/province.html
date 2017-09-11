@@ -9,29 +9,19 @@
 <body>
 
 <div>
-    <div>
-        <tr>
-            <form th:action="@{/province.html?search}" method="post" th:object="${mProvinceModel}">
 
-                <td>省份名稱:</td>
-                <td><input type="text" name="mProvinceName" placeholder="请输入省份名稱" class="form-control"/></td>
+    <form th:action="@{/region/selectProviceBy}" method="post" th:object="${mProvinceModel}">
 
-                <td><input type="submit" value="查询" name="search"/></td>
-                <!--<input type="text" name="username" placeholder="用户名" class="form-control"/>-->
-            </form>
+        <label class="col-md-1 control-label">省份名称：</label>
+        <div class="col-md-2">
+            <input type="text" name="mProvinceName" placeholder="请输入省份名称" class="form-control"/>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="查询"/>
 
-        </tr>
+        </div>
+    </form>
 
-        <form th:action="@{/region/selectArea}" method="post" th:object="${mAreaModel}">
-
-            <td>
-                <input type="submit" value="查询区域列表按钮"/>
-            </td>
-        </form>
-        <a href="area.html" th:href="@{/region/selectArea}">查询区域列表</a>
-
-
-    </div>
 </div>
 
 
@@ -44,19 +34,29 @@
             <td>id</td>
             <td>省份ID</td>
             <td>省份名称</td>
+            <!--<td colspan="8" align="center">操作权限</td>-->
         </tr>
         </thead>
         <tr th:each="provice : ${mProvince}">
             <td th:text="${provice.id}">id</td>
             <td th:text="${provice.provinceId}">provinceId</td>
             <td th:text="${provice.mProvinceName}">mProvinceName</td>
+            <!--<td th:text="编辑" colspan="4" align="center"></td>-->
+            <!--<td th:text="删除" colspan="4" align="center"></td>-->
         </tr>
     </table>
 </div>
+<tr>
 
+    <td colspan="8">
+
+    <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+    <td th:text="'共' + ${pageSize} + '页'">共多少页</td>
+    <td th:text="'当前第' + ${number+1} + '页'">当前第多少页</td>
+    <a th:href="@{/region/selectProvice(page=${number-1})}">上一页</a>
+    <a th:href="@{/region/selectProvice(page=${number+1})}">下一页</a>
+    </td>
+</tr>
 </body>
 </html>
-<script>
 
-
-</script>
