@@ -36,8 +36,19 @@
             <td th:text="${largeArea.id}">id</td>
             <td th:text="${largeArea.largeAreaName}">mRoleNumber</td>
             <td th:text="${largeArea.largeAreaId}">mRoleName</td>
-            <td th:text="编辑" colspan="4" align="center"></td>
-            <td th:text="删除" colspan="4" align="center"></td>
+            <td>
+
+                <form th:action="@{/tLargeArea/editView(id=${largeArea.id})}" th:object="${model}"
+                      method="post">
+                    <button type="submit">编辑</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/tLargeArea/deleteById(id=${largeArea.id})}"
+                      th:object="${model}" method="post">
+                    <button type="submit">删除</button>
+                </form>
+            </td>
         </tr>
 
     </table>

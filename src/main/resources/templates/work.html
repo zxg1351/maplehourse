@@ -42,8 +42,19 @@
             <td th:text="${work.tWorkTel}">tWorkTel</td>
             <td th:text="${work.tWorkType}">tWorkType</td>
             <td th:text="${work.createTime}">mRoleName</td>
-            <td th:text="编辑" colspan="4" align="center"></td>
-            <td th:text="删除" colspan="4" align="center"></td>
+            <td>
+
+                <form th:action="@{/tDepartmentWorker/editView(id=${work.id})}" th:object="${model}"
+                      method="post">
+                    <button type="submit">编辑</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/tDepartmentWorker/deleteById(id=${work.id})}"
+                      th:object="${model}" method="post">
+                    <button type="submit">删除</button>
+                </form>
+            </td>
         </tr>
 
     </table>

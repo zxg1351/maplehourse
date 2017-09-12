@@ -66,16 +66,7 @@ public class TDepartmentDesignerController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editView")
-    public ModelAndView editView(@RequestParam Integer designerId) {
 
-        ResultInfo resultInfo = departmentDesignerService.findById(designerId);
-
-        ModelAndView modelAndView = new ModelAndView("/editDesigner");
-        modelAndView.addObject("designerModel", resultInfo.getAppData());
-        return modelAndView;
-
-    }
 
 
     @RequestMapping(value = "/editDesigner")
@@ -93,5 +84,14 @@ public class TDepartmentDesignerController {
         ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
         return modelAndView;
     }
+    @RequestMapping(value = "/editView")
+    public ModelAndView editView(@RequestParam Integer designerId) {
 
+        ResultInfo resultInfo = departmentDesignerService.findById(designerId);
+
+        ModelAndView modelAndView = new ModelAndView("/editDesigner");
+        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        return modelAndView;
+
+    }
 }

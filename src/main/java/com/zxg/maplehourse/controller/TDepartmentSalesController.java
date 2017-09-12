@@ -9,7 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 /**
  * Created by Administrator on 2017/8/18.
@@ -25,6 +28,7 @@ public class TDepartmentSalesController {
 
     /**
      * 查询销售列表
+     *
      * @return
      */
     @RequestMapping(value = "/selecttDepartmentSales")
@@ -40,15 +44,34 @@ public class TDepartmentSalesController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/newLargeArea")
-    public ModelAndView newLargeArea(@Valid TLargeAreaModel largeAreaModel) {
+    @RequestMapping(value = "/newSales")
+    public ModelAndView newSales(@Valid TDepartmentSalesModel salesModel) {
         ModelAndView modelAndView = new ModelAndView();
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editLargeArea")
-    public ModelAndView editLargeArea(@Valid TLargeAreaModel largeAreaModel) {
+    @RequestMapping(value = "/editSales")
+    public ModelAndView editSales(@Valid TDepartmentSalesModel salesModel) {
         ModelAndView modelAndView = new ModelAndView();
         return modelAndView;
     }
+
+    @RequestMapping(value = "/deleteById")
+    public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
+        ResultInfo resultInfo = tDepartmentSalesService.deleteSalesById(designerId);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/editView")
+    public ModelAndView editView(@RequestParam Integer designerId) {
+
+        ResultInfo resultInfo = tDepartmentSalesService.findById(designerId);
+
+        ModelAndView modelAndView = new ModelAndView("/editDesigner");
+        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        return modelAndView;
+
+    }
+
 }

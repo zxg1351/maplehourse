@@ -37,8 +37,19 @@
             <td th:text="${fundesigner.id}">id</td>
             <td th:text="${fundesigner.name}">fundesignerName</td>
             <td th:text="${fundesigner.type}">fundesignerType</td>
-            <td th:text="编辑" colspan="4" align="center"></td>
-            <td th:text="删除" colspan="4" align="center"></td>
+            <td>
+
+                <form th:action="@{/tDepartmentFundesigner/editView(id=${fundesigner.id})}" th:object="${model}"
+                      method="post">
+                    <button type="submit">编辑</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/tDepartmentFundesigner/deleteById(id=${fundesigner.id})}"
+                      th:object="${model}" method="post">
+                    <button type="submit">删除</button>
+                </form>
+            </td>
         </tr>
 
     </table>

@@ -1,5 +1,6 @@
 package com.zxg.maplehourse.controller;
 
+import com.zxg.maplehourse.bean.ResultInfo;
 import com.zxg.maplehourse.model.TLargeAreaModel;
 import com.zxg.maplehourse.service.TLargeAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -58,7 +60,21 @@ public class TLargeAreaController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/deleteById")
+    public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
+        ResultInfo resultInfo = tLargeAreaService.deleteLargeAreaById(designerId);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/editView")
+    public ModelAndView editView(@RequestParam Integer designerId) {
 
-//    @RequestMapping(value = "/deleteLargeArea")
-//    public ModelAndView deleteLargeArea(Valid)
+        ResultInfo resultInfo = tLargeAreaService.findById(designerId);
+
+        ModelAndView modelAndView = new ModelAndView("/editDesigner");
+        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        return modelAndView;
+
+    }
+
 }
