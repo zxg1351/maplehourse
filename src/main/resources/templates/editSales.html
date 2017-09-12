@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>编辑销售Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div>
+
+
+    <form action="/tDepartmentSales/editSales" method="post" th:object="${salesModel}">
+        <td>
+            <input type="hidden" th:field="${salesModel.id}" name="id"
+                   class="form-control"/>
+        </td>
+        <td>
+            <label>销售姓名:</label>
+            <input type="text" th:field="${salesModel.saleName}" name="saleName" placeholder="请输入销售姓名"
+                   class="form-control"/>
+        </td>
+        <td>
+            <label>销售类型:</label>
+            <input type="text" th:field="${salesModel.saleType}" name="saleType" placeholder="请输入销售类型"
+                   class="form-control"/>
+        </td>
+        <input type="submit" th:value="保存"/>
+
+    </form>
+</div>
+</body>
+</html>

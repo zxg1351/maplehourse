@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import javax.xml.transform.Result;
 
 /**
@@ -45,4 +46,15 @@ public class TDepartmentFundesignerController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/newFundesigner")
+    public ModelAndView newFundesigner(@Valid TDepartmentFundesignerModel fundesignerModel) {
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/editFundesigner")
+    public ModelAndView editFundesigner(@Valid TDepartmentFundesignerModel fundesignerModel) {
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
 }

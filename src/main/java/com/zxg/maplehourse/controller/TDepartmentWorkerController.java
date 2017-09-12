@@ -41,4 +41,16 @@ public class TDepartmentWorkerController {
         modelAndView.addObject("workList", pageable.getContent());
         return modelAndView;
     }
+
+    @RequestMapping(value = "/newLargeArea")
+    public ModelAndView newLargeArea(@Valid TLargeAreaModel largeAreaModel) {
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/editLargeArea")
+    public ModelAndView editLargeArea(@Valid TLargeAreaModel largeAreaModel) {
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
 }

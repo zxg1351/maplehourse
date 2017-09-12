@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>新建财务姓名 Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<form action="/tDepartmentFinance/newFinance" method="post" th:object="${financeModel}">
+    <td>
+        <label>财务姓名:</label>
+        <input type="text" name="name" placeholder="请输入财务名称" class="form-control"/>
+    </td>
+
+    <input type="submit" th:value="保存"/>
+</form>
+</body>
+</html>

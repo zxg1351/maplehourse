@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 /**
  * Created by Administrator on 2017/8/18.
  * 大区域列表
@@ -42,6 +44,21 @@ public class TLargeAreaController {
 
         return modelAndView;
 
-
     }
+
+    @RequestMapping(value = "/newLargeArea")
+    public ModelAndView newLargeArea(@Valid TLargeAreaModel largeAreaModel) {
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/editLargeArea")
+    public ModelAndView editLargeArea(@Valid TLargeAreaModel largeAreaModel) {
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
+
+
+//    @RequestMapping(value = "/deleteLargeArea")
+//    public ModelAndView deleteLargeArea(Valid)
 }

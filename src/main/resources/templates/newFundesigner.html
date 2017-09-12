@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>新建家具设计师 Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+
+<form action="/tDepartmentFundesigner/newFundesigner" method="post" th:object="${fundesignerModel}">
+    <td>
+        <label>家具设计师姓名:</label>
+        <input type="text" name="name" placeholder="请输入家具设计师姓名" class="form-control"/>
+    </td>
+    <td>
+        <label>家具设计师类型:</label>
+        <input type="text" name="type" placeholder="请输入家具设计师类型" class="form-control"/>
+    </td>
+    <input type="submit" th:value="保存"/>
+
+</form>
+
+
+</body>
+</html>

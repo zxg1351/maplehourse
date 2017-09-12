@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import javax.xml.transform.Result;
 
 /**
@@ -27,6 +28,7 @@ public class TDepartmentFinanceController {
 
     /**
      * 查询财务人员列表
+     *
      * @return
      */
     @RequestMapping(value = "/selectFinance")
@@ -42,6 +44,19 @@ public class TDepartmentFinanceController {
 
         modelAndView.addObject("financeList", pageable.getContent());
 
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/newFinance")
+    public ModelAndView newFinance(@Valid TDepartmentFinanceModel financeModel) {
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/editFinance")
+    public ModelAndView editFinance(@Valid TDepartmentFinanceModel financeModel) {
+        ModelAndView modelAndView = new ModelAndView();
         return modelAndView;
     }
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>新建销售 Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+
+<form action="/tDepartmentSales/newSales" method="post" th:object="${salesModel}">
+    <td>
+        <label>销售姓名:</label>
+        <input type="text" name="saleName" placeholder="请输入销售姓名" class="form-control"/>
+    </td>
+    <td>
+        <label>销售类型:</label>
+        <input type="text" name="saleType" placeholder="请输入销售类型" class="form-control"/>
+    </td>
+    <input type="submit" th:value="保存"/>
+
+</form>
+
+
+</body>
+</html>

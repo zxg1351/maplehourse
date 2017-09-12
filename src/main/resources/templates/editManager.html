@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>编辑项目经理Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div>
+
+    <form action="/tDepartmentManager/editManager" method="post" th:object="${managerModel}">
+
+        <td>
+            <input type="hidden" th:field="${managerModel.id}" name="id"
+                   class="form-control"/>
+        </td>
+        <td>
+            <label>项目经理姓名:</label>
+            <input type="text" name="name" th:field="${managerModel.name}" placeholder="请输入项目经理姓名"
+                   class="form-control"/>
+        </td>
+        <td>
+            <label>项目经理类型:</label>
+            <input type="text" name="type" th:field="${managerModel.type}" placeholder="请输入项目经理类型"
+                   class="form-control"/>
+        </td>
+
+        <td>
+            <input type="submit" value="保存"/>
+
+        </td>
+    </form>
+
+
+</div>
+</body>
+</html>

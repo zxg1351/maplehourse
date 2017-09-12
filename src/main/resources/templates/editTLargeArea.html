@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>编辑用户Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div>
+    <form action="/tLargeArea/editLargeArea" method="post" th:object="${largeAreaModel}">
+
+        <td>
+            <input type="hidden" th:field="${largeAreaModel.id}" name="id"
+                   class="form-control"/>
+        </td>
+
+        <td>
+            <label>大区域名称:</label>
+            <input type="text" th:field="${largeAreaModel.largeAreaName}" name="largeAreaName" placeholder="请输入大区域名称"
+                   class="form-control"/>
+        </td>
+
+        <input type="submit" th:value="保存"/>
+
+    </form>
+
+</div>
+</body>
+</html>

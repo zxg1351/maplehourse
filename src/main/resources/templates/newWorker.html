@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+
+<form action="/tDepartmentWorker/newWorker" method="post" th:object="${workerModel}">
+    <td>
+        <label>工人姓名:</label>
+        <input type="text" name="tWorkName" placeholder="请输入工人名称" class="form-control"/>
+    </td>
+    <td>
+        <label>工人电话:</label>
+        <input type="text" name="tWorkTel" placeholder="请输入工人电话" class="form-control"/>
+    </td>
+    <td>
+        <label>工人地址:</label>
+        <input type="text" name="tWorkAddress" placeholder="请输入工人地址" class="form-control"/>
+    </td>
+    <td>
+        <label>工人类别:</label>
+        <input type="text" name="tWorkType" placeholder="请选择工人类别" class="form-control"/>
+    </td>
+
+
+    <input type="submit" th:value="保存"/>
+
+</form>
+
+
+</body>
+</html>

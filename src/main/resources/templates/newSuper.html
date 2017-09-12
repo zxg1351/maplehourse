@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+
+<form action="/tDepartmentSuper/newSuper" method="post" th:object="${superModel}">
+    <td>
+        <label>项目监理姓名:</label>
+        <input type="text" name="name" placeholder="请输入项目监理名称" class="form-control"/>
+    </td>
+    <td>
+        <label>项目监理类别:</label>
+        <input type="text" name="type" placeholder="请输入项目监理类别" class="form-control"/>
+    </td>
+
+    <input type="submit" th:value="保存"/>
+
+</form>
+
+
+</body>
+</html>

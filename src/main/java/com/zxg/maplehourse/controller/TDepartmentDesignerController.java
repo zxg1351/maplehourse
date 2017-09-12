@@ -80,7 +80,7 @@ public class TDepartmentDesignerController {
 
     @RequestMapping(value = "/editDesigner")
     public ModelAndView editDesigner(@Valid TDepartmentDesignerModel designerModel) {
-        ResultInfo resultInfo = departmentDesignerService.editRole(designerModel);
+        ResultInfo resultInfo = departmentDesignerService.editDesigner(designerModel);
         ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
         modelAndView.addObject(resultInfo.getAppData());
 
@@ -89,7 +89,7 @@ public class TDepartmentDesignerController {
 
     @RequestMapping(value = "/deleteDesignerById")
     public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
-        ResultInfo resultInfo = departmentDesignerService.deleteRoleById(designerId);
+        ResultInfo resultInfo = departmentDesignerService.deleteDesignerById(designerId);
         ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
         return modelAndView;
     }
