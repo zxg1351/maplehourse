@@ -21,7 +21,7 @@ public interface TDepartmentFinanceService {
 
     ResultInfo findById(Integer financeId);
 
-    ResultInfo editRole(TDepartmentFinanceModel tDepartmentDesignerModel);
+    ResultInfo editFinance(TDepartmentFinanceModel tDepartmentDesignerModel);
 
     ResultInfo deleteRoleById(Integer financeId);
 }

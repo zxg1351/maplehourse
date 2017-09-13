@@ -45,28 +45,36 @@ public class TDepartmentManagerController {
 
     @RequestMapping(value = "/newManager")
     public ModelAndView newManager(@Valid TDepartmentManagerModel managerModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = managerService.saveManager(managerModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentManager/selectManager");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
     @RequestMapping(value = "/editManager")
     public ModelAndView editManager(@Valid TDepartmentManagerModel managerModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = managerService.editManager(managerModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentManager/selectManager");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
+
     @RequestMapping(value = "/deleteById")
-    public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
-        ResultInfo resultInfo = managerService.deleteManagerById(designerId);
-        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+    public ModelAndView deleteDesignerById(@RequestParam Integer id) {
+        ResultInfo resultInfo = managerService.deleteManagerById(id);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentManager/selectManager");
         return modelAndView;
     }
+
     @RequestMapping(value = "/editView")
-    public ModelAndView editView(@RequestParam Integer designerId) {
+    public ModelAndView editView(@RequestParam Integer id) {
 
-        ResultInfo resultInfo = managerService.findById(designerId);
+        ResultInfo resultInfo = managerService.findById(id);
 
-        ModelAndView modelAndView = new ModelAndView("/editDesigner");
-        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        ModelAndView modelAndView = new ModelAndView("/editManager");
+        modelAndView.addObject("managerModel", resultInfo.getAppData());
         return modelAndView;
 
     }

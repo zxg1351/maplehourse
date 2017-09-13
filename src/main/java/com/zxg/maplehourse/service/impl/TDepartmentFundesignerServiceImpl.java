@@ -1,6 +1,7 @@
 package com.zxg.maplehourse.service.impl;
 
 import com.zxg.maplehourse.bean.ResultInfo;
+import com.zxg.maplehourse.model.TDepartmentFinanceModel;
 import com.zxg.maplehourse.model.TDepartmentFundesignerModel;
 import com.zxg.maplehourse.repository.TDepartmentFundesignerRepository;
 import com.zxg.maplehourse.service.TDepartmentFundesignerService;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,12 +30,12 @@ public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesigner
 
         List<TDepartmentFundesignerModel> fundesignerModelList = fundesignerRepository.findAll();
 
-        if (!CollectionUtils.isEmpty(fundesignerModelList)){
+        if (!CollectionUtils.isEmpty(fundesignerModelList)) {
 
 
             resultInfo.setAppData(fundesignerModelList);
             logger.debug("家具设计师列表信息显示");
-        }else {
+        } else {
             logger.debug("暂无家具设计师列表显示");
         }
         return resultInfo;
@@ -48,21 +50,41 @@ public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesigner
 
     @Override
     public ResultInfo saveFundesigner(TDepartmentFundesignerModel fundesignerModel) {
-        return null;
+        TDepartmentFundesignerModel fundesignerModel1 = fundesignerRepository.save(fundesignerModel);
+        ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setAppData(fundesignerModel1);
+        resultInfo.setResultMessage("保存成功");
+        resultInfo.setResultCode("0");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo findById(Integer fundesignerId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        TDepartmentFundesignerModel fundesignerModel = fundesignerRepository.findOne(fundesignerId);
+        resultInfo.setAppData(fundesignerModel);
+        return resultInfo;
     }
 
     @Override
     public ResultInfo editFundesigner(TDepartmentFundesignerModel fundesignerModel) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        int result = fundesignerRepository.editFundesigner(1, new Date(), fundesignerModel.getName(), fundesignerModel.getType(), fundesignerModel.getId());
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("修改成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo deleteFundesignerById(Integer fundesignerId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+        int result = fundesignerRepository.deleteFundesignerById(1, new Date(), "1", fundesignerId);
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("删除成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 }

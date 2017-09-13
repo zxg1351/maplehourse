@@ -34,7 +34,6 @@ public class TDepartmentWorkerController {
     @RequestMapping(value = "/selectWorker")
     public ModelAndView selectWorker(@PageableDefault Pageable pageNo) {
 
-//        ResultInfo resultInfo = departmentWorkerService.selectAllTDepartmentWorker();
         Page<TDepartmentWorkerModel> pageable = departmentWorkerService.selectPageWorker(pageNo);
 
         ModelAndView modelAndView = new ModelAndView("/work");
@@ -47,30 +46,36 @@ public class TDepartmentWorkerController {
 
     @RequestMapping(value = "/newWorker")
     public ModelAndView newWorker(@Valid TDepartmentWorkerModel workerModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = departmentWorkerService.saveWork(workerModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentWorker/selectWorker");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
     @RequestMapping(value = "/editWorker")
     public ModelAndView editWorker(@Valid TDepartmentWorkerModel workerModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = departmentWorkerService.editWork(workerModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentWorker/selectWorker");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
     @RequestMapping(value = "/deleteById")
-    public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
-        ResultInfo resultInfo = departmentWorkerService.deleteWorkById(designerId);
-        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+    public ModelAndView deleteDesignerById(@RequestParam Integer id) {
+        ResultInfo resultInfo = departmentWorkerService.deleteWorkById(id);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentWorker/selectWorker");
         return modelAndView;
     }
 
     @RequestMapping(value = "/editView")
-    public ModelAndView editView(@RequestParam Integer designerId) {
+    public ModelAndView editView(@RequestParam Integer id) {
 
-        ResultInfo resultInfo = departmentWorkerService.findById(designerId);
+        ResultInfo resultInfo = departmentWorkerService.findById(id);
 
-        ModelAndView modelAndView = new ModelAndView("/editDesigner");
-        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        ModelAndView modelAndView = new ModelAndView("/editWorker");
+        modelAndView.addObject("workerModel", resultInfo.getAppData());
         return modelAndView;
 
     }

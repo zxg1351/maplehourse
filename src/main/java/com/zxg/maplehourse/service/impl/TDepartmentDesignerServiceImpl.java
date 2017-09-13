@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -68,16 +69,33 @@ public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerServic
 
     @Override
     public ResultInfo findById(Integer designerId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        TDepartmentDesignerModel financeModel = tDepartmentDesignerRepository.findOne(designerId);
+        resultInfo.setAppData(financeModel);
+        return resultInfo;
     }
 
     @Override
     public ResultInfo editDesigner(TDepartmentDesignerModel tDepartmentDesignerModel) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        int result = tDepartmentDesignerRepository.editDesigner(1, new Date(), tDepartmentDesignerModel.getName(), tDepartmentDesignerModel.getType(), tDepartmentDesignerModel.getId());
+
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("修改成功");
+        resultInfo.setResultCode("success");
+
+        return resultInfo;
     }
 
     @Override
     public ResultInfo deleteDesignerById(Integer designerId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+        int result = tDepartmentDesignerRepository.deleteDesignerById(1, new Date(), "1", designerId);
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("删除成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 }

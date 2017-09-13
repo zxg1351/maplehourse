@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,22 +23,42 @@ public class TLargeAreaServiceImpl implements TLargeAreaService {
 
     @Override
     public ResultInfo saveLargeArea(TLargeAreaModel tLargeAreaModel) {
-        return null;
+        TLargeAreaModel model = tLargeAreaRepository.save(tLargeAreaModel);
+        ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setAppData(model);
+        resultInfo.setResultMessage("保存成功");
+        resultInfo.setResultCode("0");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo findById(Integer largeAreaId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        TLargeAreaModel model = tLargeAreaRepository.findOne(largeAreaId);
+        resultInfo.setAppData(model);
+        return resultInfo;
     }
 
     @Override
     public ResultInfo editLargeArea(TLargeAreaModel tLargeAreaModel) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        int result = tLargeAreaRepository.editFinance(1, new Date(), tLargeAreaModel.getLargeAreaName(), tLargeAreaModel.getId());
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("修改成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo deleteLargeAreaById(Integer largeAreaId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+        int result = tLargeAreaRepository.deleteFinanceById(1, new Date(), "1", largeAreaId);
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("删除成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 
     @Override

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,22 +25,43 @@ public class TDepartmentWorkerServiceImpl implements TDepartmentWorkerService {
 
     @Override
     public ResultInfo saveWork(TDepartmentWorkerModel workerModel) {
-        return null;
+        TDepartmentWorkerModel model = workerRepository.save(workerModel);
+        ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setAppData(model);
+        resultInfo.setResultMessage("保存成功");
+        resultInfo.setResultCode("0");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo findById(Integer workId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        TDepartmentWorkerModel model = workerRepository.findOne(workId);
+        resultInfo.setAppData(model);
+        return resultInfo;
     }
 
     @Override
     public ResultInfo editWork(TDepartmentWorkerModel workerModel) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        int result = workerRepository.editWorker(1, new Date(), workerModel.getTWorkName(), workerModel.getTWorkTel(),
+                workerModel.getTWorkAddress(), workerModel.getTWorkType(), workerModel.getId());
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("修改成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo deleteWorkById(Integer workId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+        int result = workerRepository.deleteWorkerById(1, new Date(), "1", workId);
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("删除成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 
     @Override

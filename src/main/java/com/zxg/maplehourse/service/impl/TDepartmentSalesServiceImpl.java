@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,22 +24,42 @@ public class TDepartmentSalesServiceImpl implements TDepartmentSalesService {
 
     @Override
     public ResultInfo saveSales(TDepartmentSalesModel salesModel) {
-        return null;
+        TDepartmentSalesModel model = salesRepository.save(salesModel);
+        ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setAppData(model);
+        resultInfo.setResultMessage("保存成功");
+        resultInfo.setResultCode("0");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo findById(Integer salesId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        TDepartmentSalesModel model = salesRepository.findOne(salesId);
+        resultInfo.setAppData(model);
+        return resultInfo;
     }
 
     @Override
     public ResultInfo editSales(TDepartmentSalesModel salesModel) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        int result = salesRepository.editSales(1, new Date(), salesModel.getSaleName(), salesModel.getSaleType(), salesModel.getId());
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("修改成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo deleteSalesById(Integer salesId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+        int result = salesRepository.deleteSalesById(1, new Date(), "1", salesId);
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("删除成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 
     @Override
@@ -62,7 +83,7 @@ public class TDepartmentSalesServiceImpl implements TDepartmentSalesService {
     @Override
     public Page<TDepartmentSalesModel> selectPageSales(Pageable pageable) {
 
-        Page<TDepartmentSalesModel> page  = salesRepository.findAll(pageable);
+        Page<TDepartmentSalesModel> page = salesRepository.findAll(pageable);
 
         return page;
     }

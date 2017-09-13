@@ -46,30 +46,36 @@ public class TDepartmentSalesController {
 
     @RequestMapping(value = "/newSales")
     public ModelAndView newSales(@Valid TDepartmentSalesModel salesModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = tDepartmentSalesService.saveSales(salesModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentSales/selecttDepartmentSales");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
     @RequestMapping(value = "/editSales")
     public ModelAndView editSales(@Valid TDepartmentSalesModel salesModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = tDepartmentSalesService.editSales(salesModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentSales/selecttDepartmentSales");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
     @RequestMapping(value = "/deleteById")
-    public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
-        ResultInfo resultInfo = tDepartmentSalesService.deleteSalesById(designerId);
-        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+    public ModelAndView deleteDesignerById(@RequestParam Integer id) {
+        ResultInfo resultInfo = tDepartmentSalesService.deleteSalesById(id);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentSales/selecttDepartmentSales");
         return modelAndView;
     }
 
     @RequestMapping(value = "/editView")
-    public ModelAndView editView(@RequestParam Integer designerId) {
+    public ModelAndView editView(@RequestParam Integer id) {
 
-        ResultInfo resultInfo = tDepartmentSalesService.findById(designerId);
+        ResultInfo resultInfo = tDepartmentSalesService.findById(id);
 
-        ModelAndView modelAndView = new ModelAndView("/editDesigner");
-        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        ModelAndView modelAndView = new ModelAndView("/editSales");
+        modelAndView.addObject("salesModel", resultInfo.getAppData());
         return modelAndView;
 
     }

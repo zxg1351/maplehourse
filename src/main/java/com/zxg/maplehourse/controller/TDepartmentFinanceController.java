@@ -51,33 +51,39 @@ public class TDepartmentFinanceController {
 
     @RequestMapping(value = "/newFinance")
     public ModelAndView newFinance(@Valid TDepartmentFinanceModel financeModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = departmentFinanceService.saveDesigner(financeModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentFinance/selectFinance");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
     @RequestMapping(value = "/editFinance")
     public ModelAndView editFinance(@Valid TDepartmentFinanceModel financeModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = departmentFinanceService.editFinance(financeModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentFinance/selectFinance");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
+
     @RequestMapping(value = "/deleteById")
-    public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
-        ResultInfo resultInfo = departmentFinanceService.deleteRoleById(designerId);
-        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+    public ModelAndView deleteDesignerById(@RequestParam Integer id) {
+        ResultInfo resultInfo = departmentFinanceService.deleteRoleById(id);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentFinance/selectFinance");
         return modelAndView;
     }
+
     @RequestMapping(value = "/editView")
-    public ModelAndView editView(@RequestParam Integer designerId) {
+    public ModelAndView editView(@RequestParam Integer id) {
 
-        ResultInfo resultInfo = departmentFinanceService.findById(designerId);
+        ResultInfo resultInfo = departmentFinanceService.findById(id);
 
-        ModelAndView modelAndView = new ModelAndView("/editDesigner");
-        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        ModelAndView modelAndView = new ModelAndView("/editFinance");
+        modelAndView.addObject("financeModel", resultInfo.getAppData());
         return modelAndView;
 
     }
-
-
 
 
 }

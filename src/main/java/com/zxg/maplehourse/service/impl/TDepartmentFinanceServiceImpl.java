@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -51,21 +52,44 @@ public class TDepartmentFinanceServiceImpl implements TDepartmentFinanceService 
 
     @Override
     public ResultInfo saveDesigner(TDepartmentFinanceModel tDepartmentFinanceModel) {
-        return null;
+        TDepartmentFinanceModel financeModel = departmentFinanceRepository.save(tDepartmentFinanceModel);
+        ResultInfo resultInfo = new ResultInfo();
+
+        resultInfo.setAppData(financeModel);
+        resultInfo.setResultMessage("保存成功");
+        resultInfo.setResultCode("0");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo findById(Integer financeId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        TDepartmentFinanceModel financeModel = departmentFinanceRepository.findOne(financeId);
+        resultInfo.setAppData(financeModel);
+        return resultInfo;
     }
 
     @Override
-    public ResultInfo editRole(TDepartmentFinanceModel tDepartmentDesignerModel) {
-        return null;
+    public ResultInfo editFinance(TDepartmentFinanceModel tDepartmentDesignerModel) {
+        ResultInfo resultInfo = new ResultInfo();
+
+        int result = departmentFinanceRepository.editFinance(1, new Date(), tDepartmentDesignerModel.getName(), tDepartmentDesignerModel.getId());
+
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("修改成功");
+        resultInfo.setResultCode("success");
+
+        return resultInfo;
     }
 
     @Override
     public ResultInfo deleteRoleById(Integer financeId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+        int result = departmentFinanceRepository.deleteFinanceById(1, new Date(), "1", financeId);
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("删除成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 }

@@ -50,29 +50,36 @@ public class TLargeAreaController {
 
     @RequestMapping(value = "/newLargeArea")
     public ModelAndView newLargeArea(@Valid TLargeAreaModel largeAreaModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = tLargeAreaService.saveLargeArea(largeAreaModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tLargeArea/selectLargeArea");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
     @RequestMapping(value = "/editLargeArea")
     public ModelAndView editLargeArea(@Valid TLargeAreaModel largeAreaModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = tLargeAreaService.editLargeArea(largeAreaModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tLargeArea/selectLargeArea");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
     @RequestMapping(value = "/deleteById")
-    public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
-        ResultInfo resultInfo = tLargeAreaService.deleteLargeAreaById(designerId);
+    public ModelAndView deleteDesignerById(@RequestParam Integer id) {
+        ResultInfo resultInfo = tLargeAreaService.deleteLargeAreaById(id);
         ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
         return modelAndView;
     }
+
     @RequestMapping(value = "/editView")
-    public ModelAndView editView(@RequestParam Integer designerId) {
+    public ModelAndView editView(@RequestParam Integer id) {
 
-        ResultInfo resultInfo = tLargeAreaService.findById(designerId);
+        ResultInfo resultInfo = tLargeAreaService.findById(id);
 
-        ModelAndView modelAndView = new ModelAndView("/editDesigner");
-        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        ModelAndView modelAndView = new ModelAndView("/editLargeArea");
+        modelAndView.addObject("largeAreaModel", resultInfo.getAppData());
         return modelAndView;
 
     }

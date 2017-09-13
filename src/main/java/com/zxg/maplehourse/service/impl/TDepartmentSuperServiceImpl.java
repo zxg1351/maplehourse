@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,22 +23,42 @@ public class TDepartmentSuperServiceImpl implements TDepartmentSuperService {
 
     @Override
     public ResultInfo saveSuper(TDepartmentSuperModel superModel) {
-        return null;
+        TDepartmentSuperModel model = superRepository.save(superModel);
+        ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setAppData(model);
+        resultInfo.setResultMessage("保存成功");
+        resultInfo.setResultCode("0");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo findById(Integer superId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        TDepartmentSuperModel model = superRepository.findOne(superId);
+        resultInfo.setAppData(model);
+        return resultInfo;
     }
 
     @Override
     public ResultInfo editSuper(TDepartmentSuperModel superModel) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        int result = superRepository.editFinance(1, new Date(), superModel.getName(), superModel.getType(), superModel.getId());
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("修改成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo deleteSuperById(Integer superId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+        int result = superRepository.deleteFinanceById(1, new Date(), "1", superId);
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("删除成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 
     @Override

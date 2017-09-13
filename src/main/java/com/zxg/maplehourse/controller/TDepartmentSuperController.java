@@ -46,28 +46,37 @@ public class TDepartmentSuperController {
 
     @RequestMapping(value = "/newSuper")
     public ModelAndView newSuper(@Valid TDepartmentSuperModel superModel) {
-        ModelAndView modelAndView = new ModelAndView();
+
+        ResultInfo resultInfo = tDepartmentSuperService.saveSuper(superModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentSuper/selectSuper");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
     @RequestMapping(value = "/editSuper")
     public ModelAndView editSuper(@Valid TDepartmentSuperModel superModel) {
-        ModelAndView modelAndView = new ModelAndView();
+        ResultInfo resultInfo = tDepartmentSuperService.editSuper(superModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentSuper/selectSuper");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
+
     @RequestMapping(value = "/deleteById")
-    public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
-        ResultInfo resultInfo = tDepartmentSuperService.deleteSuperById(designerId);
-        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+    public ModelAndView deleteDesignerById(@RequestParam Integer id) {
+        ResultInfo resultInfo = tDepartmentSuperService.deleteSuperById(id);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentSuper/selectSuper");
         return modelAndView;
     }
+
     @RequestMapping(value = "/editView")
-    public ModelAndView editView(@RequestParam Integer designerId) {
+    public ModelAndView editView(@RequestParam Integer id) {
 
-        ResultInfo resultInfo = tDepartmentSuperService.findById(designerId);
+        ResultInfo resultInfo = tDepartmentSuperService.findById(id);
 
-        ModelAndView modelAndView = new ModelAndView("/editDesigner");
-        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        ModelAndView modelAndView = new ModelAndView("/editSuper");
+        modelAndView.addObject("superModel", resultInfo.getAppData());
         return modelAndView;
 
     }

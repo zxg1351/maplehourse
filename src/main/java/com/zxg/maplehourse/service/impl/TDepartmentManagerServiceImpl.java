@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -52,21 +53,42 @@ public class TDepartmentManagerServiceImpl implements TDepartmentManagerService 
 
     @Override
     public ResultInfo saveManager(TDepartmentManagerModel managerModel) {
-        return null;
+
+        TDepartmentManagerModel model = managerRepository.save(managerModel);
+        ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setAppData(model);
+        resultInfo.setResultMessage("保存成功");
+        resultInfo.setResultCode("0");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo findById(Integer managerId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        TDepartmentManagerModel model = managerRepository.findOne(managerId);
+        resultInfo.setAppData(model);
+        return resultInfo;
     }
 
     @Override
     public ResultInfo editManager(TDepartmentManagerModel managerModel) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+
+        int result = managerRepository.editManager(1, new Date(), managerModel.getName(), managerModel.getType(), managerModel.getId());
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("修改成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 
     @Override
     public ResultInfo deleteManagerById(Integer managerId) {
-        return null;
+        ResultInfo resultInfo = new ResultInfo();
+        int result = managerRepository.deleteManagerById(1, new Date(), "1", managerId);
+        resultInfo.setAppData(result);
+        resultInfo.setResultMessage("删除成功");
+        resultInfo.setResultCode("success");
+        return resultInfo;
     }
 }

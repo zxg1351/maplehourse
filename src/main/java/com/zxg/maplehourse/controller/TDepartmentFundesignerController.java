@@ -34,9 +34,6 @@ public class TDepartmentFundesignerController {
     @RequestMapping(value = "/selectfundesigner")
     public ModelAndView selectfundesigner(@PageableDefault Pageable pageNo) {
 
-//        ResultInfo resultInfo = fundesignerService.selectAllTDepartmentFundesigner();
-
-
         Page<TDepartmentFundesignerModel> pageable = fundesignerService.selectPageFundesigner(pageNo);
         ModelAndView modelAndView = new ModelAndView("/fundesigner");
         modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
@@ -49,31 +46,38 @@ public class TDepartmentFundesignerController {
 
     @RequestMapping(value = "/newFundesigner")
     public ModelAndView newFundesigner(@Valid TDepartmentFundesignerModel fundesignerModel) {
-        ModelAndView modelAndView = new ModelAndView();
+
+        ResultInfo resultInfo = fundesignerService.saveFundesigner(fundesignerModel);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentFundesigner/selectfundesigner");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
     @RequestMapping(value = "/editFundesigner")
     public ModelAndView editFundesigner(@Valid TDepartmentFundesignerModel fundesignerModel) {
-        ModelAndView modelAndView = new ModelAndView();
+
+        ResultInfo resultInfo = fundesignerService.editFundesigner(fundesignerModel);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentFundesigner/selectfundesigner");
+        modelAndView.addObject(resultInfo.getAppData());
         return modelAndView;
     }
 
 
     @RequestMapping(value = "/deleteById")
-    public ModelAndView deleteDesignerById(@RequestParam Integer designerId) {
-        ResultInfo resultInfo = fundesignerService.deleteFundesignerById(designerId);
-        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+    public ModelAndView deleteDesignerById(@RequestParam Integer id) {
+        ResultInfo resultInfo = fundesignerService.deleteFundesignerById(id);
+        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentFundesigner/selectfundesigner");
         return modelAndView;
     }
 
     @RequestMapping(value = "/editView")
-    public ModelAndView editView(@RequestParam Integer designerId) {
+    public ModelAndView editView(@RequestParam Integer id) {
 
-        ResultInfo resultInfo = fundesignerService.findById(designerId);
+        ResultInfo resultInfo = fundesignerService.findById(id);
 
-        ModelAndView modelAndView = new ModelAndView("/editDesigner");
-        modelAndView.addObject("designerModel", resultInfo.getAppData());
+        ModelAndView modelAndView = new ModelAndView("/editFundesigner");
+        modelAndView.addObject("fundesignerModel", resultInfo.getAppData());
         return modelAndView;
 
     }
