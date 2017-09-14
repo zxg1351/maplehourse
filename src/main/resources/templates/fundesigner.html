@@ -39,8 +39,9 @@
         </thead>
         <tr th:each="fundesigner:${fundesignerList}">
             <td th:text="${fundesigner.id}">id</td>
-            <td th:text="${fundesigner.name}">fundesignerName</td>
             <td th:text="${fundesigner.type}">fundesignerType</td>
+            <td th:text="${fundesigner.name}">fundesignerName</td>
+
             <td>
 
                 <form th:action="@{/tDepartmentFundesigner/editView(id=${fundesigner.id})}" th:object="${model}"
