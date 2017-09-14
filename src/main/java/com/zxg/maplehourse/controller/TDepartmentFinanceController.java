@@ -90,6 +90,16 @@ public class TDepartmentFinanceController {
         return modelAndView;
 
     }
+    @RequestMapping(value = "/searchList")
+    public ModelAndView searchList(@Valid TDepartmentFinanceModel model ) {
 
+        Page<TDepartmentFinanceModel> pageable = departmentFinanceService.selectFinance(model);
+        ModelAndView modelAndView = new ModelAndView("/finance");
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("financeList", pageable.getContent());
+        return modelAndView;
+    }
 
 }

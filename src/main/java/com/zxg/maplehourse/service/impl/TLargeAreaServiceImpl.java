@@ -1,6 +1,7 @@
 package com.zxg.maplehourse.service.impl;
 
 import com.zxg.maplehourse.bean.ResultInfo;
+import com.zxg.maplehourse.model.TDepartmentDesignerModel;
 import com.zxg.maplehourse.model.TLargeAreaModel;
 import com.zxg.maplehourse.repository.TLargeAreaRepository;
 import com.zxg.maplehourse.service.TLargeAreaService;
@@ -8,10 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.*;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +30,7 @@ public class TLargeAreaServiceImpl implements TLargeAreaService {
 
         tLargeAreaModel.setCreateTime(new Date());
         tLargeAreaModel.setCreateUser(1);
+        tLargeAreaModel.setDelFlag("0");
         TLargeAreaModel model = tLargeAreaRepository.save(tLargeAreaModel);
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setAppData(model);
@@ -84,7 +89,7 @@ public class TLargeAreaServiceImpl implements TLargeAreaService {
 
     @Override
     public Page<TLargeAreaModel> selectAllpageLargeArea(Pageable page) {
-        Page<TLargeAreaModel> areaModelList = tLargeAreaRepository.findAll(page);
+        Page<TLargeAreaModel> areaModelList = tLargeAreaRepository.findByDelFlag("0", page);
         if (!CollectionUtils.isEmpty(areaModelList.getContent())) {
 
             logger.debug("大区域列表所示：");
@@ -96,5 +101,19 @@ public class TLargeAreaServiceImpl implements TLargeAreaService {
         return areaModelList;
     }
 
-
+    @Override
+    public Page<TLargeAreaModel> selectTLargeArea(TLargeAreaModel model) {
+        Page<TLargeAreaModel> modelPage = tLargeAreaRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> largeAreaName = root.get("largeAreaName").as(String.class);
+                Expression<String> delFlag = root.get("delFlag").as(String.class);
+                criteriaQuery.where(criteriaBuilder.like(largeAreaName, "%" + model.getLargeAreaName() + "%"),
+                        criteriaBuilder.equal(delFlag, "0")
+                );
+                return null;
+            }
+        }, new PageRequest(0, 10));
+        return modelPage;
+    }
 }

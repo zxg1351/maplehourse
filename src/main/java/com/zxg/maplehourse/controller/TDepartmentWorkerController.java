@@ -43,12 +43,14 @@ public class TDepartmentWorkerController {
         modelAndView.addObject("workList", pageable.getContent());
         return modelAndView;
     }
+
     @RequestMapping(value = "/addView")
     public ModelAndView addView() {
 
         ModelAndView modelAndView = new ModelAndView("/newWorker");
         return modelAndView;
     }
+
     @RequestMapping(value = "/newWorker")
     public ModelAndView newWorker(@Valid TDepartmentWorkerModel workerModel) {
         ResultInfo resultInfo = departmentWorkerService.saveWork(workerModel);
@@ -85,4 +87,15 @@ public class TDepartmentWorkerController {
 
     }
 
+    @RequestMapping(value = "/searchList")
+    public ModelAndView searchList(@Valid TDepartmentWorkerModel model) {
+
+        Page<TDepartmentWorkerModel> pageable = departmentWorkerService.selectWorker(model);
+        ModelAndView modelAndView = new ModelAndView("/work");
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("workList", pageable.getContent());
+        return modelAndView;
+    }
 }

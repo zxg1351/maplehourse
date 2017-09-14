@@ -94,4 +94,17 @@ public class TDepartmentDesignerController {
         return modelAndView;
 
     }
+
+
+    @RequestMapping(value = "/searchList")
+    public ModelAndView searchList(@Valid TDepartmentDesignerModel model ) {
+
+        Page<TDepartmentDesignerModel> pageable = departmentDesignerService.selectDesigner(model);
+        ModelAndView modelAndView = new ModelAndView("/designer");
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("designerList", pageable.getContent());
+        return modelAndView;
+    }
 }

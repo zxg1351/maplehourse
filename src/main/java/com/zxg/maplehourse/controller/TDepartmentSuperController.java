@@ -85,6 +85,16 @@ public class TDepartmentSuperController {
         return modelAndView;
 
     }
+    @RequestMapping(value = "/searchList")
+    public ModelAndView searchList(@Valid TDepartmentSuperModel model ) {
 
+        Page<TDepartmentSuperModel> pageable = tDepartmentSuperService.selectSuper(model);
+        ModelAndView modelAndView = new ModelAndView("/super");
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("superList", pageable.getContent());
+        return modelAndView;
+    }
 
 }

@@ -23,4 +23,6 @@ public interface TDepartmentFundesignerService {
     ResultInfo editFundesigner(TDepartmentFundesignerModel fundesignerModel);
 
     ResultInfo deleteFundesignerById(Integer fundesignerId);
+
+    Page<TDepartmentFundesignerModel> selectFundesigner(TDepartmentFundesignerModel model);
 }

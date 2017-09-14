@@ -22,4 +22,6 @@ public interface TLargeAreaService {
     ResultInfo editLargeArea(TLargeAreaModel tLargeAreaModel);
 
     ResultInfo deleteLargeAreaById(Integer largeAreaId);
+
+    Page<TLargeAreaModel> selectTLargeArea(TLargeAreaModel model);
 }

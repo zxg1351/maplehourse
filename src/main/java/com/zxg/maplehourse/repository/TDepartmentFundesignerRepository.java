@@ -1,7 +1,10 @@
 package com.zxg.maplehourse.repository;
 
 import com.zxg.maplehourse.model.TDepartmentFundesignerModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
-public interface TDepartmentFundesignerRepository extends JpaRepository<TDepartmentFundesignerModel, Integer> {
+public interface TDepartmentFundesignerRepository extends JpaRepository<TDepartmentFundesignerModel, Integer> ,JpaSpecificationExecutor {
 
     @Modifying
     @Transactional
@@ -37,6 +40,6 @@ public interface TDepartmentFundesignerRepository extends JpaRepository<TDepartm
                               @Param("updateTime") Date updateTime,
                               @Param("delFlag") String delFlag,
                               @Param("id") Integer id);
-
+    Page<TDepartmentFundesignerModel> findByDelFlag(String delFlag, Pageable pageable);
 
 }

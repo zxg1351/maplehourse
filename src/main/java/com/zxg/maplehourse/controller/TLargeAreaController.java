@@ -91,4 +91,15 @@ public class TLargeAreaController {
 
     }
 
+    @RequestMapping(value = "/searchList")
+    public ModelAndView searchList(@Valid TLargeAreaModel model) {
+
+        Page<TLargeAreaModel> pageable = tLargeAreaService.selectTLargeArea(model);
+        ModelAndView modelAndView = new ModelAndView("/largeArea");
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("largeAreaList", pageable.getContent());
+        return modelAndView;
+    }
 }

@@ -23,4 +23,6 @@ public interface TDepartmentSuperService {
     ResultInfo editSuper(TDepartmentSuperModel superModel);
 
     ResultInfo deleteSuperById(Integer superId);
+
+    Page<TDepartmentSuperModel> selectSuper(TDepartmentSuperModel model);
 }

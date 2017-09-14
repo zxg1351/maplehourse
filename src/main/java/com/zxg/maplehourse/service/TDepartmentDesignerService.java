@@ -24,6 +24,8 @@ public interface TDepartmentDesignerService {
     ResultInfo editDesigner(TDepartmentDesignerModel tDepartmentDesignerModel);
 
     ResultInfo deleteDesignerById(Integer designerId);
+
+    Page<TDepartmentDesignerModel> selectDesigner(TDepartmentDesignerModel model);
 }
 
 

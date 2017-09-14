@@ -1,7 +1,10 @@
 package com.zxg.maplehourse.repository;
 
 import com.zxg.maplehourse.model.TDepartmentSalesModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
-public interface TDepartmentSalesRepository extends JpaRepository<TDepartmentSalesModel, Integer> {
+public interface TDepartmentSalesRepository extends JpaRepository<TDepartmentSalesModel, Integer> ,JpaSpecificationExecutor {
 
     @Modifying
     @Transactional
@@ -38,5 +41,5 @@ public interface TDepartmentSalesRepository extends JpaRepository<TDepartmentSal
                         @Param("delFlag") String delFlag,
                         @Param("id") Integer id);
 
-
+    Page<TDepartmentSalesModel> findByDelFlag(String delFlag, Pageable pageable);
 }

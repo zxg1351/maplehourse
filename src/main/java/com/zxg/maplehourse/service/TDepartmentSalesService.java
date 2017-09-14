@@ -23,4 +23,5 @@ public interface TDepartmentSalesService {
     ResultInfo editSales(TDepartmentSalesModel salesModel);
 
     ResultInfo deleteSalesById(Integer salesId);
+    Page<TDepartmentSalesModel> selectSales(TDepartmentSalesModel model);
 }

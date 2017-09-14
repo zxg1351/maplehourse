@@ -24,4 +24,6 @@ public interface TDepartmentFinanceService {
     ResultInfo editFinance(TDepartmentFinanceModel tDepartmentDesignerModel);
 
     ResultInfo deleteRoleById(Integer financeId);
+
+    Page<TDepartmentFinanceModel> selectFinance(TDepartmentFinanceModel model);
 }

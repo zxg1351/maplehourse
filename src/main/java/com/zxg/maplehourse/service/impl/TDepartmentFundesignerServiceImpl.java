@@ -1,6 +1,7 @@
 package com.zxg.maplehourse.service.impl;
 
 import com.zxg.maplehourse.bean.ResultInfo;
+import com.zxg.maplehourse.model.TDepartmentDesignerModel;
 import com.zxg.maplehourse.model.TDepartmentFinanceModel;
 import com.zxg.maplehourse.model.TDepartmentFundesignerModel;
 import com.zxg.maplehourse.repository.TDepartmentFundesignerRepository;
@@ -9,10 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.*;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +48,7 @@ public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesigner
     @Override
     public Page<TDepartmentFundesignerModel> selectPageFundesigner(Pageable pageable) {
 
-        Page<TDepartmentFundesignerModel> modelPage = fundesignerRepository.findAll(pageable);
+        Page<TDepartmentFundesignerModel> modelPage = fundesignerRepository.findByDelFlag("0",pageable);
         return modelPage;
     }
 
@@ -53,6 +57,7 @@ public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesigner
 
         fundesignerModel.setCreateTime(new Date());
         fundesignerModel.setCreateUser(1);
+        fundesignerModel.setDelFlag("0");
         TDepartmentFundesignerModel fundesignerModel1 = fundesignerRepository.save(fundesignerModel);
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setAppData(fundesignerModel1);
@@ -89,5 +94,21 @@ public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesigner
         resultInfo.setResultMessage("删除成功");
         resultInfo.setResultCode("success");
         return resultInfo;
+    }
+
+    @Override
+    public Page<TDepartmentFundesignerModel> selectFundesigner(TDepartmentFundesignerModel model) {
+        Page<TDepartmentFundesignerModel> modelPage = fundesignerRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> name = root.get("name").as(String.class);
+                Expression<String> delFlag = root.get("delFlag").as(String.class);
+                criteriaQuery.where(criteriaBuilder.like(name, "%" + model.getName() + "%"),
+                        criteriaBuilder.equal(delFlag, "0")
+                );
+                return null;
+            }
+        }, new PageRequest(0, 10));
+        return modelPage;
     }
 }

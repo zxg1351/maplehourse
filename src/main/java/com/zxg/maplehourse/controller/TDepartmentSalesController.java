@@ -43,12 +43,14 @@ public class TDepartmentSalesController {
         modelAndView.addObject("salesList", pageable.getContent());
         return modelAndView;
     }
+
     @RequestMapping(value = "/addView")
     public ModelAndView addView() {
 
         ModelAndView modelAndView = new ModelAndView("/newSales");
         return modelAndView;
     }
+
     @RequestMapping(value = "/newSales")
     public ModelAndView newSales(@Valid TDepartmentSalesModel salesModel) {
         ResultInfo resultInfo = tDepartmentSalesService.saveSales(salesModel);
@@ -85,4 +87,15 @@ public class TDepartmentSalesController {
 
     }
 
+    @RequestMapping(value = "/searchList")
+    public ModelAndView searchList(@Valid TDepartmentSalesModel model) {
+
+        Page<TDepartmentSalesModel> pageable = tDepartmentSalesService.selectSales(model);
+        ModelAndView modelAndView = new ModelAndView("/sales");
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("salesList", pageable.getContent());
+        return modelAndView;
+    }
 }

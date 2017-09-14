@@ -42,12 +42,14 @@ public class TDepartmentManagerController {
         modelAndView.addObject("managerList", pageable.getContent());
         return modelAndView;
     }
+
     @RequestMapping(value = "/addView")
     public ModelAndView addView() {
 
         ModelAndView modelAndView = new ModelAndView("/newManager");
         return modelAndView;
     }
+
     @RequestMapping(value = "/newManager")
     public ModelAndView newManager(@Valid TDepartmentManagerModel managerModel) {
         ResultInfo resultInfo = managerService.saveManager(managerModel);
@@ -84,4 +86,15 @@ public class TDepartmentManagerController {
 
     }
 
+    @RequestMapping(value = "/searchList")
+    public ModelAndView searchList(@Valid TDepartmentManagerModel model) {
+
+        Page<TDepartmentManagerModel> pageable = managerService.selectManager(model);
+        ModelAndView modelAndView = new ModelAndView("/manager");
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("managerList", pageable.getContent());
+        return modelAndView;
+    }
 }

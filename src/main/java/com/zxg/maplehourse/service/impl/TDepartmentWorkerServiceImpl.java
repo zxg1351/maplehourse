@@ -1,6 +1,7 @@
 package com.zxg.maplehourse.service.impl;
 
 import com.zxg.maplehourse.bean.ResultInfo;
+import com.zxg.maplehourse.model.TDepartmentDesignerModel;
 import com.zxg.maplehourse.model.TDepartmentWorkerModel;
 import com.zxg.maplehourse.repository.TDepartmentWorkerRepository;
 import com.zxg.maplehourse.service.TDepartmentWorkerService;
@@ -8,10 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.*;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +31,7 @@ public class TDepartmentWorkerServiceImpl implements TDepartmentWorkerService {
     public ResultInfo saveWork(TDepartmentWorkerModel workerModel) {
         workerModel.setCreateTime(new Date());
         workerModel.setCreateUser(1);
+        workerModel.setDelFlag("0");
         TDepartmentWorkerModel model = workerRepository.save(workerModel);
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setAppData(model);
@@ -87,7 +92,23 @@ public class TDepartmentWorkerServiceImpl implements TDepartmentWorkerService {
     @Override
     public Page<TDepartmentWorkerModel> selectPageWorker(Pageable pageNo) {
 
-        Page<TDepartmentWorkerModel> pageable = workerRepository.findAll(pageNo);
+        Page<TDepartmentWorkerModel> pageable = workerRepository.findByDelFlag("0",pageNo);
         return pageable;
+    }
+
+    @Override
+    public Page<TDepartmentWorkerModel> selectWorker(TDepartmentWorkerModel model) {
+        Page<TDepartmentWorkerModel> modelPage = workerRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> tWorkName = root.get("tWorkName").as(String.class);
+                Expression<String> delFlag = root.get("delFlag").as(String.class);
+                criteriaQuery.where(criteriaBuilder.like(tWorkName, "%" + model.getTWorkName() + "%"),
+                        criteriaBuilder.equal(delFlag, "0")
+                );
+                return null;
+            }
+        }, new PageRequest(0, 10));
+        return modelPage;
     }
 }

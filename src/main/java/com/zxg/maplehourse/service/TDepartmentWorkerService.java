@@ -22,4 +22,6 @@ public interface TDepartmentWorkerService {
     ResultInfo editWork(TDepartmentWorkerModel workerModel);
 
     ResultInfo deleteWorkById(Integer workId);
+
+    Page<TDepartmentWorkerModel> selectWorker(TDepartmentWorkerModel model);
 }

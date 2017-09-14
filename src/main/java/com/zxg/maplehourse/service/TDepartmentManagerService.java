@@ -24,4 +24,6 @@ public interface TDepartmentManagerService {
     ResultInfo editManager(TDepartmentManagerModel managerModel);
 
     ResultInfo deleteManagerById(Integer managerId);
+
+    Page<TDepartmentManagerModel> selectManager(TDepartmentManagerModel model);
 }

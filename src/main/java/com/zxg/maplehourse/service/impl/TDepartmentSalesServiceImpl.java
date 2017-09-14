@@ -1,6 +1,7 @@
 package com.zxg.maplehourse.service.impl;
 
 import com.zxg.maplehourse.bean.ResultInfo;
+import com.zxg.maplehourse.model.TDepartmentDesignerModel;
 import com.zxg.maplehourse.model.TDepartmentSalesModel;
 import com.zxg.maplehourse.repository.TDepartmentSalesRepository;
 import com.zxg.maplehourse.service.TDepartmentSalesService;
@@ -8,10 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.*;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +31,7 @@ public class TDepartmentSalesServiceImpl implements TDepartmentSalesService {
 
         salesModel.setCreateTime(new Date());
         salesModel.setCreateUser(1);
+        salesModel.setDelFlag("0");
         TDepartmentSalesModel model = salesRepository.save(salesModel);
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setAppData(model);
@@ -86,8 +91,24 @@ public class TDepartmentSalesServiceImpl implements TDepartmentSalesService {
     @Override
     public Page<TDepartmentSalesModel> selectPageSales(Pageable pageable) {
 
-        Page<TDepartmentSalesModel> page = salesRepository.findAll(pageable);
+        Page<TDepartmentSalesModel> page = salesRepository.findByDelFlag("0",pageable);
 
         return page;
+    }
+
+    @Override
+    public Page<TDepartmentSalesModel> selectSales(TDepartmentSalesModel model) {
+        Page<TDepartmentSalesModel> modelPage = salesRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> saleName = root.get("saleName").as(String.class);
+                Expression<String> delFlag = root.get("delFlag").as(String.class);
+                criteriaQuery.where(criteriaBuilder.like(saleName, "%" + model.getSaleName() + "%"),
+                        criteriaBuilder.equal(delFlag, "0")
+                );
+                return null;
+            }
+        }, new PageRequest(0, 10));
+        return modelPage;
     }
 }

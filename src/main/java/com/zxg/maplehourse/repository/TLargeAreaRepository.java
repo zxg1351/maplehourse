@@ -1,7 +1,10 @@
 package com.zxg.maplehourse.repository;
 
 import com.zxg.maplehourse.model.TLargeAreaModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
-public interface TLargeAreaRepository extends JpaRepository<TLargeAreaModel, Integer> {
+public interface TLargeAreaRepository extends JpaRepository<TLargeAreaModel, Integer>, JpaSpecificationExecutor {
 
     @Modifying
     @Transactional
@@ -26,4 +29,6 @@ public interface TLargeAreaRepository extends JpaRepository<TLargeAreaModel, Int
                           @Param("delFlag") String delFlag, @Param("id") Integer id);
 
 
+
+    Page<TLargeAreaModel> findByDelFlag(String delFlag, Pageable pageable);
 }

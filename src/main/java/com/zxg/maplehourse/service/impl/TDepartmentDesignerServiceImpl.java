@@ -8,10 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.*;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +49,7 @@ public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerServic
     @Override
     public Page<TDepartmentDesignerModel> selectPageDesigner(Pageable pageable) {
 
-        Page<TDepartmentDesignerModel> modelPage = tDepartmentDesignerRepository.findAll(pageable);
+        Page<TDepartmentDesignerModel> modelPage = tDepartmentDesignerRepository.findByDelFlag("0",pageable);
 
 
         return modelPage;
@@ -58,6 +61,7 @@ public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerServic
         ResultInfo resultInfo = new ResultInfo();
         tDepartmentDesignerModel.setCreateTime(new Date());
         tDepartmentDesignerModel.setCreateUser(1);
+        tDepartmentDesignerModel.setDelFlag("0");
         TDepartmentDesignerModel designerModel = tDepartmentDesignerRepository.save(tDepartmentDesignerModel);
 
         resultInfo.setAppData(designerModel);
@@ -98,5 +102,22 @@ public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerServic
         resultInfo.setResultMessage("删除成功");
         resultInfo.setResultCode("success");
         return resultInfo;
+    }
+
+    @Override
+    public Page<TDepartmentDesignerModel> selectDesigner(TDepartmentDesignerModel model) {
+
+        Page<TDepartmentDesignerModel> modelPage = tDepartmentDesignerRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Expression<String> name = root.get("name").as(String.class);
+                Expression<String> delFlag = root.get("delFlag").as(String.class);
+                criteriaQuery.where(criteriaBuilder.like(name, "%" + model.getName() + "%"),
+                        criteriaBuilder.equal(delFlag, "0")
+                );
+                return null;
+            }
+        }, new PageRequest(0, 10));
+        return modelPage;
     }
 }

@@ -89,5 +89,16 @@ public class TDepartmentFundesignerController {
 
     }
 
+    @RequestMapping(value = "/searchList")
+    public ModelAndView searchList(@Valid TDepartmentFundesignerModel model) {
+
+        Page<TDepartmentFundesignerModel> pageable = fundesignerService.selectFundesigner(model);
+        ModelAndView modelAndView = new ModelAndView("/fundesigner");
+        modelAndView.addObject("totalPageNumber", pageable.getTotalElements());
+        modelAndView.addObject("pageSize", pageable.getTotalPages());
+        modelAndView.addObject("number", pageable.getNumber());
+        modelAndView.addObject("fundesignerList", pageable.getContent());
+        return modelAndView;
+    }
 }
 
