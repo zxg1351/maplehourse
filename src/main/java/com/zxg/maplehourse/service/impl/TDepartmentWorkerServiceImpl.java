@@ -25,6 +25,8 @@ public class TDepartmentWorkerServiceImpl implements TDepartmentWorkerService {
 
     @Override
     public ResultInfo saveWork(TDepartmentWorkerModel workerModel) {
+        workerModel.setCreateTime(new Date());
+        workerModel.setCreateUser(1);
         TDepartmentWorkerModel model = workerRepository.save(workerModel);
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setAppData(model);

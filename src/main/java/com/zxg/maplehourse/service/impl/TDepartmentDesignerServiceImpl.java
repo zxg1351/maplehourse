@@ -56,7 +56,8 @@ public class TDepartmentDesignerServiceImpl implements TDepartmentDesignerServic
     public ResultInfo saveDesigner(TDepartmentDesignerModel tDepartmentDesignerModel) {
 
         ResultInfo resultInfo = new ResultInfo();
-
+        tDepartmentDesignerModel.setCreateTime(new Date());
+        tDepartmentDesignerModel.setCreateUser(1);
         TDepartmentDesignerModel designerModel = tDepartmentDesignerRepository.save(tDepartmentDesignerModel);
 
         resultInfo.setAppData(designerModel);

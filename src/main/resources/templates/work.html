@@ -22,7 +22,11 @@
             <input type="submit" value="查询"/>
         </div>
     </form>
+    <form th:action="@{/tDepartmentWorker/addView}" method="post">
 
+        <input type="submit" value="新建"></input>
+
+    </form>
 </div>
 <div>
     <table class="table table-bordered table-striped">
@@ -31,6 +35,7 @@
             <td>id</td>
             <td>工人姓名</td>
             <td>工人手机号</td>
+            <td>工人地址</td>
             <td>工人类型</td>
             <td>加入时间</td>
             <td colspan="8" align="center">操作权限</td>
@@ -40,6 +45,7 @@
             <td th:text="${work.id}">id</td>
             <td th:text="${work.tWorkName}">tWorkName</td>
             <td th:text="${work.tWorkTel}">tWorkTel</td>
+            <td th:text="${work.tWorkAddress}">tWorkType</td>
             <td th:text="${work.tWorkType}">tWorkType</td>
             <td th:text="${work.createTime}">mRoleName</td>
             <td>

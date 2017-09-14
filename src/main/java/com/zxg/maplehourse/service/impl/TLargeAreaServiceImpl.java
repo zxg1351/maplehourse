@@ -23,6 +23,9 @@ public class TLargeAreaServiceImpl implements TLargeAreaService {
 
     @Override
     public ResultInfo saveLargeArea(TLargeAreaModel tLargeAreaModel) {
+
+        tLargeAreaModel.setCreateTime(new Date());
+        tLargeAreaModel.setCreateUser(1);
         TLargeAreaModel model = tLargeAreaRepository.save(tLargeAreaModel);
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setAppData(model);

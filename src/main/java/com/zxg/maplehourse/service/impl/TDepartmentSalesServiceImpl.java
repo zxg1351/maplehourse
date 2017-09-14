@@ -24,6 +24,9 @@ public class TDepartmentSalesServiceImpl implements TDepartmentSalesService {
 
     @Override
     public ResultInfo saveSales(TDepartmentSalesModel salesModel) {
+
+        salesModel.setCreateTime(new Date());
+        salesModel.setCreateUser(1);
         TDepartmentSalesModel model = salesRepository.save(salesModel);
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setAppData(model);

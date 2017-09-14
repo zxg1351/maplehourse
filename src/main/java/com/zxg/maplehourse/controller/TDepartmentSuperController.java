@@ -43,7 +43,12 @@ public class TDepartmentSuperController {
         modelAndView.addObject("superList", pageable.getContent());
         return modelAndView;
     }
+    @RequestMapping(value = "/addView")
+    public ModelAndView addView() {
 
+        ModelAndView modelAndView = new ModelAndView("/newSuper");
+        return modelAndView;
+    }
     @RequestMapping(value = "/newSuper")
     public ModelAndView newSuper(@Valid TDepartmentSuperModel superModel) {
 

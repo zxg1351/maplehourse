@@ -53,7 +53,8 @@ public class TDepartmentManagerServiceImpl implements TDepartmentManagerService 
 
     @Override
     public ResultInfo saveManager(TDepartmentManagerModel managerModel) {
-
+        managerModel.setCreateTime(new Date());
+        managerModel.setCreateUser(1);
         TDepartmentManagerModel model = managerRepository.save(managerModel);
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setAppData(model);

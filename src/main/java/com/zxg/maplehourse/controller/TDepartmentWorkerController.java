@@ -43,7 +43,12 @@ public class TDepartmentWorkerController {
         modelAndView.addObject("workList", pageable.getContent());
         return modelAndView;
     }
+    @RequestMapping(value = "/addView")
+    public ModelAndView addView() {
 
+        ModelAndView modelAndView = new ModelAndView("/newWorker");
+        return modelAndView;
+    }
     @RequestMapping(value = "/newWorker")
     public ModelAndView newWorker(@Valid TDepartmentWorkerModel workerModel) {
         ResultInfo resultInfo = departmentWorkerService.saveWork(workerModel);

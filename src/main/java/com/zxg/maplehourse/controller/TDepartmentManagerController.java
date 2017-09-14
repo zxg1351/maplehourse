@@ -42,7 +42,12 @@ public class TDepartmentManagerController {
         modelAndView.addObject("managerList", pageable.getContent());
         return modelAndView;
     }
+    @RequestMapping(value = "/addView")
+    public ModelAndView addView() {
 
+        ModelAndView modelAndView = new ModelAndView("/newManager");
+        return modelAndView;
+    }
     @RequestMapping(value = "/newManager")
     public ModelAndView newManager(@Valid TDepartmentManagerModel managerModel) {
         ResultInfo resultInfo = managerService.saveManager(managerModel);

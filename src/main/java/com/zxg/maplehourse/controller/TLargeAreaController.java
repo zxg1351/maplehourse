@@ -48,6 +48,13 @@ public class TLargeAreaController {
 
     }
 
+    @RequestMapping(value = "/addView")
+    public ModelAndView addView() {
+
+        ModelAndView modelAndView = new ModelAndView("/newTLargeArea");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/newLargeArea")
     public ModelAndView newLargeArea(@Valid TLargeAreaModel largeAreaModel) {
         ResultInfo resultInfo = tLargeAreaService.saveLargeArea(largeAreaModel);
@@ -69,7 +76,7 @@ public class TLargeAreaController {
     @RequestMapping(value = "/deleteById")
     public ModelAndView deleteDesignerById(@RequestParam Integer id) {
         ResultInfo resultInfo = tLargeAreaService.deleteLargeAreaById(id);
-        ModelAndView modelAndView = new ModelAndView("redirect:/tDepartmentDesigner/selectDesigner");
+        ModelAndView modelAndView = new ModelAndView("redirect:/tLargeArea/selectLargeArea");
         return modelAndView;
     }
 
@@ -78,7 +85,7 @@ public class TLargeAreaController {
 
         ResultInfo resultInfo = tLargeAreaService.findById(id);
 
-        ModelAndView modelAndView = new ModelAndView("/editLargeArea");
+        ModelAndView modelAndView = new ModelAndView("/editTLargeArea");
         modelAndView.addObject("largeAreaModel", resultInfo.getAppData());
         return modelAndView;
 

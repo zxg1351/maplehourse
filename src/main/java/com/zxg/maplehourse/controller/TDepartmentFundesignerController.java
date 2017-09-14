@@ -44,6 +44,13 @@ public class TDepartmentFundesignerController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/addView")
+    public ModelAndView addView() {
+
+        ModelAndView modelAndView = new ModelAndView("/newFundesigner");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/newFundesigner")
     public ModelAndView newFundesigner(@Valid TDepartmentFundesignerModel fundesignerModel) {
 

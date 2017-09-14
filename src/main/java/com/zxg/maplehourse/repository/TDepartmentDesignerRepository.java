@@ -16,7 +16,7 @@ public interface TDepartmentDesignerRepository extends JpaRepository<TDepartment
             " tfm.updateUser =:updateUser," +
             "tfm.updateTime= :updateTime," +
             "tfm.name=:name," +
-            "tfdm.type=:type  where tfm.id= :id")
+            "tfm.type=:type  where tfm.id= :id")
     int editDesigner(@Param("updateUser") Integer updateUser,
                      @Param("updateTime") Date updateTime,
                      @Param("name") String name,

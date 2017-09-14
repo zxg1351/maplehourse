@@ -50,6 +50,9 @@ public class TDepartmentFundesignerServiceImpl implements TDepartmentFundesigner
 
     @Override
     public ResultInfo saveFundesigner(TDepartmentFundesignerModel fundesignerModel) {
+
+        fundesignerModel.setCreateTime(new Date());
+        fundesignerModel.setCreateUser(1);
         TDepartmentFundesignerModel fundesignerModel1 = fundesignerRepository.save(fundesignerModel);
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setAppData(fundesignerModel1);

@@ -23,6 +23,9 @@ public class TDepartmentSuperServiceImpl implements TDepartmentSuperService {
 
     @Override
     public ResultInfo saveSuper(TDepartmentSuperModel superModel) {
+
+        superModel.setCreateTime(new Date());
+        superModel.setCreateUser(1);
         TDepartmentSuperModel model = superRepository.save(superModel);
         ResultInfo resultInfo = new ResultInfo();
         resultInfo.setAppData(model);

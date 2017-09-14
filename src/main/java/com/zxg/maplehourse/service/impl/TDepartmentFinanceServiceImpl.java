@@ -52,6 +52,9 @@ public class TDepartmentFinanceServiceImpl implements TDepartmentFinanceService 
 
     @Override
     public ResultInfo saveDesigner(TDepartmentFinanceModel tDepartmentFinanceModel) {
+
+        tDepartmentFinanceModel.setCreateTime(new Date());
+        tDepartmentFinanceModel.setCreateUser(1);
         TDepartmentFinanceModel financeModel = departmentFinanceRepository.save(tDepartmentFinanceModel);
         ResultInfo resultInfo = new ResultInfo();
 
@@ -71,10 +74,10 @@ public class TDepartmentFinanceServiceImpl implements TDepartmentFinanceService 
     }
 
     @Override
-    public ResultInfo editFinance(TDepartmentFinanceModel tDepartmentDesignerModel) {
+    public ResultInfo editFinance(TDepartmentFinanceModel tDepartmentFinanceModel) {
         ResultInfo resultInfo = new ResultInfo();
 
-        int result = departmentFinanceRepository.editFinance(1, new Date(), tDepartmentDesignerModel.getName(), tDepartmentDesignerModel.getId());
+        int result = departmentFinanceRepository.editFinance(1, new Date(), tDepartmentFinanceModel.getName(), tDepartmentFinanceModel.getId());
 
         resultInfo.setAppData(result);
         resultInfo.setResultMessage("修改成功");

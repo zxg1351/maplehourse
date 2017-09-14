@@ -48,6 +48,12 @@ public class TDepartmentFinanceController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/addView")
+    public ModelAndView addView() {
+
+        ModelAndView modelAndView = new ModelAndView("/newFinance");
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/newFinance")
     public ModelAndView newFinance(@Valid TDepartmentFinanceModel financeModel) {
