@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>城市city list</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div>
+
+    <div>
+
+        <form th:action="@{/test/select(page=${number-1})}" method="post" th:object="${mCityModel}">
+
+            <label class="col-md-1 control-label">城市名称：</label>
+            <div class="col-md-2">
+                <input type="text" name="mCityName" placeholder="请输入城市名称" class="form-control"/>
+            </div>
+            <div class="form-actions">
+                <input type="submit" value="查询"/>
+
+            </div>
+        </form>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+
+        <tr>
+            <td>id</td>
+            <td>城市ID</td>
+            <td>城市名称</td>
+            <td>省ID</td>
+        </tr>
+        </thead>
+
+        <tr th:each="city:${citylist}">
+            <td th:text="${city.id}"></td>
+            <td th:text="${city.mCityId}"></td>
+            <td th:text="${city.mCityName}"></td>
+            <td th:text="${city.mProvinceId}"></td>
+        </tr>
+    </table>
+
+    <tr>
+
+        <td colspan="8">
+
+        <td th:text="'共' + ${totalPageNumber} + '条记录'">总数量</td>
+        <td th:text="'共' + ${pageSize} + '页'">总数量</td>
+        <td th:text="'当前第' + ${number+1} + '页'">总数量</td>
+        <a th:href="@{/test/select(page=${number-1})}">上一页</a>
+        <a th:href="@{/test/select(page=${number+1})}">下一页</a>
+        </td>
+    </tr>
+
+    <!--<div th:include="fragments/page :: pager" style="width:100%; padding-top:20px; float:right;"></div>-->
+</div>
+
+</body>
+</html>

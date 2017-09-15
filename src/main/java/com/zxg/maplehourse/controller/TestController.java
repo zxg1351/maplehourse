@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @RestController
@@ -24,23 +26,28 @@ public class TestController {
 
 
     @Autowired
-    private MCityRepository mProvinceRepository;
+    private MCityRepository mCityRepository;
 
     //@RequestParam(value = "pageNo") int pageNo
     @RequestMapping(value = "/select")
-    private ModelAndView selectP(@PageableDefault Pageable pageNo) {
+    private ModelAndView selectP(@PageableDefault Pageable pageNo, @PageableDefault MCityModel mCityModel) {
 
-        int page = 0;
-        Sort sort = new Sort(Sort.Direction.DESC, "id");
-//        if (pageNo.getPageNumber() < page) {
-//
-//            pageNo.getPageNumber() = page;
-//        }
-//        Pageable pageable = new PageRequest(pageNo, 10);
 
-        Page<MCityModel> mCityModels = mProvinceRepository.findAll(pageNo);
+        Page<MCityModel> mCityModels = mCityRepository.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
 
-        ModelAndView modelAndView = new ModelAndView("/city");
+                Expression<String> mCityName = root.get("mCityName").as(String.class);
+
+                Predicate predicate = criteriaBuilder.like(mCityName, "%" + mCityModel.getMCityName() + "%");
+
+                criteriaQuery.where(predicate);
+                return null;
+            }
+        }, new PageRequest(0, 10));
+
+
+        ModelAndView modelAndView = new ModelAndView("/cityTest");
         modelAndView.addObject("citylist", mCityModels.getContent());
         modelAndView.addObject("totalPageNumber", mCityModels.getTotalElements());
         modelAndView.addObject("pageSize", mCityModels.getTotalPages());

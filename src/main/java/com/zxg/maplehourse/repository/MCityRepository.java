@@ -14,4 +14,6 @@ public interface MCityRepository extends JpaRepository<MCityModel,Integer>,JpaSp
 
 
 
+
+
 }
